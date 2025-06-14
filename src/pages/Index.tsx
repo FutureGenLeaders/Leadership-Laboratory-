@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -14,7 +13,12 @@ import {
   Star,
   ChevronRight,
   Shield,
-  Sun
+  Sun,
+  Play,
+  GraduationCap,
+  Users,
+  User,
+  Calendar
 } from "lucide-react";
 
 const Index = () => {
@@ -224,6 +228,111 @@ const Index = () => {
             )}
           </CardContent>
         </Card>
+
+        {/* New Video & Coaching Features Section */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-center mb-8" style={{ color: '#E0B848' }}>
+            Video Learning & Coaching Platform
+          </h2>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <Button 
+              onClick={() => navigate('/monday-mastery')}
+              className="h-24 flex flex-col items-center justify-center text-black transition-all duration-300 hover:scale-105"
+              style={{ background: 'linear-gradient(to right, #E0B848, #B08B18)' }}
+            >
+              <Play className="w-6 h-6 mb-2" />
+              <span className="font-semibold">Monday Mastery</span>
+              <span className="text-sm opacity-80">Weekly Videos</span>
+            </Button>
+            
+            <Button 
+              onClick={() => navigate('/masterclass-library')}
+              className="h-24 flex flex-col items-center justify-center transition-all duration-300 hover:scale-105"
+              style={{ 
+                backgroundColor: 'rgba(224, 184, 72, 0.2)', 
+                borderColor: 'rgba(224, 184, 72, 0.3)',
+                color: '#E0B848',
+                border: '1px solid'
+              }}
+            >
+              <GraduationCap className="w-6 h-6 mb-2" />
+              <span className="font-semibold">Masterclass Library</span>
+              <span className="text-sm opacity-80">Deep-Dive Training</span>
+            </Button>
+            
+            <Button 
+              onClick={() => navigate('/executive-circle')}
+              className="h-24 flex flex-col items-center justify-center transition-all duration-300 hover:scale-105"
+              style={{ 
+                backgroundColor: 'rgba(173, 30, 45, 0.2)', 
+                borderColor: 'rgba(173, 30, 45, 0.3)',
+                color: '#AD1E2D',
+                border: '1px solid'
+              }}
+            >
+              <Users className="w-6 h-6 mb-2" />
+              <span className="font-semibold">Executive Circle</span>
+              <span className="text-sm opacity-80">Group Coaching</span>
+            </Button>
+            
+            <Button 
+              onClick={() => navigate('/strategic-sessions')}
+              className="h-24 flex flex-col items-center justify-center transition-all duration-300 hover:scale-105"
+              style={{ 
+                backgroundColor: 'rgba(201, 213, 221, 0.2)', 
+                borderColor: 'rgba(201, 213, 221, 0.3)',
+                color: '#C9D5DD',
+                border: '1px solid'
+              }}
+            >
+              <User className="w-6 h-6 mb-2" />
+              <span className="font-semibold">Strategic Sessions</span>
+              <span className="text-sm opacity-80">Private 1:1 Coaching</span>
+            </Button>
+          </div>
+
+          {/* Featured Content Highlight */}
+          <Card className="bg-gradient-to-r border" style={{ 
+            background: 'linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(224, 184, 72, 0.1))', 
+            borderColor: 'rgba(224, 184, 72, 0.3)' 
+          }}>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2" style={{ color: '#E0B848' }}>
+                    This Week's Monday Mastery: Crisis Leadership Fundamentals
+                  </h3>
+                  <p style={{ color: '#C9D5DD' }}>
+                    Master the core principles of leading through organizational crisis with strategic clarity
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Badge style={{ 
+                    backgroundColor: 'rgba(224, 184, 72, 0.2)', 
+                    color: '#E0B848', 
+                    borderColor: 'rgba(224, 184, 72, 0.3)' 
+                  }}>
+                    <Calendar className="w-4 h-4 mr-1" />
+                    New This Week
+                  </Badge>
+                  <Button 
+                    onClick={() => navigate('/monday-mastery')}
+                    variant="outline"
+                    style={{ 
+                      backgroundColor: 'rgba(224, 184, 72, 0.1)', 
+                      borderColor: 'rgba(224, 184, 72, 0.3)',
+                      color: '#E0B848'
+                    }}
+                  >
+                    Watch Now
+                    <ChevronRight className="w-4 h-4 ml-1" />
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* Four Pillars */}
         <div className="mb-12">
