@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -12,12 +11,15 @@ import {
   Eye,
   Star,
   ChevronRight,
-  Shield
+  Shield,
+  Sun
 } from "lucide-react";
 
 const Index = () => {
   const navigate = useNavigate();
   const [consciousnessLevel, setConsciousnessLevel] = useState(73);
+  const [selectedLevel, setSelectedLevel] = useState<number | null>(null);
+  const [showLevelSelection, setShowLevelSelection] = useState(false);
 
   const pillars = [
     {
@@ -58,6 +60,25 @@ const Index = () => {
     }
   ];
 
+  const handleLevelSelect = (level: number) => {
+    setSelectedLevel(level);
+    setShowLevelSelection(false);
+    navigate('/morning-session', { state: { level } });
+  };
+
+  const getLevelInfo = () => {
+    switch (selectedLevel) {
+      case 1: return { name: "Strategic Focus", color: "#3B82F6" };
+      case 2: return { name: "Advanced Leadership", color: "#EAB308" };
+      case 3: return { name: "Mastery Mode", color: "#DC2626" };
+      default: return { name: "Select Level", color: "#E0B848" };
+    }
+  };
+
+  if (showLevelSelection) {
+    return <LevelSelection onLevelSelect={handleLevelSelect} />;
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
       {/* Sacred Geometry Background Pattern */}
@@ -90,6 +111,27 @@ const Index = () => {
           </Badge>
         </div>
 
+        {/* Level Selection Status */}
+        {selectedLevel && (
+          <div className="text-center mb-8">
+            <Badge className="text-lg px-6 py-3" style={{ 
+              backgroundColor: `${getLevelInfo().color}20`, 
+              color: getLevelInfo().color, 
+              borderColor: `${getLevelInfo().color}40` 
+            }}>
+              Current Path: {getLevelInfo().name}
+            </Badge>
+            <Button 
+              variant="ghost" 
+              onClick={() => setShowLevelSelection(true)}
+              className="ml-4 text-sm"
+              style={{ color: '#C9D5DD' }}
+            >
+              Change Level
+            </Button>
+          </div>
+        )}
+
         {/* Morning Consciousness Check-in */}
         <Card className="mb-12 bg-gradient-to-r border" style={{ 
           background: 'linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(173, 30, 45, 0.1))', 
@@ -119,20 +161,65 @@ const Index = () => {
               <h3 className="text-xl font-semibold mb-3" style={{ color: '#E0B848' }}>Today's Performance Protocol:</h3>
               <p className="text-lg leading-relaxed" style={{ color: '#C9D5DD' }}>
                 Your leadership assessment reads <span className="font-semibold" style={{ color: '#E0B848' }}>"High-Performance Ready"</span>. 
-                Transform one team tension into breakthrough clarity today. Your system is calibrated for 
-                <span className="font-semibold" style={{ color: '#E0B848' }}> 'Antifragile Excellence'</span>.
+                {selectedLevel ? (
+                  <>Transform one team tension into breakthrough clarity today using your <span className="font-semibold" style={{ color: getLevelInfo().color }}>{getLevelInfo().name}</span> protocols.</>
+                ) : (
+                  <>Begin with morning activation to calibrate your system for <span className="font-semibold" style={{ color: '#E0B848' }}>'Antifragile Excellence'</span>.</>
+                )}
               </p>
             </div>
 
-            <Button 
-              onClick={() => navigate('/assessment')}
-              className="w-full font-semibold text-lg py-6 text-black"
-              style={{ background: 'linear-gradient(to right, #E0B848, #B08B18)' }}
-            >
-              <Shield className="w-5 h-5 mr-2" />
-              Begin Performance Assessment
-              <ChevronRight className="w-5 h-5 ml-2" />
-            </Button>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Button 
+                onClick={() => selectedLevel ? navigate('/morning-session', { state: { level: selectedLevel } }) : setShowLevelSelection(true)}
+                className="font-semibold text-lg py-6 text-black"
+                style={{ background: 'linear-gradient(to right, #E0B848, #B08B18)' }}
+              >
+                <Sun className="w-5 h-5 mr-2" />
+                Morning Session
+                <ChevronRight className="w-5 h-5 ml-2" />
+              </Button>
+              
+              <Button 
+                variant="outline"
+                onClick={() => selectedLevel ? navigate('/afternoon-session', { state: { level: selectedLevel } }) : setShowLevelSelection(true)}
+                className="font-semibold text-lg py-6"
+                style={{ 
+                  backgroundColor: 'rgba(224, 184, 72, 0.1)', 
+                  borderColor: 'rgba(224, 184, 72, 0.3)',
+                  color: '#E0B848'
+                }}
+              >
+                <Zap className="w-5 h-5 mr-2" />
+                Afternoon Reset
+              </Button>
+              
+              <Button 
+                variant="outline"
+                onClick={() => selectedLevel ? navigate('/evening-session', { state: { level: selectedLevel } }) : setShowLevelSelection(true)}
+                className="font-semibold text-lg py-6"
+                style={{ 
+                  backgroundColor: 'rgba(173, 30, 45, 0.1)', 
+                  borderColor: 'rgba(173, 30, 45, 0.3)',
+                  color: '#AD1E2D'
+                }}
+              >
+                <Star className="w-5 h-5 mr-2" />
+                Evening Integration
+              </Button>
+            </div>
+
+            {!selectedLevel && (
+              <Button 
+                onClick={() => setShowLevelSelection(true)}
+                className="w-full font-semibold text-lg py-6 text-black"
+                style={{ background: 'linear-gradient(to right, #E0B848, #B08B18)' }}
+              >
+                <Shield className="w-5 h-5 mr-2" />
+                Choose Your Leadership Path
+                <ChevronRight className="w-5 h-5 ml-2" />
+              </Button>
+            )}
           </CardContent>
         </Card>
 
