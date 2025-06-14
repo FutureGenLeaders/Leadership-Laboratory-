@@ -26,7 +26,7 @@ const Index = () => {
       title: "Sacred Team Conflict Mastery",
       description: "Transform team tensions into breakthrough clarity",
       icon: Flame,
-      color: "from-red-500 to-orange-500",
+      color: "from-red-500 to-red-600",
       progress: 65,
       dailyChallenge: "Convert one team frustration into strategic opportunity"
     },
@@ -35,7 +35,7 @@ const Index = () => {
       title: "Antifragile Decision Architecture", 
       description: "Make powerful decisions under pressure",
       icon: Zap,
-      color: "from-blue-500 to-cyan-500",
+      color: "from-yellow-500 to-yellow-600",
       progress: 78,
       dailyChallenge: "Practice uncertainty training with incomplete information"
     },
@@ -44,7 +44,7 @@ const Index = () => {
       title: "Executive Burnout Recovery",
       description: "Maintain peak performance without depletion",
       icon: Sprout,
-      color: "from-green-500 to-emerald-500", 
+      color: "from-gray-400 to-gray-500", 
       progress: 42,
       dailyChallenge: "Complete your sacred energy audit and recovery protocol"
     },
@@ -53,74 +53,82 @@ const Index = () => {
       title: "Crisis Leadership Performance",
       description: "Thrive as an unshakeable leader during chaos",
       icon: Eye,
-      color: "from-purple-500 to-indigo-500",
+      color: "from-red-600 to-red-700",
       progress: 55,
       dailyChallenge: "Strengthen unshakeable presence training"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
       {/* Sacred Geometry Background Pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-32 h-32 border border-gold-400 rotate-45 animate-pulse"></div>
-        <div className="absolute top-40 right-32 w-24 h-24 border border-purple-400 rounded-full animate-pulse delay-1000"></div>
-        <div className="absolute bottom-32 left-1/3 w-28 h-28 border border-gold-400 transform rotate-12 animate-pulse delay-2000"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 border border-yellow-400 rotate-45 animate-pulse" style={{ borderColor: '#E0B848' }}></div>
+        <div className="absolute top-40 right-32 w-24 h-24 border border-red-500 rounded-full animate-pulse delay-1000" style={{ borderColor: '#AD1E2D' }}></div>
+        <div className="absolute bottom-32 left-1/3 w-28 h-28 border border-yellow-500 transform rotate-12 animate-pulse delay-2000" style={{ borderColor: '#B08B18' }}></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
-            <Crown className="w-8 h-8 text-yellow-400 mr-3" />
-            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 bg-clip-text text-transparent">
+            <Crown className="w-8 h-8 mr-3" style={{ color: '#E0B848' }} />
+            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 bg-clip-text text-transparent"
+                style={{ background: `linear-gradient(to right, #E0B848, #B08B18, #E0B848)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               Sacred Leadership
             </h1>
-            <Crown className="w-8 h-8 text-yellow-400 ml-3" />
+            <Crown className="w-8 h-8 ml-3" style={{ color: '#E0B848' }} />
           </div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-purple-300 mb-4">
+          <h2 className="text-2xl md:text-3xl font-semibold mb-4" style={{ color: '#C9D5DD' }}>
             Consciousness Platform
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-6">
+          <p className="text-lg max-w-2xl mx-auto mb-6" style={{ color: '#BDBBBB' }}>
             Transform from reactive stress-leader into an antifragile consciousness master. 
             Your digital Ruthless Sanusi delivering precise wisdom when you need it most.
           </p>
-          <Badge className="bg-yellow-500/20 text-yellow-300 border-yellow-500/30 text-lg px-4 py-2">
+          <Badge className="text-lg px-4 py-2" style={{ backgroundColor: 'rgba(224, 184, 72, 0.2)', color: '#E0B848', borderColor: 'rgba(224, 184, 72, 0.3)' }}>
             Divine Frequency Active
           </Badge>
         </div>
 
         {/* Morning Consciousness Check-in */}
-        <Card className="mb-12 bg-gradient-to-r from-purple-900/50 to-indigo-900/50 border-purple-500/30">
+        <Card className="mb-12 bg-gradient-to-r border" style={{ 
+          background: 'linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(173, 30, 45, 0.1))', 
+          borderColor: 'rgba(173, 30, 45, 0.3)' 
+        }}>
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl text-yellow-300 flex items-center justify-center">
+            <CardTitle className="text-2xl flex items-center justify-center" style={{ color: '#E0B848' }}>
               <Star className="w-6 h-6 mr-2" />
               Morning Consciousness Activation
               <Star className="w-6 h-6 ml-2" />
             </CardTitle>
-            <CardDescription className="text-purple-200">
+            <CardDescription style={{ color: '#C9D5DD' }}>
               Your daily sacred frequency check-in
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="text-center">
-              <div className="text-6xl font-bold text-yellow-400 mb-2">{consciousnessLevel}%</div>
-              <p className="text-lg text-purple-200">Nervous System Optimization</p>
+              <div className="text-6xl font-bold mb-2" style={{ color: '#E0B848' }}>{consciousnessLevel}%</div>
+              <p className="text-lg" style={{ color: '#C9D5DD' }}>Nervous System Optimization</p>
               <Progress value={consciousnessLevel} className="w-full max-w-md mx-auto mt-4" />
             </div>
             
-            <div className="bg-purple-800/30 rounded-lg p-6 border border-purple-500/20">
-              <h3 className="text-xl font-semibold text-yellow-300 mb-3">Today's Divine Assignment:</h3>
-              <p className="text-purple-100 text-lg leading-relaxed">
-                Your consciousness state reads <span className="text-yellow-400 font-semibold">"Responsive & Clear"</span>. 
+            <div className="rounded-lg p-6 border" style={{ 
+              backgroundColor: 'rgba(0, 0, 0, 0.3)', 
+              borderColor: 'rgba(173, 30, 45, 0.2)' 
+            }}>
+              <h3 className="text-xl font-semibold mb-3" style={{ color: '#E0B848' }}>Today's Divine Assignment:</h3>
+              <p className="text-lg leading-relaxed" style={{ color: '#C9D5DD' }}>
+                Your consciousness state reads <span className="font-semibold" style={{ color: '#E0B848' }}>"Responsive & Clear"</span>. 
                 Transform one team tension into breakthrough clarity today. Your frequency is set to 
-                <span className="text-yellow-400 font-semibold"> 'Antifragile Wisdom'</span>.
+                <span className="font-semibold" style={{ color: '#E0B848' }}> 'Antifragile Wisdom'</span>.
               </p>
             </div>
 
             <Button 
               onClick={() => navigate('/assessment')}
-              className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-semibold text-lg py-6"
+              className="w-full font-semibold text-lg py-6 text-black"
+              style={{ background: 'linear-gradient(to right, #E0B848, #B08B18)' }}
             >
               <Shield className="w-5 h-5 mr-2" />
               Begin Sacred Assessment
@@ -131,7 +139,7 @@ const Index = () => {
 
         {/* Four Pillars */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-center text-yellow-300 mb-8">
+          <h2 className="text-3xl font-bold text-center mb-8" style={{ color: '#E0B848' }}>
             The Four Pillars of Conscious Leadership
           </h2>
           
@@ -141,7 +149,11 @@ const Index = () => {
               return (
                 <Card 
                   key={pillar.id}
-                  className="group hover:scale-105 transition-all duration-300 cursor-pointer bg-gradient-to-br from-slate-800/50 to-purple-900/30 border-purple-500/20 hover:border-yellow-500/40"
+                  className="group hover:scale-105 transition-all duration-300 cursor-pointer border"
+                  style={{ 
+                    background: 'linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(173, 30, 45, 0.1))',
+                    borderColor: 'rgba(173, 30, 45, 0.2)' 
+                  }}
                   onClick={() => navigate(`/pillar/${pillar.id}`)}
                 >
                   <CardHeader>
@@ -149,22 +161,29 @@ const Index = () => {
                       <div className={`p-3 rounded-full bg-gradient-to-r ${pillar.color}`}>
                         <IconComponent className="w-6 h-6 text-white" />
                       </div>
-                      <Badge className="bg-yellow-500/20 text-yellow-300 border-yellow-500/30">
+                      <Badge className="text-sm" style={{ 
+                        backgroundColor: 'rgba(224, 184, 72, 0.2)', 
+                        color: '#E0B848', 
+                        borderColor: 'rgba(224, 184, 72, 0.3)' 
+                      }}>
                         {pillar.progress}% Complete
                       </Badge>
                     </div>
-                    <CardTitle className="text-xl text-purple-100 group-hover:text-yellow-300 transition-colors">
+                    <CardTitle className="text-xl group-hover:text-yellow-300 transition-colors" style={{ color: '#C9D5DD' }}>
                       {pillar.title}
                     </CardTitle>
-                    <CardDescription className="text-purple-300">
+                    <CardDescription style={{ color: '#BDBBBB' }}>
                       {pillar.description}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Progress value={pillar.progress} className="mb-4" />
-                    <div className="bg-purple-800/20 rounded-lg p-4 border border-purple-500/10">
-                      <p className="text-sm text-purple-200 font-medium mb-1">Today's Micro-Practice:</p>
-                      <p className="text-purple-100">{pillar.dailyChallenge}</p>
+                    <div className="rounded-lg p-4 border" style={{ 
+                      backgroundColor: 'rgba(0, 0, 0, 0.2)', 
+                      borderColor: 'rgba(173, 30, 45, 0.1)' 
+                    }}>
+                      <p className="text-sm font-medium mb-1" style={{ color: '#C9D5DD' }}>Today's Micro-Practice:</p>
+                      <p style={{ color: '#BDBBBB' }}>{pillar.dailyChallenge}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -177,7 +196,12 @@ const Index = () => {
         <div className="grid md:grid-cols-3 gap-6">
           <Button 
             variant="outline" 
-            className="h-20 bg-red-900/20 hover:bg-red-900/40 border-red-500/30 text-red-200 hover:text-red-100"
+            className="h-20 transition-colors"
+            style={{ 
+              backgroundColor: 'rgba(173, 30, 45, 0.2)', 
+              borderColor: 'rgba(173, 30, 45, 0.3)',
+              color: '#AD1E2D'
+            }}
             onClick={() => navigate('/emergency')}
           >
             <Flame className="w-6 h-6 mr-2" />
@@ -186,7 +210,12 @@ const Index = () => {
           
           <Button 
             variant="outline"
-            className="h-20 bg-blue-900/20 hover:bg-blue-900/40 border-blue-500/30 text-blue-200 hover:text-blue-100"
+            className="h-20 transition-colors"
+            style={{ 
+              backgroundColor: 'rgba(224, 184, 72, 0.2)', 
+              borderColor: 'rgba(224, 184, 72, 0.3)',
+              color: '#E0B848'
+            }}
             onClick={() => navigate('/decisions')}
           >
             <Zap className="w-6 h-6 mr-2" />
@@ -195,7 +224,12 @@ const Index = () => {
           
           <Button 
             variant="outline"
-            className="h-20 bg-green-900/20 hover:bg-green-900/40 border-green-500/30 text-green-200 hover:text-green-100"
+            className="h-20 transition-colors"
+            style={{ 
+              backgroundColor: 'rgba(201, 213, 221, 0.2)', 
+              borderColor: 'rgba(201, 213, 221, 0.3)',
+              color: '#C9D5DD'
+            }}
             onClick={() => navigate('/recovery')}
           >
             <Sprout className="w-6 h-6 mr-2" />

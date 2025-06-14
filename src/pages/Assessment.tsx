@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -97,7 +96,7 @@ const Assessment = () => {
     
     let level = "Initiate";
     let description = "Beginning the consciousness journey";
-    let color = "from-red-400 to-orange-400";
+    let color = "from-red-400 to-red-500";
     
     if (percentage >= 85) {
       level = "Ruthless Sanusi";
@@ -106,11 +105,11 @@ const Assessment = () => {
     } else if (percentage >= 70) {
       level = "Master";
       description = "Advanced consciousness practitioner";
-      color = "from-purple-400 to-indigo-400";
+      color = "from-yellow-500 to-red-500";
     } else if (percentage >= 55) {
       level = "Practitioner";
       description = "Developing conscious leadership skills";
-      color = "from-blue-400 to-cyan-400";
+      color = "from-gray-400 to-gray-500";
     }
     
     return { level, description, percentage, color };
@@ -120,28 +119,32 @@ const Assessment = () => {
     const results = calculateResults();
     
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4">
+      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black p-4">
         <div className="container mx-auto max-w-2xl">
           <Button 
             variant="ghost" 
             onClick={() => navigate('/')}
-            className="mb-6 text-purple-300 hover:text-yellow-300"
+            className="mb-6 hover:text-yellow-300"
+            style={{ color: '#C9D5DD' }}
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Return to Dashboard
           </Button>
 
-          <Card className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 border-purple-500/30">
+          <Card className="border" style={{ 
+            background: 'linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(173, 30, 45, 0.1))',
+            borderColor: 'rgba(173, 30, 45, 0.3)' 
+          }}>
             <CardHeader className="text-center">
               <div className="flex justify-center mb-4">
                 <div className={`p-6 rounded-full bg-gradient-to-r ${results.color}`}>
                   <Crown className="w-12 h-12 text-white" />
                 </div>
               </div>
-              <CardTitle className="text-3xl text-yellow-300">
+              <CardTitle className="text-3xl" style={{ color: '#E0B848' }}>
                 Sacred Assessment Complete
               </CardTitle>
-              <CardDescription className="text-purple-200 text-lg">
+              <CardDescription className="text-lg" style={{ color: '#C9D5DD' }}>
                 Your consciousness profile has been revealed
               </CardDescription>
             </CardHeader>
@@ -150,46 +153,52 @@ const Assessment = () => {
                 <Badge className={`bg-gradient-to-r ${results.color} text-white text-xl px-6 py-3 mb-4`}>
                   {results.level}
                 </Badge>
-                <div className="text-6xl font-bold text-yellow-400 mb-2">
+                <div className="text-6xl font-bold mb-2" style={{ color: '#E0B848' }}>
                   {results.percentage}%
                 </div>
-                <p className="text-lg text-purple-200">{results.description}</p>
+                <p className="text-lg" style={{ color: '#C9D5DD' }}>{results.description}</p>
                 <Progress value={results.percentage} className="w-full max-w-md mx-auto mt-4" />
               </div>
 
-              <div className="bg-purple-800/30 rounded-lg p-6 border border-purple-500/20">
-                <h3 className="text-xl font-semibold text-yellow-300 mb-4 flex items-center">
+              <div className="rounded-lg p-6 border" style={{ 
+                backgroundColor: 'rgba(0, 0, 0, 0.3)', 
+                borderColor: 'rgba(173, 30, 45, 0.2)' 
+              }}>
+                <h3 className="text-xl font-semibold mb-4 flex items-center" style={{ color: '#E0B848' }}>
                   <Star className="w-5 h-5 mr-2" />
                   Your Sacred Development Path
                 </h3>
                 
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-purple-200">Nervous System Mastery</span>
-                    <span className="text-yellow-400 font-semibold">{answers[0] * 25}%</span>
+                    <span style={{ color: '#C9D5DD' }}>Nervous System Mastery</span>
+                    <span className="font-semibold" style={{ color: '#E0B848' }}>{answers[0] * 25}%</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-purple-200">Decision Architecture</span>
-                    <span className="text-yellow-400 font-semibold">{answers[1] * 25}%</span>
+                    <span style={{ color: '#C9D5DD' }}>Decision Architecture</span>
+                    <span className="font-semibold" style={{ color: '#E0B848' }}>{answers[1] * 25}%</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-purple-200">Conflict Mastery</span>
-                    <span className="text-yellow-400 font-semibold">{answers[2] * 25}%</span>
+                    <span style={{ color: '#C9D5DD' }}>Conflict Mastery</span>
+                    <span className="font-semibold" style={{ color: '#E0B848' }}>{answers[2] * 25}%</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-purple-200">Energy Sovereignty</span>
-                    <span className="text-yellow-400 font-semibold">{answers[3] * 25}%</span>
+                    <span style={{ color: '#C9D5DD' }}>Energy Sovereignty</span>
+                    <span className="font-semibold" style={{ color: '#E0B848' }}>{answers[3] * 25}%</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-purple-200">Crisis Leadership</span>
-                    <span className="text-yellow-400 font-semibold">{answers[4] * 25}%</span>
+                    <span style={{ color: '#C9D5DD' }}>Crisis Leadership</span>
+                    <span className="font-semibold" style={{ color: '#E0B848' }}>{answers[4] * 25}%</span>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-yellow-500/10 rounded-lg p-6 border border-yellow-500/20">
-                <h3 className="text-lg font-semibold text-yellow-300 mb-2">Divine Guidance:</h3>
-                <p className="text-yellow-200">
+              <div className="rounded-lg p-6 border" style={{ 
+                backgroundColor: 'rgba(224, 184, 72, 0.1)', 
+                borderColor: 'rgba(224, 184, 72, 0.2)' 
+              }}>
+                <h3 className="text-lg font-semibold mb-2" style={{ color: '#E0B848' }}>Divine Guidance:</h3>
+                <p style={{ color: '#C9D5DD' }}>
                   {results.percentage >= 70 
                     ? "Your consciousness frequency is strong. Focus on refining your mastery and sharing wisdom with others."
                     : results.percentage >= 40
@@ -201,7 +210,8 @@ const Assessment = () => {
 
               <Button 
                 onClick={() => navigate('/')}
-                className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-semibold text-lg py-6"
+                className="w-full font-semibold text-lg py-6 text-black"
+                style={{ background: 'linear-gradient(to right, #E0B848, #B08B18)' }}
               >
                 Begin Your Sacred Practice
               </Button>
@@ -217,32 +227,40 @@ const Assessment = () => {
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black p-4">
       <div className="container mx-auto max-w-2xl">
         <Button 
           variant="ghost" 
           onClick={() => navigate('/')}
-          className="mb-6 text-purple-300 hover:text-yellow-300"
+          className="mb-6 hover:text-yellow-300"
+          style={{ color: '#C9D5DD' }}
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Return to Dashboard
         </Button>
 
-        <Card className="bg-gradient-to-br from-purple-900/50 to-indigo-900/50 border-purple-500/30">
+        <Card className="border" style={{ 
+          background: 'linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(173, 30, 45, 0.1))',
+          borderColor: 'rgba(173, 30, 45, 0.3)' 
+        }}>
           <CardHeader>
             <div className="flex items-center justify-between mb-4">
-              <Badge className="bg-yellow-500/20 text-yellow-300 border-yellow-500/30">
+              <Badge style={{ 
+                backgroundColor: 'rgba(224, 184, 72, 0.2)', 
+                color: '#E0B848', 
+                borderColor: 'rgba(224, 184, 72, 0.3)' 
+              }}>
                 Question {currentQuestion + 1} of {questions.length}
               </Badge>
-              <div className={`p-3 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500`}>
+              <div className="p-3 rounded-full bg-gradient-to-r from-red-500 to-red-600">
                 <IconComponent className="w-6 h-6 text-white" />
               </div>
             </div>
             <Progress value={progress} className="mb-4" />
-            <CardTitle className="text-xl text-yellow-300">
+            <CardTitle className="text-xl" style={{ color: '#E0B848' }}>
               {currentQ.category}
             </CardTitle>
-            <CardDescription className="text-purple-200 text-lg">
+            <CardDescription className="text-lg" style={{ color: '#C9D5DD' }}>
               {currentQ.question}
             </CardDescription>
           </CardHeader>
@@ -253,10 +271,15 @@ const Assessment = () => {
                   key={index}
                   variant="outline"
                   onClick={() => handleAnswer(option.value)}
-                  className="w-full text-left h-auto p-6 bg-purple-800/20 hover:bg-purple-700/30 border-purple-500/30 hover:border-yellow-500/50 text-purple-100 hover:text-yellow-200 transition-all duration-300"
+                  className="w-full text-left h-auto p-6 transition-all duration-300"
+                  style={{ 
+                    backgroundColor: 'rgba(0, 0, 0, 0.2)', 
+                    borderColor: 'rgba(173, 30, 45, 0.3)',
+                    color: '#C9D5DD'
+                  }}
                 >
                   <div className="flex items-start">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center text-white font-bold mr-4 mt-1">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-red-500 to-red-600 flex items-center justify-center text-white font-bold mr-4 mt-1">
                       {index + 1}
                     </div>
                     <span className="text-base leading-relaxed">{option.text}</span>
