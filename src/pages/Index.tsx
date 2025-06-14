@@ -12,7 +12,6 @@ import {
   Eye,
   Star,
   ChevronRight,
-  Crown,
   Shield
 } from "lucide-react";
 
@@ -72,22 +71,22 @@ const Index = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
-            <Crown className="w-8 h-8 mr-3" style={{ color: '#E0B848' }} />
+            <span className="text-4xl mr-3">🔬</span>
             <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 bg-clip-text text-transparent"
                 style={{ background: `linear-gradient(to right, #E0B848, #B08B18, #E0B848)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Sacred Leadership
+              The Leadership Laboratory
             </h1>
-            <Crown className="w-8 h-8 ml-3" style={{ color: '#E0B848' }} />
+            <span className="text-4xl ml-3">🔬</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-semibold mb-4" style={{ color: '#C9D5DD' }}>
-            Consciousness Platform
+            Where Pressure Becomes Performance
           </h2>
           <p className="text-lg max-w-2xl mx-auto mb-6" style={{ color: '#BDBBBB' }}>
-            Transform from reactive stress-leader into an antifragile consciousness master. 
-            Your digital Ruthless Sanusi delivering precise wisdom when you need it most.
+            Transform from reactive crisis management into antifragile leadership mastery. 
+            Your advanced leadership development platform delivering precision coaching and frameworks exactly when high-stakes decisions matter most.
           </p>
           <Badge className="text-lg px-4 py-2" style={{ backgroundColor: 'rgba(224, 184, 72, 0.2)', color: '#E0B848', borderColor: 'rgba(224, 184, 72, 0.3)' }}>
-            Divine Frequency Active
+            Precision Mode Active
           </Badge>
         </div>
 
@@ -99,17 +98,17 @@ const Index = () => {
           <CardHeader className="text-center">
             <CardTitle className="text-2xl flex items-center justify-center" style={{ color: '#E0B848' }}>
               <Star className="w-6 h-6 mr-2" />
-              Morning Consciousness Activation
+              Leadership Performance Analysis
               <Star className="w-6 h-6 ml-2" />
             </CardTitle>
             <CardDescription style={{ color: '#C9D5DD' }}>
-              Your daily sacred frequency check-in
+              Your daily precision leadership assessment
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="text-center">
               <div className="text-6xl font-bold mb-2" style={{ color: '#E0B848' }}>{consciousnessLevel}%</div>
-              <p className="text-lg" style={{ color: '#C9D5DD' }}>Nervous System Optimization</p>
+              <p className="text-lg" style={{ color: '#C9D5DD' }}>Decision-Making Optimization</p>
               <Progress value={consciousnessLevel} className="w-full max-w-md mx-auto mt-4" />
             </div>
             
@@ -117,11 +116,11 @@ const Index = () => {
               backgroundColor: 'rgba(0, 0, 0, 0.3)', 
               borderColor: 'rgba(173, 30, 45, 0.2)' 
             }}>
-              <h3 className="text-xl font-semibold mb-3" style={{ color: '#E0B848' }}>Today's Divine Assignment:</h3>
+              <h3 className="text-xl font-semibold mb-3" style={{ color: '#E0B848' }}>Today's Performance Protocol:</h3>
               <p className="text-lg leading-relaxed" style={{ color: '#C9D5DD' }}>
-                Your consciousness state reads <span className="font-semibold" style={{ color: '#E0B848' }}>"Responsive & Clear"</span>. 
-                Transform one team tension into breakthrough clarity today. Your frequency is set to 
-                <span className="font-semibold" style={{ color: '#E0B848' }}> 'Antifragile Wisdom'</span>.
+                Your leadership assessment reads <span className="font-semibold" style={{ color: '#E0B848' }}>"High-Performance Ready"</span>. 
+                Transform one team tension into breakthrough clarity today. Your system is calibrated for 
+                <span className="font-semibold" style={{ color: '#E0B848' }}> 'Antifragile Excellence'</span>.
               </p>
             </div>
 
@@ -131,7 +130,7 @@ const Index = () => {
               style={{ background: 'linear-gradient(to right, #E0B848, #B08B18)' }}
             >
               <Shield className="w-5 h-5 mr-2" />
-              Begin Sacred Assessment
+              Begin Performance Assessment
               <ChevronRight className="w-5 h-5 ml-2" />
             </Button>
           </CardContent>
@@ -140,7 +139,7 @@ const Index = () => {
         {/* Four Pillars */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-center mb-8" style={{ color: '#E0B848' }}>
-            The Four Pillars of Conscious Leadership
+            The Four Pillars of Leadership Excellence
           </h2>
           
           <div className="grid md:grid-cols-2 gap-6">
@@ -182,7 +181,7 @@ const Index = () => {
                       backgroundColor: 'rgba(0, 0, 0, 0.2)', 
                       borderColor: 'rgba(173, 30, 45, 0.1)' 
                     }}>
-                      <p className="text-sm font-medium mb-1" style={{ color: '#C9D5DD' }}>Today's Micro-Practice:</p>
+                      <p className="text-sm font-medium mb-1" style={{ color: '#C9D5DD' }}>Today's Precision Practice:</p>
                       <p style={{ color: '#BDBBBB' }}>{pillar.dailyChallenge}</p>
                     </div>
                   </CardContent>

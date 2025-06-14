@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -10,7 +11,6 @@ import {
   Brain, 
   Zap, 
   Shield,
-  Crown,
   Star
 } from "lucide-react";
 
@@ -67,7 +67,7 @@ const Assessment = () => {
     },
     {
       category: "Crisis Leadership",
-      icon: Crown,
+      icon: Shield,
       question: "Under extreme pressure, I:",
       options: [
         { text: "Lose composure and make poor decisions", value: 1 },
@@ -94,21 +94,21 @@ const Assessment = () => {
     const average = total / answers.length;
     const percentage = Math.round((average / 4) * 100);
     
-    let level = "Initiate";
-    let description = "Beginning the consciousness journey";
+    let level = "Laboratory Initiate";
+    let description = "Beginning the leadership optimization journey";
     let color = "from-red-400 to-red-500";
     
     if (percentage >= 85) {
-      level = "Ruthless Sanusi";
-      description = "Master of consciousness leadership";
+      level = "Leadership Scientist";
+      description = "Master of high-performance leadership";
       color = "from-yellow-400 to-yellow-600";
     } else if (percentage >= 70) {
-      level = "Master";
-      description = "Advanced consciousness practitioner";
+      level = "Performance Expert";
+      description = "Advanced leadership practitioner";
       color = "from-yellow-500 to-red-500";
     } else if (percentage >= 55) {
-      level = "Practitioner";
-      description = "Developing conscious leadership skills";
+      level = "Leadership Analyst";
+      description = "Developing precision leadership skills";
       color = "from-gray-400 to-gray-500";
     }
     
@@ -128,7 +128,7 @@ const Assessment = () => {
             style={{ color: '#C9D5DD' }}
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Return to Dashboard
+            Return to Laboratory
           </Button>
 
           <Card className="border" style={{ 
@@ -138,14 +138,14 @@ const Assessment = () => {
             <CardHeader className="text-center">
               <div className="flex justify-center mb-4">
                 <div className={`p-6 rounded-full bg-gradient-to-r ${results.color}`}>
-                  <Crown className="w-12 h-12 text-white" />
+                  <span className="text-4xl">🔬</span>
                 </div>
               </div>
               <CardTitle className="text-3xl" style={{ color: '#E0B848' }}>
-                Sacred Assessment Complete
+                Performance Analysis Complete
               </CardTitle>
               <CardDescription className="text-lg" style={{ color: '#C9D5DD' }}>
-                Your consciousness profile has been revealed
+                Your leadership profile has been calibrated
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -166,7 +166,7 @@ const Assessment = () => {
               }}>
                 <h3 className="text-xl font-semibold mb-4 flex items-center" style={{ color: '#E0B848' }}>
                   <Star className="w-5 h-5 mr-2" />
-                  Your Sacred Development Path
+                  Your Precision Development Path
                 </h3>
                 
                 <div className="space-y-3">
@@ -197,13 +197,13 @@ const Assessment = () => {
                 backgroundColor: 'rgba(224, 184, 72, 0.1)', 
                 borderColor: 'rgba(224, 184, 72, 0.2)' 
               }}>
-                <h3 className="text-lg font-semibold mb-2" style={{ color: '#E0B848' }}>Divine Guidance:</h3>
+                <h3 className="text-lg font-semibold mb-2" style={{ color: '#E0B848' }}>Precision Guidance:</h3>
                 <p style={{ color: '#C9D5DD' }}>
                   {results.percentage >= 70 
-                    ? "Your consciousness frequency is strong. Focus on refining your mastery and sharing wisdom with others."
+                    ? "Your performance metrics are strong. Focus on advanced optimization and sharing expertise with your team."
                     : results.percentage >= 40
-                    ? "You're on the sacred path. Consistent daily practice will elevate your leadership consciousness."
-                    : "Your transformation journey begins now. Embrace the practices with devotion and watch your leadership transform."
+                    ? "You're on the precision path. Consistent daily practice will elevate your leadership performance."
+                    : "Your transformation begins now. Embrace the protocols with dedication and watch your leadership transform."
                   }
                 </p>
               </div>
@@ -213,7 +213,7 @@ const Assessment = () => {
                 className="w-full font-semibold text-lg py-6 text-black"
                 style={{ background: 'linear-gradient(to right, #E0B848, #B08B18)' }}
               >
-                Begin Your Sacred Practice
+                Begin Your Precision Training
               </Button>
             </CardContent>
           </Card>
@@ -236,7 +236,7 @@ const Assessment = () => {
           style={{ color: '#C9D5DD' }}
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Return to Dashboard
+          Return to Laboratory
         </Button>
 
         <Card className="border" style={{ 
@@ -250,7 +250,7 @@ const Assessment = () => {
                 color: '#E0B848', 
                 borderColor: 'rgba(224, 184, 72, 0.3)' 
               }}>
-                Question {currentQuestion + 1} of {questions.length}
+                Analysis {currentQuestion + 1} of {questions.length}
               </Badge>
               <div className="p-3 rounded-full bg-gradient-to-r from-red-500 to-red-600">
                 <IconComponent className="w-6 h-6 text-white" />
