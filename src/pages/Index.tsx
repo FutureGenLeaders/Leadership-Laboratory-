@@ -112,7 +112,7 @@ const Index = () => {
             <Activity className="w-12 h-12 ml-3" style={{ color: '#E0B848' }} />
           </div>
           <h2 className="text-2xl md:text-3xl font-semibold mb-4" style={{ color: '#C9D5DD' }}>
-            Where Nervous System Science Becomes Peak Performance
+            Where Pressure Becomes Presence
           </h2>
           <p className="text-lg max-w-2xl mx-auto mb-6" style={{ color: '#BDBBBB' }}>
             Transform from reactive stress leadership into neuroscience-optimized peak performance. 
