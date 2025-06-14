@@ -18,51 +18,57 @@ import {
   GraduationCap,
   Users,
   User,
-  Calendar
+  Calendar,
+  Brain,
+  Activity
 } from "lucide-react";
 
 const Index = () => {
   const navigate = useNavigate();
-  const [consciousnessLevel, setConsciousnessLevel] = useState(73);
+  const [nervousSystemOptimization, setNervousSystemOptimization] = useState(73);
   const [selectedLevel, setSelectedLevel] = useState<number | null>(null);
   const [showLevelSelection, setShowLevelSelection] = useState(false);
 
   const pillars = [
     {
       id: 1,
-      title: "Sacred Team Conflict Mastery",
-      description: "Transform team tensions into breakthrough clarity",
+      title: "Nervous System Team Dynamics",
+      description: "Transform team tensions through neuroscience-based conflict resolution",
       icon: Flame,
       color: "from-red-500 to-red-600",
       progress: 65,
-      dailyChallenge: "Convert one team frustration into strategic opportunity"
+      dailyChallenge: "Practice regulated response training with one challenging team member",
+      neuroscienceLink: "Vagal tone optimization reduces cortisol during conflict"
     },
     {
       id: 2,
-      title: "Antifragile Decision Architecture", 
-      description: "Make powerful decisions under pressure",
+      title: "Cognitive Load Decision Architecture", 
+      description: "Peak performance decision-making under pressure using brain optimization",
       icon: Zap,
       color: "from-yellow-500 to-yellow-600",
       progress: 78,
-      dailyChallenge: "Practice uncertainty training with incomplete information"
+      dailyChallenge: "Execute uncertainty training protocol with incomplete information",
+      neuroscienceLink: "Prefrontal cortex regulation enhances strategic thinking"
     },
     {
       id: 3,
-      title: "Executive Burnout Recovery",
-      description: "Maintain peak performance without depletion",
+      title: "Executive Nervous System Recovery",
+      description: "Maintain peak cognitive performance without burnout using neuroscience protocols",
       icon: Sprout,
       color: "from-gray-400 to-gray-500", 
       progress: 42,
-      dailyChallenge: "Complete your sacred energy audit and recovery protocol"
+      dailyChallenge: "Complete nervous system recovery audit and optimization protocol",
+      neuroscienceLink: "Parasympathetic activation restores executive function"
     },
     {
       id: 4,
-      title: "Crisis Leadership Performance",
-      description: "Thrive as an unshakeable leader during chaos",
+      title: "Crisis Nervous System Performance",
+      description: "Optimal brain function during chaos through regulated leadership presence",
       icon: Eye,
       color: "from-red-600 to-red-700",
       progress: 55,
-      dailyChallenge: "Strengthen unshakeable presence training"
+      dailyChallenge: "Practice unshakeable nervous system training under simulated pressure",
+      neuroscienceLink: "Coherent heart-brain patterns enhance decision quality"
     }
   ];
 
@@ -98,22 +104,23 @@ const Index = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
-            <span className="text-4xl mr-3">🔬</span>
+            <Brain className="w-12 h-12 mr-3" style={{ color: '#E0B848' }} />
             <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 bg-clip-text text-transparent"
                 style={{ background: `linear-gradient(to right, #E0B848, #B08B18, #E0B848)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               The Leadership Laboratory
             </h1>
-            <span className="text-4xl ml-3">🔬</span>
+            <Activity className="w-12 h-12 ml-3" style={{ color: '#E0B848' }} />
           </div>
           <h2 className="text-2xl md:text-3xl font-semibold mb-4" style={{ color: '#C9D5DD' }}>
-            Where Pressure Becomes Performance
+            Where Nervous System Science Becomes Peak Performance
           </h2>
           <p className="text-lg max-w-2xl mx-auto mb-6" style={{ color: '#BDBBBB' }}>
-            Transform from reactive crisis management into antifragile leadership mastery. 
-            Your advanced leadership development platform delivering precision coaching and frameworks exactly when high-stakes decisions matter most.
+            Transform from reactive stress leadership into neuroscience-optimized peak performance. 
+            Your advanced nervous system training platform delivering precision protocols for sustained executive excellence exactly when high-stakes decisions matter most.
           </p>
           <Badge className="text-lg px-4 py-2" style={{ backgroundColor: 'rgba(224, 184, 72, 0.2)', color: '#E0B848', borderColor: 'rgba(224, 184, 72, 0.3)' }}>
-            Precision Mode Active
+            <Brain className="w-4 h-4 mr-2" />
+            Neuroscience Optimization Active
           </Badge>
         </div>
 
@@ -125,7 +132,7 @@ const Index = () => {
               color: getLevelInfo().color, 
               borderColor: `${getLevelInfo().color}40` 
             }}>
-              Current Path: {getLevelInfo().name}
+              Current Training Protocol: {getLevelInfo().name}
             </Badge>
             <Button 
               variant="ghost" 
@@ -133,46 +140,55 @@ const Index = () => {
               className="ml-4 text-sm"
               style={{ color: '#C9D5DD' }}
             >
-              Change Level
+              Change Protocol
             </Button>
           </div>
         )}
 
-        {/* Morning Consciousness Check-in */}
+        {/* Morning Nervous System Check-in */}
         <Card className="mb-12 bg-gradient-to-r border" style={{ 
           background: 'linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(173, 30, 45, 0.1))', 
           borderColor: 'rgba(173, 30, 45, 0.3)' 
         }}>
           <CardHeader className="text-center">
             <CardTitle className="text-2xl flex items-center justify-center" style={{ color: '#E0B848' }}>
-              <Star className="w-6 h-6 mr-2" />
-              Leadership Performance Analysis
-              <Star className="w-6 h-6 ml-2" />
+              <Brain className="w-6 h-6 mr-2" />
+              Nervous System Optimization Analysis
+              <Activity className="w-6 h-6 ml-2" />
             </CardTitle>
             <CardDescription style={{ color: '#C9D5DD' }}>
-              Your daily precision leadership assessment
+              Your daily neuroscience-based leadership assessment
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="text-center">
-              <div className="text-6xl font-bold mb-2" style={{ color: '#E0B848' }}>{consciousnessLevel}%</div>
-              <p className="text-lg" style={{ color: '#C9D5DD' }}>Decision-Making Optimization</p>
-              <Progress value={consciousnessLevel} className="w-full max-w-md mx-auto mt-4" />
+              <div className="text-6xl font-bold mb-2" style={{ color: '#E0B848' }}>{nervousSystemOptimization}%</div>
+              <p className="text-lg" style={{ color: '#C9D5DD' }}>Nervous System Coherence</p>
+              <Progress value={nervousSystemOptimization} className="w-full max-w-md mx-auto mt-4" />
             </div>
             
             <div className="rounded-lg p-6 border" style={{ 
               backgroundColor: 'rgba(0, 0, 0, 0.3)', 
               borderColor: 'rgba(173, 30, 45, 0.2)' 
             }}>
-              <h3 className="text-xl font-semibold mb-3" style={{ color: '#E0B848' }}>Today's Performance Protocol:</h3>
+              <h3 className="text-xl font-semibold mb-3" style={{ color: '#E0B848' }}>Today's Neuroscience Protocol:</h3>
               <p className="text-lg leading-relaxed" style={{ color: '#C9D5DD' }}>
-                Your leadership assessment reads <span className="font-semibold" style={{ color: '#E0B848' }}>"High-Performance Ready"</span>. 
+                Your nervous system scan reads <span className="font-semibold" style={{ color: '#E0B848' }}>"Peak Performance Ready"</span>. 
                 {selectedLevel ? (
-                  <>Transform one team tension into breakthrough clarity today using your <span className="font-semibold" style={{ color: getLevelInfo().color }}>{getLevelInfo().name}</span> protocols.</>
+                  <>Transform one team tension into breakthrough clarity today using your <span className="font-semibold" style={{ color: getLevelInfo().color }}>{getLevelInfo().name}</span> neuroscience protocols.</>
                 ) : (
-                  <>Begin with morning activation to calibrate your system for <span className="font-semibold" style={{ color: '#E0B848' }}>'Antifragile Excellence'</span>.</>
+                  <>Begin with nervous system activation to calibrate your brain for <span className="font-semibold" style={{ color: '#E0B848' }}>'Regulated Excellence'</span>.</>
                 )}
               </p>
+              <div className="mt-4 p-3 rounded border" style={{ 
+                backgroundColor: 'rgba(224, 184, 72, 0.1)', 
+                borderColor: 'rgba(224, 184, 72, 0.2)' 
+              }}>
+                <p className="text-sm font-medium" style={{ color: '#E0B848' }}>
+                  <Activity className="w-4 h-4 inline mr-2" />
+                  Neuroscience Insight: Regulated nervous systems show 340% better decision quality under pressure
+                </p>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -182,7 +198,7 @@ const Index = () => {
                 style={{ background: 'linear-gradient(to right, #E0B848, #B08B18)' }}
               >
                 <Sun className="w-5 h-5 mr-2" />
-                Morning Session
+                Morning Activation
                 <ChevronRight className="w-5 h-5 ml-2" />
               </Button>
               
@@ -197,7 +213,7 @@ const Index = () => {
                 }}
               >
                 <Zap className="w-5 h-5 mr-2" />
-                Afternoon Reset
+                Peak State Reset
               </Button>
               
               <Button 
@@ -210,8 +226,8 @@ const Index = () => {
                   color: '#AD1E2D'
                 }}
               >
-                <Star className="w-5 h-5 mr-2" />
-                Evening Integration
+                <Brain className="w-5 h-5 mr-2" />
+                Neural Integration
               </Button>
             </div>
 
@@ -222,7 +238,7 @@ const Index = () => {
                 style={{ background: 'linear-gradient(to right, #E0B848, #B08B18)' }}
               >
                 <Shield className="w-5 h-5 mr-2" />
-                Choose Your Leadership Path
+                Choose Your Nervous System Training Path
                 <ChevronRight className="w-5 h-5 ml-2" />
               </Button>
             )}
@@ -334,10 +350,10 @@ const Index = () => {
           </Card>
         </div>
 
-        {/* Four Pillars */}
+        {/* Four Pillars - Updated with Neuroscience Language */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-center mb-8" style={{ color: '#E0B848' }}>
-            The Four Pillars of Leadership Excellence
+            The Four Pillars of Neuroscience-Based Leadership Excellence
           </h2>
           
           <div className="grid md:grid-cols-2 gap-6">
@@ -363,7 +379,7 @@ const Index = () => {
                         color: '#E0B848', 
                         borderColor: 'rgba(224, 184, 72, 0.3)' 
                       }}>
-                        {pillar.progress}% Complete
+                        {pillar.progress}% Optimized
                       </Badge>
                     </div>
                     <CardTitle className="text-xl group-hover:text-yellow-300 transition-colors" style={{ color: '#C9D5DD' }}>
@@ -379,8 +395,12 @@ const Index = () => {
                       backgroundColor: 'rgba(0, 0, 0, 0.2)', 
                       borderColor: 'rgba(173, 30, 45, 0.1)' 
                     }}>
-                      <p className="text-sm font-medium mb-1" style={{ color: '#C9D5DD' }}>Today's Precision Practice:</p>
-                      <p style={{ color: '#BDBBBB' }}>{pillar.dailyChallenge}</p>
+                      <p className="text-sm font-medium mb-1" style={{ color: '#C9D5DD' }}>Today's Neural Training:</p>
+                      <p className="text-sm mb-3" style={{ color: '#BDBBBB' }}>{pillar.dailyChallenge}</p>
+                      <div className="flex items-center text-xs" style={{ color: '#E0B848' }}>
+                        <Brain className="w-3 h-3 mr-1" />
+                        {pillar.neuroscienceLink}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -389,7 +409,7 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Quick Actions */}
+        {/* Quick Actions - Updated */}
         <div className="grid md:grid-cols-3 gap-6">
           <Button 
             variant="outline" 
@@ -402,7 +422,7 @@ const Index = () => {
             onClick={() => navigate('/emergency')}
           >
             <Flame className="w-6 h-6 mr-2" />
-            Emergency Conflict Support
+            Emergency Neural Regulation
           </Button>
           
           <Button 
@@ -416,7 +436,7 @@ const Index = () => {
             onClick={() => navigate('/decisions')}
           >
             <Zap className="w-6 h-6 mr-2" />
-            Decision Clarity Scanner
+            Cognitive Load Scanner
           </Button>
           
           <Button 
@@ -429,8 +449,8 @@ const Index = () => {
             }}
             onClick={() => navigate('/recovery')}
           >
-            <Sprout className="w-6 h-6 mr-2" />
-            Energy Recovery Protocol
+            <Brain className="w-6 h-6 mr-2" />
+            Nervous System Recovery
           </Button>
         </div>
       </div>
