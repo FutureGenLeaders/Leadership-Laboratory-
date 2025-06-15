@@ -22,6 +22,7 @@ import SacredCirclePage from "./pages/SacredCirclePage";
 import StrategicSessionsPage from "./pages/StrategicSessionsPage";
 import CommunityPage from "./pages/CommunityPage";
 import BookingPage from "./pages/BookingPage";
+import ProfilePage from "./pages/ProfilePage";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,7 @@ const App = () => (
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/booking" element={<BookingPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/profile" element={<ProfilePage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
