@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +13,9 @@ import MorningSession from "./components/MorningSession";
 import MorningSessionPage from "./pages/MorningSessionPage";
 import AfternoonSessionPage from "./pages/AfternoonSessionPage";
 import EveningSessionPage from "./pages/EveningSessionPage";
+import EmergencyPage from "./pages/EmergencyPage";
+import DecisionsPage from "./pages/DecisionsPage";
+import RecoveryPage from "./pages/RecoveryPage";
 import MondayMastery from "./components/MondayMastery";
 import MasterclassLibrary from "./components/MasterclassLibrary";
 import ExecutiveCircle from "./components/ExecutiveCircle";
@@ -33,6 +37,9 @@ const App = () => (
           <Route path="/morning-session" element={<MorningSessionPage />} />
           <Route path="/afternoon-session" element={<AfternoonSessionPage />} />
           <Route path="/evening-session" element={<EveningSessionPage />} />
+          <Route path="/emergency" element={<EmergencyPage />} />
+          <Route path="/decisions" element={<DecisionsPage />} />
+          <Route path="/recovery" element={<RecoveryPage />} />
           <Route path="/monday-mastery" element={<MondayMastery />} />
           <Route path="/masterclass-library" element={<MasterclassLibrary />} />
           <Route path="/executive-circle" element={<ExecutiveCircle />} />
