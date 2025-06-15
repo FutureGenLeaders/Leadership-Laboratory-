@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -18,6 +17,7 @@ import {
   Music,
   Wind
 } from "lucide-react";
+import ZoomMeeting from './ZoomMeeting';
 
 const ExecutiveCircle = () => {
   const [hasSubmittedChallenge, setHasSubmittedChallenge] = useState(false);
@@ -69,6 +69,35 @@ const ExecutiveCircle = () => {
     { icon: Heart, practice: 'Heart Coherence', description: 'Optimal state for strategic thinking' },
     { icon: Waves, practice: 'Chanting & Toning', description: 'Vocal practices for leadership resonance' }
   ];
+
+  // State for Zoom modal
+  const [zoomOpen, setZoomOpen] = useState(false);
+  const [meetingInfo, setMeetingInfo] = useState({
+    meetingNumber: "",
+    password: "",
+    userName: "",
+    signature: "",
+    apiKey: "",
+    leaveUrl: window.location.href,
+  });
+
+  // Collect Zoom meeting info via a simple form (in modal)
+  const [showMeetingForm, setShowMeetingForm] = useState(false);
+
+  const openZoomForm = () => setShowMeetingForm(true);
+
+  const handleMeetingInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMeetingInfo({
+      ...meetingInfo,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleMeetingFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setShowMeetingForm(false);
+    setZoomOpen(true);
+  };
 
   const handleJoinSession = () => {
     // Mock Zoom integration
@@ -186,7 +215,7 @@ const ExecutiveCircle = () => {
 
             <div className="flex justify-center">
               <Button 
-                onClick={handleJoinSession}
+                onClick={openZoomForm}
                 className="font-semibold text-lg py-6 px-8 text-black"
                 style={{ background: 'linear-gradient(to right, #E0B848, #B08B18)' }}
               >
@@ -196,6 +225,101 @@ const ExecutiveCircle = () => {
             </div>
           </CardContent>
         </Card>
+
+        {/* Show the modal form to collect meeting details */}
+        {showMeetingForm && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
+            <form
+              className="bg-white rounded-lg shadow-xl max-w-md w-full p-6"
+              onSubmit={handleMeetingFormSubmit}
+            >
+              <h3 className="text-lg font-bold mb-2">Join Zoom Meeting</h3>
+              <div className="mb-2">
+                <label className="block text-gray-700 font-medium mb-1">Meeting ID</label>
+                <input
+                  type="text"
+                  name="meetingNumber"
+                  className="w-full border rounded px-3 py-2"
+                  required
+                  value={meetingInfo.meetingNumber}
+                  onChange={handleMeetingInfoChange}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="block text-gray-700 font-medium mb-1">Password</label>
+                <input
+                  type="text"
+                  name="password"
+                  className="w-full border rounded px-3 py-2"
+                  required
+                  value={meetingInfo.password}
+                  onChange={handleMeetingInfoChange}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="block text-gray-700 font-medium mb-1">Your Name</label>
+                <input
+                  type="text"
+                  name="userName"
+                  className="w-full border rounded px-3 py-2"
+                  required
+                  value={meetingInfo.userName}
+                  onChange={handleMeetingInfoChange}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="block text-gray-700 font-medium mb-1">API Key</label>
+                <input
+                  type="text"
+                  name="apiKey"
+                  className="w-full border rounded px-3 py-2"
+                  required
+                  value={meetingInfo.apiKey}
+                  onChange={handleMeetingInfoChange}
+                />
+              </div>
+              <div className="mb-2">
+                <label className="block text-gray-700 font-medium mb-1">Signature</label>
+                <input
+                  type="text"
+                  name="signature"
+                  className="w-full border rounded px-3 py-2"
+                  required
+                  value={meetingInfo.signature}
+                  onChange={handleMeetingInfoChange}
+                />
+              </div>
+              <div className="flex gap-2 mt-4">
+                <button
+                  type="submit"
+                  className="flex-1 px-4 py-2 rounded bg-[#E0B848] text-black font-semibold"
+                >
+                  Join
+                </button>
+                <button
+                  type="button"
+                  className="flex-1 px-4 py-2 rounded bg-gray-200 text-gray-800 font-semibold"
+                  onClick={() => setShowMeetingForm(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+
+        {/* Show the ZoomMeeting modal if open */}
+        {zoomOpen && (
+          <ZoomMeeting
+            meetingNumber={meetingInfo.meetingNumber}
+            password={meetingInfo.password}
+            userName={meetingInfo.userName}
+            signature={meetingInfo.signature}
+            apiKey={meetingInfo.apiKey}
+            leaveUrl={meetingInfo.leaveUrl}
+            onClose={() => setZoomOpen(false)}
+          />
+        )}
 
         {/* Pre-Session Challenge Submission */}
         <Card className="mb-8 border" style={{ 
