@@ -10,6 +10,7 @@ import PillarDetail from "./pages/PillarDetail";
 import NotFound from "./pages/NotFound";
 import LevelSelection from "./components/LevelSelection";
 import MorningSession from "./components/MorningSession";
+import MorningSessionPage from "./pages/MorningSessionPage";
 import MondayMastery from "./components/MondayMastery";
 import MasterclassLibrary from "./components/MasterclassLibrary";
 import ExecutiveCircle from "./components/ExecutiveCircle";
@@ -28,7 +29,7 @@ const App = () => (
           <Route path="/assessment" element={<Assessment />} />
           <Route path="/pillar/:id" element={<PillarDetail />} />
           <Route path="/level-selection" element={<LevelSelection onLevelSelect={(level) => console.log(level)} />} />
-          <Route path="/morning-session" element={<MorningSession level={1} onComplete={() => console.log('completed')} />} />
+          <Route path="/morning-session" element={<MorningSessionPage />} />
           <Route path="/monday-mastery" element={<MondayMastery />} />
           <Route path="/masterclass-library" element={<MasterclassLibrary />} />
           <Route path="/executive-circle" element={<ExecutiveCircle />} />
