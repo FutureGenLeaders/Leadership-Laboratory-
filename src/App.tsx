@@ -1,9 +1,9 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import Assessment from "./pages/Assessment";
 import PillarDetail from "./pages/PillarDetail";
@@ -28,30 +28,32 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/assessment" element={<Assessment />} />
-          <Route path="/pillar/:id" element={<PillarDetail />} />
-          <Route path="/level-selection" element={<LevelSelection onLevelSelect={(level) => console.log(level)} />} />
-          <Route path="/morning-session" element={<MorningSessionPage />} />
-          <Route path="/afternoon-session" element={<AfternoonSessionPage />} />
-          <Route path="/evening-session" element={<EveningSessionPage />} />
-          <Route path="/emergency" element={<EmergencyPage />} />
-          <Route path="/decisions" element={<DecisionsPage />} />
-          <Route path="/recovery" element={<RecoveryPage />} />
-          <Route path="/monday-mastery" element={<MondayMasteryPage />} />
-          <Route path="/masterclass-library" element={<MasterclassLibraryPage />} />
-          <Route path="/executive-circle" element={<ExecutiveCirclePage />} />
-          <Route path="/strategic-sessions" element={<StrategicSessionsPage />} />
-          <Route path="/community" element={<CommunityPage />} />
-          <Route path="/booking" element={<BookingPage />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/assessment" element={<Assessment />} />
+            <Route path="/pillar/:id" element={<PillarDetail />} />
+            <Route path="/level-selection" element={<LevelSelection onLevelSelect={(level) => console.log(level)} />} />
+            <Route path="/morning-session" element={<MorningSessionPage />} />
+            <Route path="/afternoon-session" element={<AfternoonSessionPage />} />
+            <Route path="/evening-session" element={<EveningSessionPage />} />
+            <Route path="/emergency" element={<EmergencyPage />} />
+            <Route path="/decisions" element={<DecisionsPage />} />
+            <Route path="/recovery" element={<RecoveryPage />} />
+            <Route path="/monday-mastery" element={<MondayMasteryPage />} />
+            <Route path="/masterclass-library" element={<MasterclassLibraryPage />} />
+            <Route path="/executive-circle" element={<ExecutiveCirclePage />} />
+            <Route path="/strategic-sessions" element={<StrategicSessionsPage />} />
+            <Route path="/community" element={<CommunityPage />} />
+            <Route path="/booking" element={<BookingPage />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

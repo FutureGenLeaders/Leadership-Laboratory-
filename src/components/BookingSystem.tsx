@@ -1,9 +1,12 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar } from "@/components/ui/calendar";
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
+import Auth from './Auth';
 import { 
   Calendar as CalendarIcon, 
   Clock,
@@ -16,9 +19,13 @@ import {
 } from "lucide-react";
 
 const BookingSystem = () => {
+  const { user } = useAuth();
+  const { toast } = useToast();
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   const [selectedTime, setSelectedTime] = useState<string>('');
   const [selectedSession, setSelectedSession] = useState<string>('');
+  const [isBooking, setIsBooking] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
 
   const sessionTypes = [
     {
@@ -51,12 +58,85 @@ const BookingSystem = () => {
     '9:00 AM', '10:30 AM', '12:00 PM', '1:30 PM', '3:00 PM', '4:30 PM'
   ];
 
-  const handleBooking = () => {
+  const handleBooking = async () => {
+    if (!user) {
+      setShowAuth(true);
+      return;
+    }
+
     if (selectedSession && selectedDate && selectedTime) {
-      console.log('Booking:', { sessionType: selectedSession, date: selectedDate, time: selectedTime });
-      // This will integrate with Supabase and Stripe
+      setIsBooking(true);
+      try {
+        const { data, error } = await supabase.functions.invoke('create-booking', {
+          body: {
+            sessionType: selectedSession,
+            sessionDate: selectedDate.toISOString().split('T')[0],
+            sessionTime: selectedTime,
+            notes: ''
+          }
+        });
+
+        if (error) throw error;
+
+        toast({
+          title: 'Booking Confirmed!',
+          description: data.message || 'Your session has been scheduled successfully.',
+        });
+
+        // Reset form
+        setSelectedSession('');
+        setSelectedTime('');
+        setSelectedDate(new Date());
+
+      } catch (error: any) {
+        toast({
+          title: 'Booking Failed',
+          description: error.message || 'Unable to create booking. Please try again.',
+          variant: 'destructive',
+        });
+      } finally {
+        setIsBooking(false);
+      }
     }
   };
+
+  // Show auth modal if user is not logged in
+  if (showAuth) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-20 w-32 h-32 border border-yellow-400 rotate-45 animate-pulse" style={{ borderColor: '#E0B848' }}></div>
+          <div className="absolute top-40 right-32 w-24 h-24 border border-red-500 rounded-full animate-pulse delay-1000" style={{ borderColor: '#AD1E2D' }}></div>
+        </div>
+
+        <div className="relative z-10 container mx-auto px-4 py-8">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r bg-clip-text text-transparent"
+                style={{ background: `linear-gradient(to right, #E0B848, #B08B18, #E0B848)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              Join to Book Your Session
+            </h1>
+          </div>
+          
+          <div className="max-w-md mx-auto">
+            <Auth onSuccess={() => setShowAuth(false)} />
+            <div className="text-center mt-4">
+              <Button 
+                variant="outline" 
+                onClick={() => setShowAuth(false)}
+                style={{ 
+                  backgroundColor: 'rgba(201, 213, 221, 0.1)', 
+                  borderColor: 'rgba(201, 213, 221, 0.3)',
+                  color: '#C9D5DD'
+                }}
+              >
+                Back to Booking
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
@@ -74,6 +154,11 @@ const BookingSystem = () => {
           <p className="text-lg max-w-2xl mx-auto" style={{ color: '#BDBBBB' }}>
             Choose your sacred container for nervous system leadership transformation
           </p>
+          {user && (
+            <p className="text-sm mt-2" style={{ color: '#E0B848' }}>
+              Welcome back, {user.email}
+            </p>
+          )}
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -197,10 +282,11 @@ const BookingSystem = () => {
                   </h4>
                   <Button 
                     onClick={handleBooking}
+                    disabled={isBooking}
                     className="w-full text-black font-semibold"
                     style={{ background: 'linear-gradient(to right, #E0B848, #B08B18)' }}
                   >
-                    Book Your Sacred Session
+                    {isBooking ? 'Booking...' : 'Book Your Sacred Session'}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </CardContent>
