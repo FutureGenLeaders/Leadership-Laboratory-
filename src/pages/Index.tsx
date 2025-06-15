@@ -38,6 +38,10 @@ const SUBSCRIPTION_OPTIONS = [
       "Foundational neuroscience leadership, daily clarity protocols, and peer-level coaching. Perfect for ambitious professionals ready to start their optimization journey.",
     highlight:
       "Transform how you lead under pressure with expert science-backed strategies.",
+    accentColor: "#3B82F6",
+    borderColor: "border-blue-500",
+    shadow: "shadow-blue-300/30",
+    badge: "Plan Entry",
   },
   {
     id: 2,
@@ -48,6 +52,10 @@ const SUBSCRIPTION_OPTIONS = [
       "For experienced executives: deep-dive neuroscience, intensive strategy, and access to small curated circles for peer mastery.",
     highlight:
       "Upgrade your leadership with rigorous frameworks and advanced community support.",
+    accentColor: "#EAB308",
+    borderColor: "border-yellow-600",
+    shadow: "shadow-yellow-300/30",
+    badge: "Small Circle",
   },
   {
     id: 3,
@@ -58,8 +66,17 @@ const SUBSCRIPTION_OPTIONS = [
       "Elite circle with sacred, intimate coaching, founder’s direct access, and exclusive transformational content reserved for true masters.",
     highlight:
       "Join a rare cohort for the highest level of leadership integration and personal transformation.",
+    accentColor: "#DC2626",
+    borderColor: "border-red-700",
+    shadow: "shadow-red-300/30",
+    badge: "VIP",
   },
 ];
+
+// --- Utility function to check for supabase on window with correct type
+function getSupabase() {
+  return (window as any).supabase || undefined;
+}
 
 const Index = () => {
   const navigate = useNavigate();
@@ -125,9 +142,10 @@ const Index = () => {
     }
   };
 
-  // Add a handler for stripe checkout
+  // updated handleSubscribe for safer supabase access
   const handleSubscribe = useCallback(async (priceId: string, tierName: string) => {
-    if (!window.supabase) {
+    const supabase = getSupabase();
+    if (!supabase) {
       toast({
         title: "Supabase connection required",
         description: "Please connect your Supabase project before subscribing.",
@@ -139,7 +157,7 @@ const Index = () => {
       description: `Opening checkout for ${tierName}`,
     });
     try {
-      const { data, error } = await window.supabase.functions.invoke("create-checkout", {
+      const { data, error } = await supabase.functions.invoke("create-checkout", {
         body: { priceId },
       });
       if (data?.url) {
@@ -173,43 +191,47 @@ const Index = () => {
           {SUBSCRIPTION_OPTIONS.map((option) => (
             <div
               key={option.id}
-              className="border rounded-2xl shadow-lg p-7 bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950"
-              style={{
-                borderColor:
-                  option.id === 3
-                    ? "#DC2626" // Mastery Mode
-                    : option.id === 2
-                    ? "#B08B18" // Advanced
-                    : "#3B82F6", // Strategic
-              }}
+              className={`
+                border-2 ${option.borderColor} bg-gray-950 rounded-2xl p-7 flex flex-col shadow-md transition-transform hover:scale-105 ${option.shadow}
+              `}
+              style={{ minHeight: 410 }}
             >
-              <div className="mb-4">
-                <h3 className="text-2xl font-bold" style={{ color: "#E0B848" }}>
+              <div className="flex flex-col flex-1 mb-4">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs px-2 py-1 rounded border font-semibold"
+                        style={{
+                          borderColor: option.accentColor,
+                          color: option.accentColor,
+                          background: "rgba(224,184,72, .06)",
+                        }}>
+                    {option.badge}
+                  </span>
+                  <span className="text-xs italic opacity-70">{option.name}</span>
+                </div>
+                <h3 className="text-2xl font-bold my-2" style={{ color: "#E0B848" }}>
                   {option.name}
                 </h3>
-                <div className="text-4xl font-bold mt-2 mb-2" style={{ color: "#B08B18" }}>
-                  ${option.price}
-                  <span className="text-lg font-normal text-gray-400"> /month</span>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-4xl font-bold" style={{ color: option.accentColor }}>${option.price}</span>
+                  <span className="text-sm text-gray-400 font-normal">/month</span>
                 </div>
-                <div className="text-md mb-3" style={{ color: "#C9D5DD" }}>
+                <p className="text-sm leading-relaxed mt-3 mb-3" style={{ color: "#C9D5DD" }}>
                   {option.description}
-                </div>
-                <div className="rounded bg-yellow-900/20 border p-2 text-sm font-medium mb-4" style={{ color: "#E0B848" }}>
+                </p>
+                <div className="rounded bg-gray-800/30 border p-2 text-xs font-medium mb-2" style={{ color: "#E0B848", borderColor: option.accentColor }}>
                   {option.highlight}
                 </div>
               </div>
               <Button
-                className="w-full font-bold text-lg py-4"
+                className="w-full font-bold text-base py-3 rounded-lg border transition-all"
                 style={{
-                  background:
-                    option.id === 3
-                      ? "linear-gradient(to right, #DC2626, #B08B18)"
-                      : option.id === 2
-                      ? "linear-gradient(to right, #B08B18, #C9D5DD)"
-                      : "linear-gradient(to right, #E0B848, #B08B18)",
-                  color: "#18181B",
+                  background: "#11141c",
+                  color: option.accentColor,
+                  borderColor: option.accentColor,
+                  borderWidth: 2
                 }}
                 onClick={() => handleSubscribe(option.priceId, option.name)}
+                variant="outline"
               >
                 Subscribe to {option.name}
               </Button>
