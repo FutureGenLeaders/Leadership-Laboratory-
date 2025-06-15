@@ -34,28 +34,34 @@ const SUBSCRIPTION_OPTIONS = [
     id: 1,
     name: "Strategic Focus",
     price: 77,
-    priceId: "price_STRATEGIC", // Replace with your Stripe Price ID
-    accentColor: "#E0B848", // Use gold for all
+    priceId: "price_STRATEGIC",
+    accentColor: "#E0B848",
     tier: "gold",
     badge: "Plan Entry",
+    description: "Launch your leadership upgrade with our foundational neuroscience-based strategies. Ideal for executives seeking nervous system calibration for day-to-day performance.",
+    highlight: "Professional onboarding, plus weekly neuroscience briefings",
   },
   {
     id: 2,
     name: "Advanced Leadership",
     price: 277,
-    priceId: "price_ADVANCED", // Replace with your Stripe Price ID
-    accentColor: "#AD1E2D", // Use your dark red
+    priceId: "price_ADVANCED",
+    accentColor: "#DEE2E6",
     tier: "silver",
     badge: "Small Circle",
+    description: "For ambitious leaders ready to achieve regulated excellence fast. Unlock advanced group coaching, all trainings, and exclusive templates.",
+    highlight: "Priority access plus leadership cohort & live coaching",
   },
   {
     id: 3,
     name: "Mastery Mode",
     price: 777,
-    priceId: "price_MASTERY", // Replace with your Stripe Price ID
-    accentColor: "#E0B848", // Use gold, but differentiator is content and exclusivity
+    priceId: "price_MASTERY",
+    accentColor: "#AD1E2D",
     tier: "red",
     badge: "VIP",
+    description: "For transformative executives only. Includes 1:1 strategy counsel, private events, and VIP network access.",
+    highlight: "Direct consulting & private neuroscience consultation",
   },
 ];
 
@@ -203,12 +209,25 @@ const Index = () => {
               <div
                 key={option.id}
                 className={`
-                  border-2 ${option.borderColor} bg-gray-950 rounded-2xl p-7 flex flex-col shadow-md transition-transform hover:scale-105 ${option.shadow}
+                  bg-gray-950 rounded-2xl p-7 flex flex-col shadow-md transition-transform hover:scale-105
                 `}
                 style={{
                   minHeight: 410,
                   borderWidth: '2px',
-                  borderRadius: '1.25rem'
+                  borderRadius: '1.25rem',
+                  borderColor:
+                    option.tier === "gold"
+                      ? "#E0B848"
+                      : option.tier === "silver"
+                      ? "#DEE2E6"
+                      : "#AD1E2D",
+                  borderStyle: "solid",
+                  boxShadow:
+                    option.tier === "silver"
+                      ? "0 2px 12px 0 rgba(176,182,188, 0.10)"
+                      : option.tier === "gold"
+                      ? "0 2px 12px 0 rgba(224,184,72,0.17)"
+                      : "0 2px 12px 0 rgba(173,30,45,0.12)",
                 }}
               >
                 <div className="flex flex-col flex-1 mb-4">
@@ -218,7 +237,7 @@ const Index = () => {
                       style={{
                         borderColor: option.accentColor,
                         color: option.accentColor,
-                        background: 'rgba(224,184,72,0.06)',
+                        background: option.tier === "red" ? "rgba(173,30,45,0.08)" : "rgba(224,184,72,0.06)",
                       }}
                     >
                       {option.badge}
@@ -245,7 +264,7 @@ const Index = () => {
                     style={{
                       color: option.accentColor,
                       borderColor: option.accentColor,
-                      background: option.id === 2
+                      background: option.tier === "red"
                         ? "rgba(173, 30, 45, 0.08)"
                         : "rgba(224,184,72,0.09)",
                     }}
@@ -256,6 +275,7 @@ const Index = () => {
                 <SubscriptionButton
                   tier={option.tier as "gold" | "silver" | "red"}
                   onClick={() => handleSubscribe(option.priceId, option.name)}
+                  className="mt-auto"
                 >
                   Subscribe to {option.name}
                 </SubscriptionButton>
