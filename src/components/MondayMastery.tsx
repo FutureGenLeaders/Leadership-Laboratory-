@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -199,10 +200,6 @@ const MondayMastery = () => {
                               <span className="flex items-center">
                                 <Clock className="w-4 h-4 mr-1" />
                                 {video.duration}
-                              </span>
-                              <span className="flex items-center">
-                                <Calendar className="w-4 h-4 mr-1" />
-                                {video.releaseDate}
                               </span>
                             </div>
                           </div>
