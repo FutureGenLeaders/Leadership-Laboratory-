@@ -56,7 +56,7 @@ const ExecutiveCircle = () => {
       keyInsights: [
         'Sound frequency impact on group decision-making',
         'Building collective nervous system regulation',
-        'Ancient practices for modern executive presence'
+        'Ancient practices for modern leadership presence'
       ],
       recordingAvailable: true,
       attended: false
@@ -64,7 +64,7 @@ const ExecutiveCircle = () => {
   ];
 
   const upcomingPractices = [
-    { icon: Music, practice: 'Tibetan Sound Bowls', description: 'Frequency healing for executive presence' },
+    { icon: Music, practice: 'Tibetan Sound Bowls', description: 'Frequency healing for leadership presence' },
     { icon: Wind, practice: 'Breathwork Protocols', description: 'Real-time regulation for business decisions' },
     { icon: Heart, practice: 'Heart Coherence', description: 'Optimal state for strategic thinking' },
     { icon: Waves, practice: 'Chanting & Toning', description: 'Vocal practices for leadership resonance' }
@@ -72,7 +72,7 @@ const ExecutiveCircle = () => {
 
   const handleJoinSession = () => {
     // Mock Zoom integration
-    console.log('Launching Executive Circle session...');
+    console.log('Launching Leadership Circle session...');
   };
 
   const handleSubmitChallenge = () => {
@@ -98,7 +98,7 @@ const ExecutiveCircle = () => {
             <Users className="w-12 h-12 mr-3" style={{ color: '#E0B848' }} />
             <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r bg-clip-text text-transparent"
                 style={{ background: `linear-gradient(to right, #E0B848, #B08B18, #E0B848)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Executive Circle
+              Leadership Circle
             </h1>
             <Heart className="w-12 h-12 ml-3" style={{ color: '#E0B848' }} />
           </div>
@@ -106,7 +106,7 @@ const ExecutiveCircle = () => {
             Weekly Nervous System Regulation + Strategic Business Coaching
           </h2>
           <p className="text-lg max-w-3xl mx-auto" style={{ color: '#BDBBBB' }}>
-            Transform from the inside out. Join fellow executives for weekly sessions combining ancient nervous system practices with cutting-edge business strategy. Sound bowls, breathwork, chanting, and real-world leadership challenges.
+            Transform from the inside out. Join fellow leaders for weekly sessions combining ancient nervous system practices with cutting-edge business strategy. Sound bowls, breathwork, chanting, and real-world leadership challenges.
           </p>
         </div>
 
@@ -134,7 +134,7 @@ const ExecutiveCircle = () => {
           <CardHeader>
             <CardTitle className="text-2xl flex items-center justify-center" style={{ color: '#E0B848' }}>
               <Music className="w-6 h-6 mr-2" />
-              Next Executive Circle Session
+              Next Leadership Circle Session
               <Waves className="w-6 h-6 ml-2" />
             </CardTitle>
           </CardHeader>
@@ -191,7 +191,7 @@ const ExecutiveCircle = () => {
                 style={{ background: 'linear-gradient(to right, #E0B848, #B08B18)' }}
               >
                 <Video className="w-5 h-5 mr-2" />
-                Join Sacred Business Circle
+                Join Sacred Leadership Circle
               </Button>
             </div>
           </CardContent>
@@ -240,7 +240,7 @@ const ExecutiveCircle = () => {
                 color: '#22C55E'
               }}>
                 <CheckCircle className="w-5 h-5 mr-2" />
-                Sacred intention received. Your nervous system and business challenge will be honored in our circle.
+                Sacred intention received. Your nervous system and leadership challenge will be honored in our circle.
               </div>
             )}
           </CardContent>
@@ -249,7 +249,7 @@ const ExecutiveCircle = () => {
         {/* Recent Sessions */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold mb-6" style={{ color: '#E0B848' }}>
-            Recent Sacred Business Sessions
+            Recent Sacred Leadership Sessions
           </h2>
           
           <div className="space-y-4">
@@ -345,14 +345,14 @@ const ExecutiveCircle = () => {
             <CardHeader>
               <CardTitle className="flex items-center" style={{ color: '#E0B848' }}>
                 <Heart className="w-6 h-6 mr-2" />
-                Sacred Business Integration
+                Sacred Leadership Integration
               </CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="space-y-3">
                 <li className="flex items-start" style={{ color: '#C9D5DD' }}>
                   <CheckCircle className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#E0B848' }} />
-                  Sound bowl meditation for executive presence
+                  Sound bowl meditation for leadership presence
                 </li>
                 <li className="flex items-start" style={{ color: '#C9D5DD' }}>
                   <CheckCircle className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#E0B848' }} />
@@ -384,7 +384,7 @@ const ExecutiveCircle = () => {
               <ul className="space-y-3">
                 <li className="flex items-start" style={{ color: '#C9D5DD' }}>
                   <AlertCircle className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#AD1E2D' }} />
-                  Ancient practices meet modern business
+                  Ancient practices meet modern leadership
                 </li>
                 <li className="flex items-start" style={{ color: '#C9D5DD' }}>
                   <AlertCircle className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#AD1E2D' }} />
@@ -392,7 +392,7 @@ const ExecutiveCircle = () => {
                 </li>
                 <li className="flex items-start" style={{ color: '#C9D5DD' }}>
                   <AlertCircle className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#AD1E2D' }} />
-                  Regulated nervous system as business advantage
+                  Regulated nervous system as leadership advantage
                 </li>
                 <li className="flex items-start" style={{ color: '#C9D5DD' }}>
                   <AlertCircle className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#AD1E2D' }} />

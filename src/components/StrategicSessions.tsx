@@ -41,17 +41,17 @@ const StrategicSessions = () => {
       id: 2,
       title: 'Leading Through Team Conflict',
       duration: '15 minutes', 
-      description: 'Executive strategies for transforming team tensions into breakthrough collaboration and innovation.',
+      description: 'Leadership strategies for transforming team tensions into breakthrough collaboration and innovation.',
       category: 'Team Leadership',
       views: 1923,
       created: '2 weeks ago'
     },
     {
       id: 3,
-      title: 'Confidence Under Executive Pressure',
+      title: 'Confidence Under Leadership Pressure',
       duration: '18 minutes',
       description: 'Advanced techniques for maintaining leadership presence and clarity during high-stakes situations.',
-      category: 'Executive Presence',
+      category: 'Leadership Presence',
       views: 3156,
       created: '3 weeks ago'
     },
@@ -88,7 +88,7 @@ const StrategicSessions = () => {
               Request Submitted Successfully
             </h2>
             <p className="text-lg" style={{ color: '#C9D5DD' }}>
-              Your leadership breakthrough request has been received. If your challenge resonates with our executive community, 
+              Your leadership breakthrough request has been received. If your challenge resonates with our leadership community, 
               a targeted strategy video will be created and you'll be notified via email.
             </p>
             <Button 
@@ -122,7 +122,7 @@ const StrategicSessions = () => {
             <Video className="w-12 h-12 mr-3" style={{ color: '#E0B848' }} />
             <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r bg-clip-text text-transparent"
                 style={{ background: `linear-gradient(to right, #E0B848, #B08B18, #E0B848)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Executive Breakthrough Videos
+              Leadership Breakthrough Videos
             </h1>
             <Brain className="w-12 h-12 ml-3" style={{ color: '#E0B848' }} />
           </div>
@@ -130,7 +130,7 @@ const StrategicSessions = () => {
             Strategic Solutions for Leadership Challenges
           </h2>
           <p className="text-lg max-w-2xl mx-auto" style={{ color: '#BDBBBB' }}>
-            Request custom strategy videos for your specific leadership challenges. If your challenge resonates with our executive community, 
+            Request custom strategy videos for your specific leadership challenges. If your challenge resonates with our leadership community, 
             a targeted breakthrough video will be created to address the core issue.
           </p>
         </div>
@@ -155,7 +155,7 @@ const StrategicSessions = () => {
                 <Input
                   value={requestData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  placeholder="Executive name"
+                  placeholder="Leader name"
                   className="bg-black/50 border-gray-600 text-white"
                 />
               </div>
@@ -230,7 +230,7 @@ const StrategicSessions = () => {
           }}>
             <CardHeader>
               <CardTitle className="text-center" style={{ color: '#E0B848' }}>
-                How Executive Breakthrough Videos Work
+                How Leadership Breakthrough Videos Work
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -254,7 +254,7 @@ const StrategicSessions = () => {
                   <div>
                     <h3 className="font-semibold mb-1" style={{ color: '#C9D5DD' }}>Community Assessment</h3>
                     <p className="text-sm" style={{ color: '#BDBBBB' }}>
-                      Challenges that resonate with multiple executives are prioritized for video creation.
+                      Challenges that resonate with multiple leaders are prioritized for video creation.
                     </p>
                   </div>
                 </div>
@@ -290,7 +290,7 @@ const StrategicSessions = () => {
         {/* Video Library */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-center mb-8" style={{ color: '#E0B848' }}>
-            Executive Strategy Video Library
+            Leadership Strategy Video Library
           </h2>
           
           <div className="grid md:grid-cols-2 gap-6">
@@ -352,7 +352,7 @@ const StrategicSessions = () => {
         }}>
           <CardHeader>
             <CardTitle className="text-center text-2xl" style={{ color: '#E0B848' }}>
-              Why Executive Breakthrough Videos Work
+              Why Leadership Breakthrough Videos Work
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -375,7 +375,7 @@ const StrategicSessions = () => {
                 <Target className="w-12 h-12 mx-auto" style={{ color: '#E0B848' }} />
                 <h3 className="font-semibold" style={{ color: '#C9D5DD' }}>Community-Driven</h3>
                 <p className="text-sm" style={{ color: '#BDBBBB' }}>
-                  Solutions are created based on real challenges faced by executive leaders in your situation.
+                  Solutions are created based on real challenges faced by leaders in your situation.
                 </p>
               </div>
             </div>
