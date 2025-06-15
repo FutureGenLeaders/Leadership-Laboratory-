@@ -3,11 +3,13 @@ import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { User } from "@supabase/supabase-js";
 import { useAuth } from "@/contexts/AuthContext";
-import { Medal, Flame, Calendar, User as UserIcon } from "lucide-react";
+import { useTrialAccess } from "@/hooks/useTrialAccess";
+import { Medal, Flame, Calendar, User as UserIcon, Crown, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ProfilePage: React.FC = () => {
   const { user } = useAuth();
+  const { isInTrial, trialDaysLeft, hasTrialExpired, trialStartDate, loading: trialLoading } = useTrialAccess();
 
   // Mocked streaks/session data - replace with real data (next step)
   const sessionStreak = 4; // days in a row
@@ -39,6 +41,50 @@ const ProfilePage: React.FC = () => {
           </div>
         </CardContent>
       </Card>
+
+      {/* Trial Status Card */}
+      {!trialLoading && (
+        <Card className="mb-6 bg-gray-950 border border-gray-800 text-white">
+          <CardHeader>
+            <CardTitle className="text-base flex items-center gap-2">
+              {isInTrial ? (
+                <>
+                  <Crown className="w-5 h-5 text-yellow-400" />
+                  Free Trial Active
+                </>
+              ) : hasTrialExpired ? (
+                <>
+                  <Clock className="w-5 h-5 text-red-400" />
+                  Trial Expired
+                </>
+              ) : (
+                <>
+                  <Crown className="w-5 h-5 text-gray-400" />
+                  Trial Status
+                </>
+              )}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {isInTrial && (
+              <div className="space-y-2">
+                <p className="text-yellow-200">
+                  {trialDaysLeft} {trialDaysLeft === 1 ? 'day' : 'days'} remaining
+                </p>
+                <p className="text-xs text-gray-400">
+                  Trial started: {trialStartDate?.toLocaleDateString()}
+                </p>
+              </div>
+            )}
+            {hasTrialExpired && (
+              <div className="space-y-2">
+                <p className="text-red-300">Your free trial has ended</p>
+                <p className="text-xs text-gray-400">Upgrade to continue accessing premium features</p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
 
       <Card className="bg-gray-950 border border-gray-800 text-white">
         <CardHeader>

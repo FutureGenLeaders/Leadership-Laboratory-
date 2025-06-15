@@ -5,6 +5,7 @@ import Auth from '@/components/Auth';
 import MorningSession from '@/components/MorningSession';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import TrialBanner from '@/components/TrialBanner';
 
 // Mock for MorningSessionProps
 const DEFAULT_LEVEL = 1; // Change this to a number (e.g., 1) to match the expected prop type
@@ -33,6 +34,9 @@ const Index = () => {
           <h1 className="text-3xl font-bold text-white">Welcome, {user.user_metadata?.full_name || user.email}!</h1>
           <p className="text-gray-300">Begin your journey to nervous system leadership.</p>
         </section>
+
+        {/* Trial Banner */}
+        <TrialBanner />
 
         <section className="mb-8">
           <h2 className="text-2xl font-semibold text-white mb-4">Your Daily Protocol Dashboard</h2>
