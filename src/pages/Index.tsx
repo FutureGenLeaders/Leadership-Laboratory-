@@ -6,6 +6,9 @@ import MorningSession from '@/components/MorningSession';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import TrialBanner from '@/components/TrialBanner';
+import PersonalizedInsights from "@/components/PersonalizedInsights";
+import Leaderboard from "@/components/Leaderboard";
+import { useToast } from "@/hooks/use-toast";
 
 // Mock for MorningSessionProps
 const DEFAULT_LEVEL = 1; // Change this to a number (e.g., 1) to match the expected prop type
@@ -13,6 +16,52 @@ const DEFAULT_LEVEL = 1; // Change this to a number (e.g., 1) to match the expec
 const Index = () => {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
+
+  // Fetch basic stats for insights MVP
+  const [stats, setStats] = React.useState({ streak: 0, totalSessions: 0 });
+  React.useEffect(() => {
+    // MVP: fetch all sessions for this user from Supabase
+    async function getStats() {
+      if (!user) return;
+      const { data, error } = await supabase
+        .from("bookings")
+        .select("session_date, status")
+        .eq("user_id", user.id)
+        .order("session_date", { ascending: false });
+      if (data) {
+        // Completed sessions only
+        const completed = data.filter((d: any) => d.status === "completed");
+        // Calculate streak
+        const completedDates = completed.map((s: any) => s.session_date).sort((a: any, b: any) => new Date(b).getTime() - new Date(a).getTime());
+        let streak = 0;
+        if (completedDates.length) {
+          let current = new Date(completedDates[0]);
+          streak = 1;
+          for (let i = 1; i < completedDates.length; i++) {
+            const prev = new Date(completedDates[i - 1]);
+            const curr = new Date(completedDates[i]);
+            const diff = Math.floor((prev.getTime() - curr.getTime()) / (1000 * 3600 * 24));
+            if (diff === 1) {
+              streak += 1;
+            } else {
+              break;
+            }
+          }
+        }
+        setStats({ streak, totalSessions: completed.length });
+      }
+    }
+    getStats();
+
+    // Trigger welcome notification as a demo (MVP notifications)
+    if (user) {
+      toast({
+        title: `Welcome back${user.user_metadata?.full_name ? ', ' + user.user_metadata.full_name : ''}!`,
+        description: 'Ready for another day in The Leadership Laboratory?',
+      });
+    }
+  }, [user]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -30,10 +79,22 @@ const Index = () => {
   return (
     <div>
       <div className="container mx-auto px-4 py-8">
+        {/* MVP: Personalized Insights card */}
+        <PersonalizedInsights
+          fullName={user.user_metadata?.full_name}
+          streak={stats.streak}
+          totalSessions={stats.totalSessions}
+        />
+
+        {/* Notification toasts handled with useToast */}
+
         <section className="text-center mb-8">
           <h1 className="text-3xl font-bold text-white">Welcome, {user.user_metadata?.full_name || user.email}!</h1>
           <p className="text-gray-300">Begin your journey to nervous system leadership.</p>
         </section>
+
+        {/* MVP: Leaderboard */}
+        <Leaderboard />
 
         {/* Trial Banner */}
         <TrialBanner />
