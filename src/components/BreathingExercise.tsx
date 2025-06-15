@@ -17,17 +17,16 @@ interface BreathingExerciseProps {
 
 const BreathingExercise = ({ onComplete }: BreathingExerciseProps) => {
   const [isActive, setIsActive] = useState(false);
-  const [phase, setPhase] = useState<'inhale' | 'hold' | 'exhale' | 'pause'>('inhale');
+  const [phase, setPhase] = useState<'inhale' | 'hold' | 'exhale'>('inhale');
   const [cycleCount, setCycleCount] = useState(0);
   const [phaseTime, setPhaseTime] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
 
   const totalCycles = 4;
   const phaseDurations = {
-    inhale: 4,
-    hold: 4,
-    exhale: 6,
-    pause: 2
+    inhale: 5,
+    hold: 5,
+    exhale: 5
   };
 
   useEffect(() => {
@@ -43,11 +42,10 @@ const BreathingExercise = ({ onComplete }: BreathingExerciseProps) => {
             const nextPhase = {
               inhale: 'hold',
               hold: 'exhale', 
-              exhale: 'pause',
-              pause: 'inhale'
+              exhale: 'inhale'
             }[phase] as typeof phase;
 
-            if (phase === 'pause') {
+            if (phase === 'exhale') {
               setCycleCount(c => c + 1);
             }
 
@@ -75,7 +73,6 @@ const BreathingExercise = ({ onComplete }: BreathingExerciseProps) => {
       case 'inhale': return 'Breathe In...';
       case 'hold': return 'Hold...';
       case 'exhale': return 'Breathe Out...';
-      case 'pause': return 'Pause...';
     }
   };
 
@@ -83,7 +80,7 @@ const BreathingExercise = ({ onComplete }: BreathingExerciseProps) => {
     const progress = phaseTime / phaseDurations[phase];
     if (phase === 'inhale') return 0.5 + (progress * 0.5);
     if (phase === 'exhale') return 1 - (progress * 0.5);
-    return phase === 'hold' ? 1 : 0.5;
+    return 1; // hold phase stays at full scale
   };
 
   const reset = () => {
@@ -106,7 +103,7 @@ const BreathingExercise = ({ onComplete }: BreathingExerciseProps) => {
           Nervous System Regulation Protocol
         </h3>
         <p className="mb-6" style={{ color: '#C9D5DD' }}>
-          4-4-6-2 Box Breathing for Optimal Neural Coherence
+          5-5-5 Equal Breathing for Optimal Neural Coherence
         </p>
 
         <div className="mb-8 flex justify-center">
@@ -123,7 +120,7 @@ const BreathingExercise = ({ onComplete }: BreathingExerciseProps) => {
               style={{ 
                 color: phase === 'inhale' ? '#06B6D4' : 
                        phase === 'hold' ? '#10B981' :
-                       phase === 'exhale' ? '#8B5CF6' : '#EC4899',
+                       '#8B5CF6',
                 strokeWidth: 3,
                 fill: 'rgba(6, 182, 212, 0.1)'
               }}
