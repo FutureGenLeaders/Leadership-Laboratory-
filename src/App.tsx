@@ -18,7 +18,7 @@ import DecisionsPage from "./pages/DecisionsPage";
 import RecoveryPage from "./pages/RecoveryPage";
 import MondayMasteryPage from "./pages/MondayMasteryPage";
 import MasterclassLibraryPage from "./pages/MasterclassLibraryPage";
-import ExecutiveCirclePage from "./pages/ExecutiveCirclePage";
+import SacredCirclePage from "./pages/SacredCirclePage";
 import StrategicSessionsPage from "./pages/StrategicSessionsPage";
 import CommunityPage from "./pages/CommunityPage";
 import BookingPage from "./pages/BookingPage";
@@ -45,7 +45,9 @@ const App = () => (
             <Route path="/recovery" element={<RecoveryPage />} />
             <Route path="/monday-mastery" element={<MondayMasteryPage />} />
             <Route path="/masterclass-library" element={<MasterclassLibraryPage />} />
-            <Route path="/executive-circle" element={<ExecutiveCirclePage />} />
+            <Route path="/sacred-circle" element={<SacredCirclePage />} />
+            {/* Backward compatibility: old executive-circle route */}
+            <Route path="/executive-circle" element={<SacredCirclePage />} />
             <Route path="/strategic-sessions" element={<StrategicSessionsPage />} />
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/booking" element={<BookingPage />} />
