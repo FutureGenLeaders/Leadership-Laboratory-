@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import LevelSelection from "@/components/LevelSelection";
 import MonthlyProgression from "@/components/MonthlyProgression";
 import AssessmentMetrics from "@/components/AssessmentMetrics";
+import DivineFeminine from "@/components/DivineFeminine";
 import { 
   Flame, 
   Zap, 
