@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 // Mock for MorningSessionProps
-const DEFAULT_LEVEL = "beginner"; // Adjust per your app's allowed values
+const DEFAULT_LEVEL = 1; // Change this to a number (e.g., 1) to match the expected prop type
 
 const Index = () => {
   const { user, loading } = useAuth();
