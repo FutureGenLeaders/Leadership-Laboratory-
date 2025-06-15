@@ -213,75 +213,104 @@ const Index = () => {
             Subscribe for Mindful Neuroscience Leadership Training
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {SUBSCRIPTION_OPTIONS.map((option) => (
-              <div
-                key={option.id}
-                className={`
-                  border-2 ${option.borderColor} bg-gray-950 rounded-2xl p-7 flex flex-col shadow-md transition-transform hover:scale-105 ${option.shadow}
-                `}
-                style={{
-                  minHeight: 410,
-                  borderWidth: '2px',
-                  borderRadius: '1.25rem'
-                }}
-              >
-                <div className="flex flex-col flex-1 mb-4">
-                  <div className="flex items-center justify-between mb-1">
-                    <span
-                      className="text-xs px-2 py-1 rounded border font-semibold"
+            {SUBSCRIPTION_OPTIONS.map((option) => {
+              // Individual button style by tier
+              let buttonBg: string, buttonText: string, buttonBorder: string;
+              if (option.id === 1) {
+                // Strategic Focus: Gold/Yellow button
+                buttonBg = "bg-gradient-to-r from-yellow-400 to-yellow-500";
+                buttonText = "text-black hover:text-black";
+                buttonBorder = "border-yellow-400";
+              } else if (option.id === 2) {
+                // Advanced Leadership: Silver button
+                buttonBg = "bg-gradient-to-r from-gray-200 to-gray-400";
+                buttonText = "text-gray-900 hover:text-gray-900";
+                buttonBorder = "border-gray-300";
+              } else if (option.id === 3) {
+                // Mastery Mode: Red button
+                buttonBg = "bg-gradient-to-r from-red-600 to-red-700";
+                buttonText = "text-white hover:text-white";
+                buttonBorder = "border-red-700";
+              } else {
+                // Fallback
+                buttonBg = "bg-gray-800";
+                buttonText = "text-white";
+                buttonBorder = "border-gray-700";
+              }
+
+              return (
+                <div
+                  key={option.id}
+                  className={`
+                    border-2 ${option.borderColor} bg-gray-950 rounded-2xl p-7 flex flex-col shadow-md transition-transform hover:scale-105 ${option.shadow}
+                  `}
+                  style={{
+                    minHeight: 410,
+                    borderWidth: '2px',
+                    borderRadius: '1.25rem'
+                  }}
+                >
+                  <div className="flex flex-col flex-1 mb-4">
+                    <div className="flex items-center justify-between mb-1">
+                      <span
+                        className="text-xs px-2 py-1 rounded border font-semibold"
+                        style={{
+                          borderColor: option.accentColor,
+                          color: option.accentColor,
+                          background: 'rgba(224,184,72,0.06)', // subtle background regardless of tier
+                        }}
+                      >
+                        {option.badge}
+                      </span>
+                      <span className="text-xs italic opacity-70">{option.name}</span>
+                    </div>
+                    <h3 className="text-2xl font-bold my-2" style={{ color: "#E0B848" }}>
+                      {option.name}
+                    </h3>
+                    <div className="flex items-baseline gap-2">
+                      <span
+                        className="text-4xl font-bold"
+                        style={{ color: option.accentColor }}
+                      >
+                        ${option.price}
+                      </span>
+                      <span className="text-sm text-gray-400 font-normal">/month</span>
+                    </div>
+                    <p className="text-sm leading-relaxed mt-3 mb-3" style={{ color: "#C9D5DD" }}>
+                      {option.description}
+                    </p>
+                    <div
+                      className="rounded bg-gray-800/30 border p-2 text-xs font-medium mb-2"
                       style={{
-                        borderColor: option.accentColor,
                         color: option.accentColor,
-                        background: 'rgba(224,184,72,0.06)', // subtle background regardless of tier
+                        borderColor: option.accentColor,
+                        background: option.id === 2
+                          ? "rgba(173, 30, 45, 0.08)"
+                          : "rgba(224,184,72,0.09)",
                       }}
                     >
-                      {option.badge}
-                    </span>
-                    <span className="text-xs italic opacity-70">{option.name}</span>
+                      {option.highlight}
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold my-2" style={{ color: "#E0B848" }}>
-                    {option.name}
-                  </h3>
-                  <div className="flex items-baseline gap-2">
-                    <span
-                      className="text-4xl font-bold"
-                      style={{ color: option.accentColor }}
-                    >
-                      ${option.price}
-                    </span>
-                    <span className="text-sm text-gray-400 font-normal">/month</span>
-                  </div>
-                  <p className="text-sm leading-relaxed mt-3 mb-3" style={{ color: "#C9D5DD" }}>
-                    {option.description}
-                  </p>
-                  <div
-                    className="rounded bg-gray-800/30 border p-2 text-xs font-medium mb-2"
+                  <Button
+                    className={`
+                      w-full font-bold text-base py-3 rounded-lg border-2 transition-all shadow-none
+                      ${buttonBg} ${buttonText} ${buttonBorder}
+                    `}
                     style={{
-                      color: option.accentColor,
-                      borderColor: option.accentColor,
-                      background: option.id === 2
-                        ? "rgba(173, 30, 45, 0.08)"
-                        : "rgba(224,184,72,0.09)",
+                      boxShadow: option.id === 2
+                        ? "0 2px 12px 0 rgba(201,213,221,0.07)"
+                        : option.id === 3
+                        ? "0 2px 12px 0 rgba(173,30,45,0.07)"
+                        : "0 2px 12px 0 rgba(224,184,72,0.07)"
                     }}
+                    onClick={() => handleSubscribe(option.priceId, option.name)}
                   >
-                    {option.highlight}
-                  </div>
+                    Subscribe to {option.name}
+                  </Button>
                 </div>
-                <Button
-                  className="w-full font-bold text-base py-3 rounded-lg border-2 transition-all focus:ring-2 focus:ring-[#E0B848]/60"
-                  style={{
-                    background: "linear-gradient(90deg, #35322B 0%, #171411 100%)",
-                    color: option.accentColor,
-                    borderColor: option.accentColor,
-                    boxShadow: "0 2px 12px 0 rgba(224,184,72,0.07)",
-                  }}
-                  onClick={() => handleSubscribe(option.priceId, option.name)}
-                  variant="outline"
-                >
-                  Subscribe to {option.name}
-                </Button>
-              </div>
-            ))}
+              );
+            })}
           </div>
           <p className="text-xs text-center mt-5" style={{ color: "#939393" }}>
             Secure payment via Stripe. Cancel anytime in your account. If you need a special arrangement,{" "}
