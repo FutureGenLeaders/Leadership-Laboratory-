@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -9,6 +10,7 @@ import TrialBanner from '@/components/TrialBanner';
 import PersonalizedInsights from "@/components/PersonalizedInsights";
 import Leaderboard from "@/components/Leaderboard";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client"; // <-- FIXED: Added import
 
 // Mock for MorningSessionProps
 const DEFAULT_LEVEL = 1; // Change this to a number (e.g., 1) to match the expected prop type
