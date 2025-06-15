@@ -38,9 +38,9 @@ const SUBSCRIPTION_OPTIONS = [
       "Foundational neuroscience leadership, daily clarity protocols, and peer-level coaching. Perfect for ambitious professionals ready to start their optimization journey.",
     highlight:
       "Transform how you lead under pressure with expert science-backed strategies.",
-    accentColor: "#3B82F6",
-    borderColor: "border-blue-500",
-    shadow: "shadow-blue-300/30",
+    accentColor: "#E0B848", // Use gold for all
+    borderColor: "border-[rgba(224,184,72,0.60)]",
+    shadow: "shadow-yellow-300/15",
     badge: "Plan Entry",
   },
   {
@@ -52,9 +52,9 @@ const SUBSCRIPTION_OPTIONS = [
       "For experienced executives: deep-dive neuroscience, intensive strategy, and access to small curated circles for peer mastery.",
     highlight:
       "Upgrade your leadership with rigorous frameworks and advanced community support.",
-    accentColor: "#EAB308",
-    borderColor: "border-yellow-600",
-    shadow: "shadow-yellow-300/30",
+    accentColor: "#AD1E2D", // Use your dark red
+    borderColor: "border-[rgba(173,30,45,0.60)]",
+    shadow: "shadow-red-300/15",
     badge: "Small Circle",
   },
   {
@@ -66,9 +66,9 @@ const SUBSCRIPTION_OPTIONS = [
       "Elite circle with sacred, intimate coaching, founder’s direct access, and exclusive transformational content reserved for true masters.",
     highlight:
       "Join a rare cohort for the highest level of leadership integration and personal transformation.",
-    accentColor: "#DC2626",
-    borderColor: "border-red-700",
-    shadow: "shadow-red-300/30",
+    accentColor: "#E0B848", // Use gold, but differentiator is content and exclusivity
+    borderColor: "border-[rgba(224,184,72,0.99)]",
+    shadow: "shadow-yellow-300/15",
     badge: "VIP",
   },
 ];
@@ -182,73 +182,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
-      {/* NEW: SUBSCRIPTION PLANS SECTION */}
-      <div className="container mx-auto max-w-4xl pt-8 pb-14">
-        <h2 className="text-3xl font-bold text-center mb-7" style={{ color: "#E0B848" }}>
-          Subscribe for Mindful Neuroscience Leadership Training
-        </h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {SUBSCRIPTION_OPTIONS.map((option) => (
-            <div
-              key={option.id}
-              className={`
-                border-2 ${option.borderColor} bg-gray-950 rounded-2xl p-7 flex flex-col shadow-md transition-transform hover:scale-105 ${option.shadow}
-              `}
-              style={{ minHeight: 410 }}
-            >
-              <div className="flex flex-col flex-1 mb-4">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs px-2 py-1 rounded border font-semibold"
-                        style={{
-                          borderColor: option.accentColor,
-                          color: option.accentColor,
-                          background: "rgba(224,184,72, .06)",
-                        }}>
-                    {option.badge}
-                  </span>
-                  <span className="text-xs italic opacity-70">{option.name}</span>
-                </div>
-                <h3 className="text-2xl font-bold my-2" style={{ color: "#E0B848" }}>
-                  {option.name}
-                </h3>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-bold" style={{ color: option.accentColor }}>${option.price}</span>
-                  <span className="text-sm text-gray-400 font-normal">/month</span>
-                </div>
-                <p className="text-sm leading-relaxed mt-3 mb-3" style={{ color: "#C9D5DD" }}>
-                  {option.description}
-                </p>
-                <div className="rounded bg-gray-800/30 border p-2 text-xs font-medium mb-2" style={{ color: "#E0B848", borderColor: option.accentColor }}>
-                  {option.highlight}
-                </div>
-              </div>
-              <Button
-                className="w-full font-bold text-base py-3 rounded-lg border transition-all"
-                style={{
-                  background: "#11141c",
-                  color: option.accentColor,
-                  borderColor: option.accentColor,
-                  borderWidth: 2
-                }}
-                onClick={() => handleSubscribe(option.priceId, option.name)}
-                variant="outline"
-              >
-                Subscribe to {option.name}
-              </Button>
-            </div>
-          ))}
-        </div>
-        <p className="text-xs text-center mt-5" style={{ color: "#939393" }}>
-          Secure payment via Stripe. Cancel anytime in your account. If you need a special arrangement, <a className="underline" href="mailto:support@yoursite.com" target="_blank" rel="noopener noreferrer">contact us</a>.
-        </p>
-      </div>
-      {/* Sacred Geometry Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-32 h-32 border border-yellow-400 rotate-45 animate-pulse" style={{ borderColor: '#E0B848' }}></div>
-        <div className="absolute top-40 right-32 w-24 h-24 border border-red-500 rounded-full animate-pulse delay-1000" style={{ borderColor: '#AD1E2D' }}></div>
-        <div className="absolute bottom-32 left-1/3 w-28 h-28 border border-yellow-500 transform rotate-12 animate-pulse delay-2000" style={{ borderColor: '#B08B18' }}></div>
-      </div>
-
+      {/* Header and intro content stays at the top */}
       <div className="relative z-10 container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -271,6 +205,104 @@ const Index = () => {
             <Brain className="w-4 h-4 mr-2" />
             Neuroscience Optimization Active
           </Badge>
+        </div>
+
+        {/* ------ SUBSCRIPTION PLANS SECTION NOW BELOW HEADER ------ */}
+        <div className="max-w-4xl mx-auto pt-0 pb-14 mb-10">
+          <h2 className="text-3xl font-bold text-center mb-7" style={{ color: "#E0B848" }}>
+            Subscribe for Mindful Neuroscience Leadership Training
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {SUBSCRIPTION_OPTIONS.map((option) => (
+              <div
+                key={option.id}
+                className={`
+                  border-2 ${option.borderColor} bg-gray-950 rounded-2xl p-7 flex flex-col shadow-md transition-transform hover:scale-105 ${option.shadow}
+                `}
+                style={{
+                  minHeight: 410,
+                  borderWidth: '2px',
+                  borderRadius: '1.25rem'
+                }}
+              >
+                <div className="flex flex-col flex-1 mb-4">
+                  <div className="flex items-center justify-between mb-1">
+                    <span
+                      className="text-xs px-2 py-1 rounded border font-semibold"
+                      style={{
+                        borderColor: option.accentColor,
+                        color: option.accentColor,
+                        background: 'rgba(224,184,72,0.06)', // subtle background regardless of tier
+                      }}
+                    >
+                      {option.badge}
+                    </span>
+                    <span className="text-xs italic opacity-70">{option.name}</span>
+                  </div>
+                  <h3 className="text-2xl font-bold my-2" style={{ color: "#E0B848" }}>
+                    {option.name}
+                  </h3>
+                  <div className="flex items-baseline gap-2">
+                    <span
+                      className="text-4xl font-bold"
+                      style={{ color: option.accentColor }}
+                    >
+                      ${option.price}
+                    </span>
+                    <span className="text-sm text-gray-400 font-normal">/month</span>
+                  </div>
+                  <p className="text-sm leading-relaxed mt-3 mb-3" style={{ color: "#C9D5DD" }}>
+                    {option.description}
+                  </p>
+                  <div
+                    className="rounded bg-gray-800/30 border p-2 text-xs font-medium mb-2"
+                    style={{
+                      color: option.accentColor,
+                      borderColor: option.accentColor,
+                      background: option.id === 2
+                        ? "rgba(173, 30, 45, 0.08)"
+                        : "rgba(224,184,72,0.09)",
+                    }}
+                  >
+                    {option.highlight}
+                  </div>
+                </div>
+                <Button
+                  className="w-full font-bold text-base py-3 rounded-lg border-2 transition-all focus:ring-2 focus:ring-[#E0B848]/60"
+                  style={{
+                    background: "linear-gradient(90deg, #35322B 0%, #171411 100%)",
+                    color: option.accentColor,
+                    borderColor: option.accentColor,
+                    boxShadow: "0 2px 12px 0 rgba(224,184,72,0.07)",
+                  }}
+                  onClick={() => handleSubscribe(option.priceId, option.name)}
+                  variant="outline"
+                >
+                  Subscribe to {option.name}
+                </Button>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-center mt-5" style={{ color: "#939393" }}>
+            Secure payment via Stripe. Cancel anytime in your account. If you need a special arrangement,{" "}
+            <a
+              className="underline"
+              href="mailto:support@yoursite.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#E0B848" }}
+            >
+              contact us
+            </a>.
+          </p>
+        </div>
+        {/* ---- END SUBSCRIPTION ---- */}
+
+        {/* Sacred Geometry Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-20 w-32 h-32 border border-yellow-400 rotate-45 animate-pulse" style={{ borderColor: '#E0B848' }}></div>
+          <div className="absolute top-40 right-32 w-24 h-24 border border-red-500 rounded-full animate-pulse delay-1000" style={{ borderColor: '#AD1E2D' }}></div>
+          <div className="absolute bottom-32 left-1/3 w-28 h-28 border border-yellow-500 transform rotate-12 animate-pulse delay-2000" style={{ borderColor: '#B08B18' }}></div>
         </div>
 
         {/* Level Selection Status */}
