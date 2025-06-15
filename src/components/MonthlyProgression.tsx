@@ -63,7 +63,7 @@ const MonthlyProgression = () => {
             return (
               <Card 
                 key={principle.id}
-                className={`border transition-all duration-300 ${isCurrent ? 'ring-2' : ''}`}
+                className={`border transition-all duration-300 ${isCurrent ? 'ring-2 ring-red-500' : ''}`}
                 style={{ 
                   backgroundColor: isCompleted 
                     ? 'rgba(224, 184, 72, 0.1)' 
@@ -74,8 +74,7 @@ const MonthlyProgression = () => {
                     ? 'rgba(224, 184, 72, 0.3)' 
                     : isCurrent 
                     ? 'rgba(173, 30, 45, 0.3)' 
-                    : 'rgba(201, 213, 221, 0.2)',
-                  ringColor: isCurrent ? '#AD1E2D' : 'transparent'
+                    : 'rgba(201, 213, 221, 0.2)'
                 }}
               >
                 <CardContent className="p-4">
