@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,7 +12,7 @@ import {
   Sparkles,
   Circle,
   Infinity,
-  Lotus,
+  Flower2,
   Star
 } from "lucide-react";
 
@@ -119,7 +118,7 @@ const DivineFeminine = () => {
         </div>
         
         <CardTitle className="text-2xl flex items-center" style={{ color: '#EC4899' }}>
-          <Lotus className="w-6 h-6 mr-2" />
+          <Flower2 className="w-6 h-6 mr-2" />
           Sacred Feminine Leadership Wisdom
           <Moon className="w-6 h-6 ml-2" />
         </CardTitle>
