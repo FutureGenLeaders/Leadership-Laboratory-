@@ -22,6 +22,7 @@ import {
   Brain,
   Activity
 } from "lucide-react";
+import MonthlyProgression from "@/components/MonthlyProgression";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -245,7 +246,12 @@ const Index = () => {
           </CardContent>
         </Card>
 
-        {/* New Video & Coaching Features Section */}
+        {/* NEW: Monthly Universal Principles Progression */}
+        <div className="mb-12">
+          <MonthlyProgression />
+        </div>
+
+        {/* Video & Coaching Features Section */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-center mb-8" style={{ color: '#E0B848' }}>
             Video Learning & Coaching Platform
