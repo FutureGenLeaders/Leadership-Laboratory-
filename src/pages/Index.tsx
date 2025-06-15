@@ -6,6 +6,9 @@ import MorningSession from '@/components/MorningSession';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
+// Mock for MorningSessionProps
+const DEFAULT_LEVEL = "beginner"; // Adjust per your app's allowed values
+
 const Index = () => {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
@@ -33,7 +36,8 @@ const Index = () => {
 
         <section className="mb-8">
           <h2 className="text-2xl font-semibold text-white mb-4">Your Daily Protocol Dashboard</h2>
-          <MorningSession />
+          {/* Pass required props to MorningSession */}
+          <MorningSession level={DEFAULT_LEVEL} onComplete={() => {}} />
         </section>
 
         <section className="mb-8">
