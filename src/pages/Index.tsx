@@ -27,6 +27,7 @@ import {
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { useCallback } from "react";
+import SubscriptionButton from "@/components/SubscriptionButton";
 
 const SUBSCRIPTION_OPTIONS = [
   {
@@ -34,13 +35,8 @@ const SUBSCRIPTION_OPTIONS = [
     name: "Strategic Focus",
     price: 77,
     priceId: "price_STRATEGIC", // Replace with your Stripe Price ID
-    description:
-      "Foundational neuroscience leadership, daily clarity protocols, and peer-level coaching. Perfect for ambitious professionals ready to start their optimization journey.",
-    highlight:
-      "Transform how you lead under pressure with expert science-backed strategies.",
     accentColor: "#E0B848", // Use gold for all
-    borderColor: "border-[rgba(224,184,72,0.60)]",
-    shadow: "shadow-yellow-300/15",
+    tier: "gold",
     badge: "Plan Entry",
   },
   {
@@ -48,13 +44,8 @@ const SUBSCRIPTION_OPTIONS = [
     name: "Advanced Leadership",
     price: 277,
     priceId: "price_ADVANCED", // Replace with your Stripe Price ID
-    description:
-      "For experienced executives: deep-dive neuroscience, intensive strategy, and access to small curated circles for peer mastery.",
-    highlight:
-      "Upgrade your leadership with rigorous frameworks and advanced community support.",
     accentColor: "#AD1E2D", // Use your dark red
-    borderColor: "border-[rgba(173,30,45,0.60)]",
-    shadow: "shadow-red-300/15",
+    tier: "silver",
     badge: "Small Circle",
   },
   {
@@ -62,13 +53,8 @@ const SUBSCRIPTION_OPTIONS = [
     name: "Mastery Mode",
     price: 777,
     priceId: "price_MASTERY", // Replace with your Stripe Price ID
-    description:
-      "Elite circle with sacred, intimate coaching, founder’s direct access, and exclusive transformational content reserved for true masters.",
-    highlight:
-      "Join a rare cohort for the highest level of leadership integration and personal transformation.",
     accentColor: "#E0B848", // Use gold, but differentiator is content and exclusivity
-    borderColor: "border-[rgba(224,184,72,0.99)]",
-    shadow: "shadow-yellow-300/15",
+    tier: "red",
     badge: "VIP",
   },
 ];
@@ -213,104 +199,68 @@ const Index = () => {
             Subscribe for Mindful Neuroscience Leadership Training
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {SUBSCRIPTION_OPTIONS.map((option) => {
-              // Individual button style by tier
-              let buttonBg: string, buttonText: string, buttonBorder: string;
-              if (option.id === 1) {
-                // Strategic Focus: Gold/Yellow button
-                buttonBg = "bg-gradient-to-r from-yellow-400 to-yellow-500";
-                buttonText = "text-black hover:text-black";
-                buttonBorder = "border-yellow-400";
-              } else if (option.id === 2) {
-                // Advanced Leadership: Silver button
-                buttonBg = "bg-gradient-to-r from-gray-200 to-gray-400";
-                buttonText = "text-gray-900 hover:text-gray-900";
-                buttonBorder = "border-gray-300";
-              } else if (option.id === 3) {
-                // Mastery Mode: Red button
-                buttonBg = "bg-gradient-to-r from-red-600 to-red-700";
-                buttonText = "text-white hover:text-white";
-                buttonBorder = "border-red-700";
-              } else {
-                // Fallback
-                buttonBg = "bg-gray-800";
-                buttonText = "text-white";
-                buttonBorder = "border-gray-700";
-              }
-
-              return (
-                <div
-                  key={option.id}
-                  className={`
-                    border-2 ${option.borderColor} bg-gray-950 rounded-2xl p-7 flex flex-col shadow-md transition-transform hover:scale-105 ${option.shadow}
-                  `}
-                  style={{
-                    minHeight: 410,
-                    borderWidth: '2px',
-                    borderRadius: '1.25rem'
-                  }}
-                >
-                  <div className="flex flex-col flex-1 mb-4">
-                    <div className="flex items-center justify-between mb-1">
-                      <span
-                        className="text-xs px-2 py-1 rounded border font-semibold"
-                        style={{
-                          borderColor: option.accentColor,
-                          color: option.accentColor,
-                          background: 'rgba(224,184,72,0.06)', // subtle background regardless of tier
-                        }}
-                      >
-                        {option.badge}
-                      </span>
-                      <span className="text-xs italic opacity-70">{option.name}</span>
-                    </div>
-                    <h3 className="text-2xl font-bold my-2" style={{ color: "#E0B848" }}>
-                      {option.name}
-                    </h3>
-                    <div className="flex items-baseline gap-2">
-                      <span
-                        className="text-4xl font-bold"
-                        style={{ color: option.accentColor }}
-                      >
-                        ${option.price}
-                      </span>
-                      <span className="text-sm text-gray-400 font-normal">/month</span>
-                    </div>
-                    <p className="text-sm leading-relaxed mt-3 mb-3" style={{ color: "#C9D5DD" }}>
-                      {option.description}
-                    </p>
-                    <div
-                      className="rounded bg-gray-800/30 border p-2 text-xs font-medium mb-2"
+            {SUBSCRIPTION_OPTIONS.map((option) => (
+              <div
+                key={option.id}
+                className={`
+                  border-2 ${option.borderColor} bg-gray-950 rounded-2xl p-7 flex flex-col shadow-md transition-transform hover:scale-105 ${option.shadow}
+                `}
+                style={{
+                  minHeight: 410,
+                  borderWidth: '2px',
+                  borderRadius: '1.25rem'
+                }}
+              >
+                <div className="flex flex-col flex-1 mb-4">
+                  <div className="flex items-center justify-between mb-1">
+                    <span
+                      className="text-xs px-2 py-1 rounded border font-semibold"
                       style={{
-                        color: option.accentColor,
                         borderColor: option.accentColor,
-                        background: option.id === 2
-                          ? "rgba(173, 30, 45, 0.08)"
-                          : "rgba(224,184,72,0.09)",
+                        color: option.accentColor,
+                        background: 'rgba(224,184,72,0.06)',
                       }}
                     >
-                      {option.highlight}
-                    </div>
+                      {option.badge}
+                    </span>
+                    <span className="text-xs italic opacity-70">{option.name}</span>
                   </div>
-                  <Button
-                    className={`
-                      w-full font-bold text-base py-3 rounded-lg border-2 transition-all shadow-none
-                      ${buttonBg} ${buttonText} ${buttonBorder}
-                    `}
+                  <h3 className="text-2xl font-bold my-2" style={{ color: "#E0B848" }}>
+                    {option.name}
+                  </h3>
+                  <div className="flex items-baseline gap-2">
+                    <span
+                      className="text-4xl font-bold"
+                      style={{ color: option.accentColor }}
+                    >
+                      ${option.price}
+                    </span>
+                    <span className="text-sm text-gray-400 font-normal">/month</span>
+                  </div>
+                  <p className="text-sm leading-relaxed mt-3 mb-3" style={{ color: "#C9D5DD" }}>
+                    {option.description}
+                  </p>
+                  <div
+                    className="rounded bg-gray-800/30 border p-2 text-xs font-medium mb-2"
                     style={{
-                      boxShadow: option.id === 2
-                        ? "0 2px 12px 0 rgba(201,213,221,0.07)"
-                        : option.id === 3
-                        ? "0 2px 12px 0 rgba(173,30,45,0.07)"
-                        : "0 2px 12px 0 rgba(224,184,72,0.07)"
+                      color: option.accentColor,
+                      borderColor: option.accentColor,
+                      background: option.id === 2
+                        ? "rgba(173, 30, 45, 0.08)"
+                        : "rgba(224,184,72,0.09)",
                     }}
-                    onClick={() => handleSubscribe(option.priceId, option.name)}
                   >
-                    Subscribe to {option.name}
-                  </Button>
+                    {option.highlight}
+                  </div>
                 </div>
-              );
-            })}
+                <SubscriptionButton
+                  tier={option.tier as "gold" | "silver" | "red"}
+                  onClick={() => handleSubscribe(option.priceId, option.name)}
+                >
+                  Subscribe to {option.name}
+                </SubscriptionButton>
+              </div>
+            ))}
           </div>
           <p className="text-xs text-center mt-5" style={{ color: "#939393" }}>
             Secure payment via Stripe. Cancel anytime in your account. If you need a special arrangement,{" "}
