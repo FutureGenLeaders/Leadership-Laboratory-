@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -11,6 +10,7 @@ import PersonalizedInsights from "@/components/PersonalizedInsights";
 import Leaderboard from "@/components/Leaderboard";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client"; // <-- FIXED: Added import
+import MonthlyMotivation from "@/components/MonthlyMotivation";
 
 // Mock for MorningSessionProps
 const DEFAULT_LEVEL = 1; // Change this to a number (e.g., 1) to match the expected prop type
@@ -81,6 +81,9 @@ const Index = () => {
   return (
     <div>
       <div className="container mx-auto px-4 py-8">
+        {/* NEW: Monthly Motivation Card */}
+        <MonthlyMotivation />
+
         {/* MVP: Personalized Insights card */}
         <PersonalizedInsights
           fullName={user.user_metadata?.full_name}

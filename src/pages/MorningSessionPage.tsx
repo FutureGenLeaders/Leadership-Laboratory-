@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -19,6 +18,7 @@ import {
   Heart,
   ArrowLeft
 } from "lucide-react";
+import CertificateModal from "@/components/CertificateModal";
 
 const MorningSessionPage = () => {
   const navigate = useNavigate();
@@ -28,6 +28,7 @@ const MorningSessionPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [reflections, setReflections] = useState<string[]>([]);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
+  const [showCertificate, setShowCertificate] = useState(false);
 
   const getLevelContent = () => {
     switch (level) {
@@ -169,6 +170,7 @@ const MorningSessionPage = () => {
         type: 'success'
       }
     });
+    setShowCertificate(true);
   };
 
   const renderCurrentStep = () => {
@@ -297,6 +299,8 @@ const MorningSessionPage = () => {
         {/* Current Step */}
         {renderCurrentStep()}
       </div>
+      {/* NEW: Certificate Modal */}
+      <CertificateModal open={showCertificate} onClose={() => setShowCertificate(false)} sessionType="Morning" />
     </div>
   );
 };
