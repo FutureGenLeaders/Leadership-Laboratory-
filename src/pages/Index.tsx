@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import LevelSelection from "@/components/LevelSelection";
+import MonthlyProgression from "@/components/MonthlyProgression";
+import AssessmentMetrics from "@/components/AssessmentMetrics";
 import { 
   Flame, 
   Zap, 
@@ -22,7 +24,6 @@ import {
   Brain,
   Activity
 } from "lucide-react";
-import MonthlyProgression from "@/components/MonthlyProgression";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -246,7 +247,12 @@ const Index = () => {
           </CardContent>
         </Card>
 
-        {/* NEW: Monthly Universal Principles Progression */}
+        {/* NEW: Assessment Metrics Dashboard */}
+        <div className="mb-12">
+          <AssessmentMetrics />
+        </div>
+
+        {/* Monthly Universal Principles Progression */}
         <div className="mb-12">
           <MonthlyProgression />
         </div>
