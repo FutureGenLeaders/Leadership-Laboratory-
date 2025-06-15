@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -26,6 +25,41 @@ import {
   Brain,
   Activity
 } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
+import { useCallback } from "react";
+
+const SUBSCRIPTION_OPTIONS = [
+  {
+    id: 1,
+    name: "Strategic Focus",
+    price: 77,
+    priceId: "price_STRATEGIC", // Replace with your Stripe Price ID
+    description:
+      "Foundational neuroscience leadership, daily clarity protocols, and peer-level coaching. Perfect for ambitious professionals ready to start their optimization journey.",
+    highlight:
+      "Transform how you lead under pressure with expert science-backed strategies.",
+  },
+  {
+    id: 2,
+    name: "Advanced Leadership",
+    price: 277,
+    priceId: "price_ADVANCED", // Replace with your Stripe Price ID
+    description:
+      "For experienced executives: deep-dive neuroscience, intensive strategy, and access to small curated circles for peer mastery.",
+    highlight:
+      "Upgrade your leadership with rigorous frameworks and advanced community support.",
+  },
+  {
+    id: 3,
+    name: "Mastery Mode",
+    price: 777,
+    priceId: "price_MASTERY", // Replace with your Stripe Price ID
+    description:
+      "Elite circle with sacred, intimate coaching, founder’s direct access, and exclusive transformational content reserved for true masters.",
+    highlight:
+      "Join a rare cohort for the highest level of leadership integration and personal transformation.",
+  },
+];
 
 const Index = () => {
   const navigate = useNavigate();
@@ -91,12 +125,101 @@ const Index = () => {
     }
   };
 
+  // Add a handler for stripe checkout
+  const handleSubscribe = useCallback(async (priceId: string, tierName: string) => {
+    if (!window.supabase) {
+      toast({
+        title: "Supabase connection required",
+        description: "Please connect your Supabase project before subscribing.",
+      });
+      return;
+    }
+    toast({
+      title: "Redirecting to Stripe...",
+      description: `Opening checkout for ${tierName}`,
+    });
+    try {
+      const { data, error } = await window.supabase.functions.invoke("create-checkout", {
+        body: { priceId },
+      });
+      if (data?.url) {
+        window.open(data.url, "_blank");
+      } else if (error) {
+        toast({
+          title: "Stripe checkout error",
+          description: error.message || "There was an issue creating your checkout session.",
+        });
+      }
+    } catch (err: any) {
+      toast({
+        title: "Unexpected error",
+        description: err?.message || "Could not redirect to Stripe.",
+      });
+    }
+  }, []);
+
   if (showLevelSelection) {
     return <LevelSelection onLevelSelect={handleLevelSelect} />;
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
+      {/* NEW: SUBSCRIPTION PLANS SECTION */}
+      <div className="container mx-auto max-w-4xl pt-8 pb-14">
+        <h2 className="text-3xl font-bold text-center mb-7" style={{ color: "#E0B848" }}>
+          Subscribe for Mindful Neuroscience Leadership Training
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {SUBSCRIPTION_OPTIONS.map((option) => (
+            <div
+              key={option.id}
+              className="border rounded-2xl shadow-lg p-7 bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950"
+              style={{
+                borderColor:
+                  option.id === 3
+                    ? "#DC2626" // Mastery Mode
+                    : option.id === 2
+                    ? "#B08B18" // Advanced
+                    : "#3B82F6", // Strategic
+              }}
+            >
+              <div className="mb-4">
+                <h3 className="text-2xl font-bold" style={{ color: "#E0B848" }}>
+                  {option.name}
+                </h3>
+                <div className="text-4xl font-bold mt-2 mb-2" style={{ color: "#B08B18" }}>
+                  ${option.price}
+                  <span className="text-lg font-normal text-gray-400"> /month</span>
+                </div>
+                <div className="text-md mb-3" style={{ color: "#C9D5DD" }}>
+                  {option.description}
+                </div>
+                <div className="rounded bg-yellow-900/20 border p-2 text-sm font-medium mb-4" style={{ color: "#E0B848" }}>
+                  {option.highlight}
+                </div>
+              </div>
+              <Button
+                className="w-full font-bold text-lg py-4"
+                style={{
+                  background:
+                    option.id === 3
+                      ? "linear-gradient(to right, #DC2626, #B08B18)"
+                      : option.id === 2
+                      ? "linear-gradient(to right, #B08B18, #C9D5DD)"
+                      : "linear-gradient(to right, #E0B848, #B08B18)",
+                  color: "#18181B",
+                }}
+                onClick={() => handleSubscribe(option.priceId, option.name)}
+              >
+                Subscribe to {option.name}
+              </Button>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-center mt-5" style={{ color: "#939393" }}>
+          Secure payment via Stripe. Cancel anytime in your account. If you need a special arrangement, <a className="underline" href="mailto:support@yoursite.com" target="_blank" rel="noopener noreferrer">contact us</a>.
+        </p>
+      </div>
       {/* Sacred Geometry Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-32 h-32 border border-yellow-400 rotate-45 animate-pulse" style={{ borderColor: '#E0B848' }}></div>
