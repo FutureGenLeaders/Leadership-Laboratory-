@@ -20,6 +20,8 @@ import MondayMasteryPage from "./pages/MondayMasteryPage";
 import MasterclassLibraryPage from "./pages/MasterclassLibraryPage";
 import ExecutiveCirclePage from "./pages/ExecutiveCirclePage";
 import StrategicSessionsPage from "./pages/StrategicSessionsPage";
+import CommunityPage from "./pages/CommunityPage";
+import BookingPage from "./pages/BookingPage";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +46,8 @@ const App = () => (
           <Route path="/masterclass-library" element={<MasterclassLibraryPage />} />
           <Route path="/executive-circle" element={<ExecutiveCirclePage />} />
           <Route path="/strategic-sessions" element={<StrategicSessionsPage />} />
+          <Route path="/community" element={<CommunityPage />} />
+          <Route path="/booking" element={<BookingPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
