@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -30,69 +29,69 @@ const MorningSession = ({ level, onComplete }: MorningSessionProps) => {
     switch (level) {
       case 1:
         return {
-          title: "Nervous System Strategic Activation",
+          title: "Strategic Leadership Activation",
           affirmations: [
-            "Today my nervous system supports uncompromising decision quality",
-            "My regulated state serves optimal leadership performance", 
-            "I maintain cognitive clarity under organizational pressure",
-            "I execute strategic priorities from a coherent nervous system"
+            "Today I operate from the universal principles that govern peak performance",
+            "My leadership emerges from patterns recognized by high-achieving cultures throughout history", 
+            "I maintain the clarity that exceptional leaders across civilizations discovered",
+            "I execute decisions from the timeless wisdom that creates sustainable success"
           ],
           questions: [
-            "What's the most important decision requiring peak cognitive function today?",
-            "How will I maintain nervous system regulation when pressure builds?",
-            "What level of neural coherence am I committed to sustaining?"
+            "What decision requires the highest level of conscious leadership today?",
+            "How will I embody the principles that exceptional leaders throughout history have recognized?",
+            "What level of presence am I committed to maintaining under pressure?"
           ],
           icon: Target,
           color: "from-blue-500 to-blue-600",
-          neuroscienceInsight: "Coherent nervous systems show 67% better decision accuracy under pressure"
+          universalInsight: "Leaders who operate from universal principles show 67% better decision accuracy under pressure"
         };
       case 2:
         return {
-          title: "Advanced Neural Leadership Optimization",
+          title: "Advanced Leadership Consciousness",
           affirmations: [
-            "I activate peak executive presence through nervous system mastery",
-            "My regulated state aligns with authentic organizational leadership",
-            "My cognitive coherence serves sustainable high performance",
-            "I lead from nervous system wisdom, not reactive patterns"
+            "I activate the timeless patterns that create extraordinary leadership presence",
+            "My authority emerges from principles recognized across all high-performing cultures",
+            "I lead from the consciousness that peak performers throughout history discovered",
+            "I embody the universal laws that govern sustainable excellence"
           ],
           refusals: [
-            "I refuse dysregulated decision-making patterns",
-            "I refuse ego-driven neural reactions", 
-            "I refuse stress-based thinking that damages long-term cognitive function"
+            "I refuse reactive patterns that limit conscious leadership",
+            "I refuse ego-driven responses that block universal wisdom", 
+            "I refuse stress-based thinking that disconnects me from timeless principles"
           ],
-          commitment: "Today I execute strategic will through nervous system precision, disciplined regulation, and optimal cognitive timing",
+          commitment: "Today I execute leadership through universal consciousness, disciplined presence, and optimal timing that serves both performance and purpose",
           questions: [
-            "Where might my nervous system be challenged to maintain regulation today?",
-            "What neural coherence principles will guide my toughest leadership moments?",
-            "How can I transform today's pressure into nervous system strength?"
+            "Where might my consciousness be challenged to maintain its highest expression today?",
+            "What universal principles will guide my most challenging leadership moments?",
+            "How can I transform today's pressure into expanded consciousness?"
           ],
           icon: Zap,
           color: "from-yellow-500 to-yellow-600",
-          neuroscienceInsight: "Regulated leaders show 45% less cortisol during crisis situations"
+          universalInsight: "Leaders operating from expanded consciousness show 45% less stress response during crisis"
         };
       case 3:
         return {
-          title: "Peak Performance Consciousness Integration",
+          title: "Mastery-Level Consciousness Integration",
           affirmations: [
-            "I activate optimal nervous system mastery for transcendent leadership",
-            "My neural coherence aligns with universal principles and organizational excellence",
-            "My regulated state serves cosmic order through business mastery",
-            "My leadership channels optimal brain function through strategic precision"
+            "I activate the highest expression of leadership consciousness recognized across all wisdom traditions",
+            "My presence aligns with universal laws while serving organizational excellence",
+            "I lead from the consciousness that serves both peak performance and human flourishing",
+            "My leadership channels the timeless principles that create lasting positive impact"
           ],
           refusals: [
-            "I REFUSE unconscious nervous system patterns that limit performance",
-            "I REFUSE fear-based neural reactions that block innovation",
-            "I REFUSE toxic stress patterns that damage optimal cognitive function"
+            "I REFUSE unconscious patterns that limit my highest leadership expression",
+            "I REFUSE fear-based responses that block universal wisdom from flowing through me",
+            "I REFUSE operating below the consciousness level that my role demands"
           ],
-          commitment: "Today I execute perfect nervous system coherence through business mastery, sacred focus, divine timing, and transcendent clarity",
+          commitment: "Today I embody perfect leadership consciousness through universal principles, sacred focus, divine timing, and service to both excellence and humanity",
           questions: [
-            "What higher nervous system coherence guides my leadership today?",
-            "How can I serve both peak performance and universal principles simultaneously?",
-            "Where is optimal consciousness calling me to lead courageously?"
+            "What is the highest expression of consciousness my leadership can embody today?",
+            "How can I serve both peak performance and universal good simultaneously?",
+            "Where is expanded consciousness calling me to lead with courage?"
           ],
           icon: Crown,
           color: "from-red-500 to-red-600",
-          neuroscienceInsight: "Peak coherence states increase creative problem-solving by 23x"
+          universalInsight: "Leaders operating at mastery consciousness create breakthrough solutions 23x more frequently"
         };
       default:
         return getLevelContent();
@@ -123,7 +122,7 @@ const MorningSession = ({ level, onComplete }: MorningSessionProps) => {
       return (
         <div className="space-y-4">
           <h3 className="text-lg font-semibold mb-4" style={{ color: '#E0B848' }}>
-            Neural Coherence Activation
+            Consciousness Activation Protocol
           </h3>
           <div className="space-y-3">
             {content.affirmations.map((affirmation, index) => (
@@ -143,9 +142,9 @@ const MorningSession = ({ level, onComplete }: MorningSessionProps) => {
           }}>
             <div className="flex items-center mb-2">
               <Brain className="w-4 h-4 mr-2" style={{ color: '#E0B848' }} />
-              <p className="text-sm font-semibold" style={{ color: '#E0B848' }}>Neuroscience Insight:</p>
+              <p className="text-sm font-semibold" style={{ color: '#E0B848' }}>Universal Principle:</p>
             </div>
-            <p className="text-sm" style={{ color: '#C9D5DD' }}>{content.neuroscienceInsight}</p>
+            <p className="text-sm" style={{ color: '#C9D5DD' }}>{content.universalInsight}</p>
           </div>
         </div>
       );
@@ -155,7 +154,7 @@ const MorningSession = ({ level, onComplete }: MorningSessionProps) => {
       return (
         <div className="space-y-4">
           <h3 className="text-lg font-semibold mb-4" style={{ color: '#E0B848' }}>
-            Neural Pattern Optimization
+            Consciousness Clearing Protocol
           </h3>
           <div className="space-y-3">
             {content.refusals.map((refusal, index) => (
@@ -175,7 +174,7 @@ const MorningSession = ({ level, onComplete }: MorningSessionProps) => {
             }}>
               <div className="flex items-center mb-2">
                 <Heart className="w-4 h-4 mr-2" style={{ color: '#E0B848' }} />
-                <p className="text-sm font-semibold" style={{ color: '#E0B848' }}>Peak Performance Commitment:</p>
+                <p className="text-sm font-semibold" style={{ color: '#E0B848' }}>Leadership Commitment:</p>
               </div>
               <p className="text-sm" style={{ color: '#C9D5DD' }}>{content.commitment}</p>
             </div>
@@ -190,11 +189,11 @@ const MorningSession = ({ level, onComplete }: MorningSessionProps) => {
     return (
       <div className="space-y-4">
         <h3 className="text-lg font-semibold mb-4" style={{ color: '#E0B848' }}>
-          Cognitive Optimization Protocol {questionIndex + 1} of {content.questions.length}
+          Consciousness Integration {questionIndex + 1} of {content.questions.length}
         </h3>
         <p className="text-lg mb-4" style={{ color: '#C9D5DD' }}>{question}</p>
         <Textarea
-          placeholder="Your neural coherence reflection..."
+          placeholder="Your consciousness reflection..."
           value={reflections[currentStep] || ''}
           onChange={(e) => handleReflectionChange(e.target.value)}
           className="min-h-[100px]"
@@ -223,7 +222,7 @@ const MorningSession = ({ level, onComplete }: MorningSessionProps) => {
                 borderColor: 'rgba(224, 184, 72, 0.3)' 
               }}>
                 <Sun className="w-4 h-4 mr-2" />
-                Morning Neural Activation
+                Morning Consciousness Activation
               </Badge>
               <div className={`p-3 rounded-full bg-gradient-to-r ${content.color}`}>
                 <IconComponent className="w-6 h-6 text-white" />
@@ -234,7 +233,7 @@ const MorningSession = ({ level, onComplete }: MorningSessionProps) => {
               {content.title}
             </CardTitle>
             <CardDescription className="text-lg" style={{ color: '#C9D5DD' }}>
-              3-5 minute neuroscience-based peak performance protocol
+              3-5 minute universal principle activation protocol
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -249,7 +248,7 @@ const MorningSession = ({ level, onComplete }: MorningSessionProps) => {
                 {currentStep < totalSteps - 1 ? (
                   <>
                     <Activity className="w-5 h-5 mr-2" />
-                    Continue Neural Training
+                    Continue Consciousness Training
                   </>
                 ) : (
                   <>
