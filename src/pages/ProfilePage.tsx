@@ -1,19 +1,71 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { User } from "@supabase/supabase-js";
 import { useAuth } from "@/contexts/AuthContext";
 import { useTrialAccess } from "@/hooks/useTrialAccess";
+import { supabase } from "@/integrations/supabase/client";
 import { Medal, Flame, Calendar, User as UserIcon, Crown, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+// Helper to calculate session streak
+function calculateStreak(sessionDates: string[]): number {
+  if (!sessionDates.length) return 0;
+  const sortedDates = sessionDates
+    .map(d => new Date(d))
+    .sort((a, b) => b.getTime() - a.getTime());
+  let streak = 1;
+  let prev = sortedDates[0];
+  for (let i = 1; i < sortedDates.length; i++) {
+    const diff = Math.floor((prev.getTime() - sortedDates[i].getTime()) / (1000 * 3600 * 24));
+    if (diff === 1) {
+      streak += 1;
+    } else if (diff > 1) {
+      break;
+    }
+    prev = sortedDates[i];
+  }
+  // Only show streak if today's session completed, otherwise 0
+  const today = new Date();
+  const isToday =
+    sortedDates[0].getFullYear() === today.getFullYear() &&
+    sortedDates[0].getMonth() === today.getMonth() &&
+    sortedDates[0].getDate() === today.getDate();
+  return isToday ? streak : 0;
+}
 
 const ProfilePage: React.FC = () => {
   const { user } = useAuth();
   const { isInTrial, trialDaysLeft, hasTrialExpired, trialStartDate, loading: trialLoading } = useTrialAccess();
 
-  // Mocked streaks/session data - replace with real data (next step)
-  const sessionStreak = 4; // days in a row
-  const totalSessions = 17;
+  // State to hold booking/session data
+  const [sessionHistory, setSessionHistory] = useState<any[]>([]);
+  const [loadingSessions, setLoadingSessions] = useState(true);
+
+  useEffect(() => {
+    const fetchSessions = async () => {
+      if (!user) return;
+      setLoadingSessions(true);
+      const { data, error } = await supabase
+        .from("bookings")
+        .select("session_date, session_time, session_type, status")
+        .eq("user_id", user.id)
+        .order("session_date", { ascending: false });
+      if (!error && data) {
+        setSessionHistory(data);
+      }
+      setLoadingSessions(false);
+    };
+    fetchSessions();
+  }, [user]);
+
+  // Calculate live stats
+  const completedSessions = sessionHistory
+    .filter(s => s.status === "completed")
+    .sort((a, b) => new Date(b.session_date).getTime() - new Date(a.session_date).getTime());
+
+  const sessionStreak = calculateStreak(completedSessions.map(s => s.session_date));
+  const totalSessions = completedSessions.length;
+
   const joinDate = user?.created_at
     ? new Date(user.created_at).toLocaleDateString()
     : "Unknown";
@@ -33,11 +85,11 @@ const ProfilePage: React.FC = () => {
         <CardContent className="flex gap-4 mt-2">
           <div className="flex items-center gap-2 bg-gray-800 rounded px-3 py-2">
             <Flame className="w-5 h-5 text-red-400" />
-            <span className="text-sm">{sessionStreak} day streak</span>
+            <span className="text-sm">{loadingSessions ? "--" : sessionStreak} day streak</span>
           </div>
           <div className="flex items-center gap-2 bg-gray-800 rounded px-3 py-2">
             <Medal className="w-5 h-5 text-yellow-400" />
-            <span className="text-sm">{totalSessions} sessions</span>
+            <span className="text-sm">{loadingSessions ? "--" : totalSessions} sessions</span>
           </div>
         </CardContent>
       </Card>
@@ -91,23 +143,31 @@ const ProfilePage: React.FC = () => {
           <CardTitle className="text-base">Session History</CardTitle>
         </CardHeader>
         <CardContent>
-          {/* Stub list — fetch in next steps */}
-          <ul className="space-y-3 mt-1">
-            <li className="flex items-center gap-2 text-gray-300">
-              <Calendar className="w-4 h-4 text-gray-500" />
-              <span>2024-06-14 Morning Activation</span>
-              <span className="ml-auto text-xs bg-green-800 px-2 py-1 rounded">Completed</span>
-            </li>
-            <li className="flex items-center gap-2 text-gray-300">
-              <Calendar className="w-4 h-4 text-gray-500" />
-              <span>2024-06-13 Evening Integration</span>
-              <span className="ml-auto text-xs bg-green-800 px-2 py-1 rounded">Completed</span>
-            </li>
-            <li className="flex items-center gap-2 text-gray-400 italic">
-              <Calendar className="w-4 h-4 text-gray-600" />
-              <span>No more session data yet</span>
-            </li>
-          </ul>
+          {loadingSessions ? (
+            <p className="text-gray-500 text-sm">Loading session history...</p>
+          ) : completedSessions.length === 0 ? (
+            <ul className="space-y-3 mt-1">
+              <li className="flex items-center gap-2 text-gray-400 italic">
+                <Calendar className="w-4 h-4 text-gray-600" />
+                <span>No session data yet</span>
+              </li>
+            </ul>
+          ) : (
+            <ul className="space-y-3 mt-1">
+              {completedSessions.slice(0, 5).map((session, i) => (
+                <li key={i} className="flex items-center gap-2 text-gray-300">
+                  <Calendar className="w-4 h-4 text-gray-500" />
+                  <span>
+                    {session.session_date} {session.session_time && <>{session.session_time}</>}
+                  </span>
+                  <span className="ml-auto text-xs bg-green-800 px-2 py-1 rounded">Completed</span>
+                </li>
+              ))}
+              {completedSessions.length > 5 && (
+                <li className="text-xs text-gray-400 italic">Showing latest 5 of {completedSessions.length} sessions</li>
+              )}
+            </ul>
+          )}
           <Button variant="secondary" className="mt-5 w-full text-gray-900 font-semibold">
             Download Report
           </Button>
@@ -118,3 +178,4 @@ const ProfilePage: React.FC = () => {
 };
 
 export default ProfilePage;
+
