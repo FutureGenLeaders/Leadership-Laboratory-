@@ -25,7 +25,6 @@ const BookingSystem = () => {
       id: 'discovery',
       title: 'Discovery Call',
       duration: '30 min',
-      price: 'Free',
       description: 'Explore how nervous system leadership can transform your business',
       features: ['Assessment of current challenges', 'Custom leadership strategy', 'Perfect fit evaluation'],
       icon: Globe
@@ -34,7 +33,6 @@ const BookingSystem = () => {
       id: 'intensive',
       title: 'Leadership Intensive',
       duration: '90 min',
-      price: '$497',
       description: 'Deep-dive session to rewire your nervous system for peak leadership',
       features: ['Complete nervous system assessment', 'Personalized regulation protocols', '30-day integration plan'],
       icon: Zap
@@ -43,7 +41,6 @@ const BookingSystem = () => {
       id: 'vip',
       title: 'VIP Transformation Day',
       duration: '4 hours',
-      price: '$2,997',
       description: 'Immersive experience to completely transform your leadership presence',
       features: ['Full nervous system recalibration', 'Custom leadership framework', 'Ongoing support package'],
       icon: User
@@ -56,8 +53,8 @@ const BookingSystem = () => {
 
   const handleBooking = () => {
     if (selectedSession && selectedDate && selectedTime) {
-      console.log('Booking:', { sessionTypes: selectedSession, date: selectedDate, time: selectedTime });
-      // This would integrate with payment system
+      console.log('Booking:', { sessionType: selectedSession, date: selectedDate, time: selectedTime });
+      // This will integrate with Supabase and Stripe
     }
   };
 
@@ -90,12 +87,11 @@ const BookingSystem = () => {
               <Card 
                 key={session.id}
                 className={`cursor-pointer transition-all duration-300 border ${
-                  selectedSession === session.id ? 'ring-2' : 'hover:scale-[1.02]'
+                  selectedSession === session.id ? 'ring-2 ring-yellow-400' : 'hover:scale-[1.02]'
                 }`}
                 style={{ 
                   background: 'linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(173, 30, 45, 0.1))',
-                  borderColor: selectedSession === session.id ? '#E0B848' : 'rgba(173, 30, 45, 0.2)',
-                  ringColor: selectedSession === session.id ? '#E0B848' : undefined
+                  borderColor: selectedSession === session.id ? '#E0B848' : 'rgba(173, 30, 45, 0.2)'
                 }}
                 onClick={() => setSelectedSession(session.id)}
               >
@@ -121,16 +117,6 @@ const BookingSystem = () => {
                         </div>
                       </div>
                     </div>
-                    <Badge 
-                      className="text-lg px-3 py-1"
-                      style={{ 
-                        backgroundColor: session.price === 'Free' ? 'rgba(34, 197, 94, 0.2)' : 'rgba(224, 184, 72, 0.2)', 
-                        color: session.price === 'Free' ? '#22C55E' : '#E0B848', 
-                        borderColor: session.price === 'Free' ? 'rgba(34, 197, 94, 0.3)' : 'rgba(224, 184, 72, 0.3)' 
-                      }}
-                    >
-                      {session.price}
-                    </Badge>
                   </div>
 
                   <p className="mb-4" style={{ color: '#BDBBBB' }}>
