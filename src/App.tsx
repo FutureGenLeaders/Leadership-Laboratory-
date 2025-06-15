@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +10,8 @@ import NotFound from "./pages/NotFound";
 import LevelSelection from "./components/LevelSelection";
 import MorningSession from "./components/MorningSession";
 import MorningSessionPage from "./pages/MorningSessionPage";
+import AfternoonSessionPage from "./pages/AfternoonSessionPage";
+import EveningSessionPage from "./pages/EveningSessionPage";
 import MondayMastery from "./components/MondayMastery";
 import MasterclassLibrary from "./components/MasterclassLibrary";
 import ExecutiveCircle from "./components/ExecutiveCircle";
@@ -30,6 +31,8 @@ const App = () => (
           <Route path="/pillar/:id" element={<PillarDetail />} />
           <Route path="/level-selection" element={<LevelSelection onLevelSelect={(level) => console.log(level)} />} />
           <Route path="/morning-session" element={<MorningSessionPage />} />
+          <Route path="/afternoon-session" element={<AfternoonSessionPage />} />
+          <Route path="/evening-session" element={<EveningSessionPage />} />
           <Route path="/monday-mastery" element={<MondayMastery />} />
           <Route path="/masterclass-library" element={<MasterclassLibrary />} />
           <Route path="/executive-circle" element={<ExecutiveCircle />} />
