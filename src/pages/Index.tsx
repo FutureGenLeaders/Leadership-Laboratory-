@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -27,7 +28,7 @@ import {
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { useCallback } from "react";
-import SubscriptionButton from "@/components/SubscriptionButton";
+// Removed SubscriptionButton
 
 const SUBSCRIPTION_OPTIONS = [
   {
@@ -210,6 +211,9 @@ const Index = () => {
                 key={option.id}
                 className={`
                   bg-gray-950 rounded-2xl p-7 flex flex-col shadow-md transition-transform hover:scale-105
+                  cursor-pointer border-2 group
+                  hover:ring-2
+                  ${option.tier === "gold" ? "hover:ring-yellow-400" : option.tier === "silver" ? "hover:ring-gray-200" : "hover:ring-red-800"}
                 `}
                 style={{
                   minHeight: 410,
@@ -228,6 +232,13 @@ const Index = () => {
                       : option.tier === "gold"
                       ? "0 2px 12px 0 rgba(224,184,72,0.17)"
                       : "0 2px 12px 0 rgba(173,30,45,0.12)",
+                  transition: "box-shadow 0.2s, border-color 0.2s"
+                }}
+                onClick={() => handleSubscribe(option.priceId, option.name)}
+                tabIndex={0}
+                role="button"
+                onKeyDown={e => {
+                  if (e.key === "Enter" || e.key === " ") handleSubscribe(option.priceId, option.name);
                 }}
               >
                 <div className="flex flex-col flex-1 mb-4">
@@ -242,27 +253,27 @@ const Index = () => {
                     >
                       {option.badge}
                     </span>
-                    <span className="text-xs italic opacity-70">{option.name}</span>
+                    <span className="text-xs italic opacity-70" style={{ color: "#fff" }}>{option.name}</span>
                   </div>
-                  <h3 className="text-2xl font-bold my-2" style={{ color: "#E0B848" }}>
+                  <h3 className="text-2xl font-bold my-2" style={{ color: "#fff" }}>
                     {option.name}
                   </h3>
                   <div className="flex items-baseline gap-2">
                     <span
                       className="text-4xl font-bold"
-                      style={{ color: option.accentColor }}
+                      style={{ color: "#fff" }}
                     >
                       ${option.price}
                     </span>
-                    <span className="text-sm text-gray-400 font-normal">/month</span>
+                    <span className="text-sm text-gray-300 font-normal">/month</span>
                   </div>
-                  <p className="text-sm leading-relaxed mt-3 mb-3" style={{ color: "#C9D5DD" }}>
+                  <p className="text-sm leading-relaxed mt-3 mb-3" style={{ color: "#fff" }}>
                     {option.description}
                   </p>
                   <div
                     className="rounded bg-gray-800/30 border p-2 text-xs font-medium mb-2"
                     style={{
-                      color: option.accentColor,
+                      color: "#fff",
                       borderColor: option.accentColor,
                       background: option.tier === "red"
                         ? "rgba(173, 30, 45, 0.08)"
@@ -272,13 +283,9 @@ const Index = () => {
                     {option.highlight}
                   </div>
                 </div>
-                <SubscriptionButton
-                  tier={option.tier as "gold" | "silver" | "red"}
-                  onClick={() => handleSubscribe(option.priceId, option.name)}
-                  className="mt-auto"
-                >
-                  Subscribe to {option.name}
-                </SubscriptionButton>
+                <div className="mt-auto text-center font-semibold text-white opacity-80 tracking-wide pointer-events-none select-none">
+                  Click to subscribe
+                </div>
               </div>
             ))}
           </div>
@@ -649,3 +656,4 @@ const Index = () => {
 };
 
 export default Index;
+
