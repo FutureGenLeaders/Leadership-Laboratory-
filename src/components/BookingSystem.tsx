@@ -34,23 +34,26 @@ const BookingSystem = () => {
       duration: '30 min',
       description: 'Explore how nervous system leadership can transform your business',
       features: ['Assessment of current challenges', 'Custom leadership strategy', 'Perfect fit evaluation'],
-      icon: Globe
+      icon: Globe,
+      price: 'Complimentary'
     },
     {
       id: 'intensive',
-      title: 'Leadership Intensive',
-      duration: '90 min',
-      description: 'Deep-dive session to rewire your nervous system for peak leadership',
-      features: ['Complete nervous system assessment', 'Personalized regulation protocols', '30-day integration plan'],
-      icon: Zap
+      title: 'Private Business Strategy',
+      duration: '1 hour',
+      description: 'Focused business strategy session to accomplish tangible results',
+      features: ['Complete business assessment', 'Strategic action plan', 'Implementation roadmap'],
+      icon: Zap,
+      price: '$4,444'
     },
     {
       id: 'vip',
-      title: 'VIP Transformation Day',
-      duration: '4 hours',
-      description: 'Immersive experience to completely transform your leadership presence',
-      features: ['Full nervous system recalibration', 'Custom leadership framework', 'Ongoing support package'],
-      icon: User
+      title: 'VIP Business Strategy Day',
+      duration: 'Full Day',
+      description: 'Complete business transformation intensive for maximum impact',
+      features: ['Full business strategy overhaul', 'Custom implementation framework', 'Ongoing strategic support'],
+      icon: User,
+      price: '$17,777'
     }
   ];
 
@@ -198,6 +201,9 @@ const BookingSystem = () => {
                           <span className="flex items-center">
                             <Video className="w-4 h-4 mr-1" />
                             Virtual
+                          </span>
+                          <span className="font-bold" style={{ color: '#E0B848' }}>
+                            {session.price}
                           </span>
                         </div>
                       </div>
