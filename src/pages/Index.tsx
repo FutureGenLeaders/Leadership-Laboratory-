@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -205,66 +204,6 @@ const Index = () => {
                   <SubscriptionButton tier="red" className="w-full mt-6">
                     Start Free Trial
                   </SubscriptionButton>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
-          {/* VIP Services */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-white text-center mb-12">Premium 1-on-1 Services</h2>
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              
-              {/* VIP Intensive Day */}
-              <Card className="bg-gradient-to-br from-yellow-900/20 to-yellow-800/20 border-yellow-600/50">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-yellow-400">VIP Intensive Day</CardTitle>
-                  <CardDescription className="text-yellow-200">Complete transformation in one day</CardDescription>
-                  <div className="mt-4">
-                    <span className="text-4xl font-bold text-white">$27,999</span>
-                    <span className="text-yellow-200"> for 6 hours</span>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 text-yellow-100 mb-6">
-                    <li>✓ 6 hours personalized transformation work</li>
-                    <li>✓ Pre-session comprehensive assessment</li>
-                    <li>✓ Customized healing approach</li>
-                    <li>✓ Multiple modalities integration</li>
-                    <li>✓ Breakthrough facilitation</li>
-                    <li>✓ Integration planning & 30-day support</li>
-                    <li>✓ Personalized meditation recordings</li>
-                    <li>✓ Nourishing meal included</li>
-                  </ul>
-                  <Button className="w-full bg-yellow-600 hover:bg-yellow-700 text-black font-bold">
-                    Book VIP Day
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Private Hourly Sessions */}
-              <Card className="bg-gradient-to-br from-red-900/20 to-red-800/20 border-red-600/50">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-red-400">Private Hourly Sessions</CardTitle>
-                  <CardDescription className="text-red-200">Focused one-on-one work</CardDescription>
-                  <div className="mt-4">
-                    <span className="text-4xl font-bold text-white">$4,444</span>
-                    <span className="text-red-200"> per hour</span>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 text-red-100 mb-6">
-                    <li>✓ 60 minutes focused work</li>
-                    <li>✓ Pre-session state assessment</li>
-                    <li>✓ Customized session approach</li>
-                    <li>✓ Practical tools & practices</li>
-                    <li>✓ Integration support</li>
-                    <li>✓ Session recording (when appropriate)</li>
-                    <li>✓ Follow-up notes & recommendations</li>
-                  </ul>
-                  <Button className="w-full bg-red-600 hover:bg-red-700 text-white font-bold">
-                    Book Session
-                  </Button>
                 </CardContent>
               </Card>
             </div>
