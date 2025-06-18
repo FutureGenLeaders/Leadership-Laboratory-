@@ -1,64 +1,192 @@
 
-import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import React, { useState, useEffect } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Lock, Calendar, Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { Lock, Crown, Calendar, Award, Zap, Star } from 'lucide-react';
 
 interface ContentLockProps {
+  requiredLevel: 'foundation' | 'mastery' | 'executive';
+  userLevel: 'free' | 'foundation' | 'mastery' | 'executive';
+  contentType: 'lesson' | 'assessment' | 'masterclass' | 'session';
   title: string;
-  weekNumber: number;
-  releaseDate: Date;
-  timeUntilRelease: string;
-  description?: string;
+  description: string;
+  children: React.ReactNode;
+  unlockDate?: string;
+  completionRequired?: boolean;
 }
 
-const ContentLock = ({ title, weekNumber, releaseDate, timeUntilRelease, description }: ContentLockProps) => {
-  return (
-    <Card className="opacity-60 border-2 border-dashed" style={{ 
-      background: 'linear-gradient(to bottom right, rgba(0, 0, 0, 0.6), rgba(107, 114, 128, 0.1))',
-      borderColor: 'rgba(107, 114, 128, 0.3)' 
-    }}>
-      <CardHeader className="text-center">
-        <div className="flex items-center justify-center mb-4">
-          <div className="p-3 rounded-full bg-gray-600">
-            <Lock className="w-6 h-6 text-gray-300" />
-          </div>
-        </div>
-        <CardTitle className="text-lg" style={{ color: '#9CA3AF' }}>
-          {title}
-        </CardTitle>
-        <Badge variant="outline" style={{ 
-          backgroundColor: 'rgba(107, 114, 128, 0.2)', 
-          color: '#9CA3AF', 
-          borderColor: 'rgba(107, 114, 128, 0.3)' 
-        }}>
-          Week {weekNumber}
-        </Badge>
-      </CardHeader>
-      
-      <CardContent className="text-center space-y-4">
-        {description && (
-          <p className="text-sm" style={{ color: '#9CA3AF' }}>
-            {description}
-          </p>
-        )}
+const LEVEL_HIERARCHY = {
+  free: 0,
+  foundation: 1,
+  mastery: 2,
+  executive: 3
+};
+
+const LEVEL_COLORS = {
+  foundation: 'text-blue-400',
+  mastery: 'text-purple-400',
+  executive: 'text-yellow-400'
+};
+
+const LEVEL_ICONS = {
+  foundation: Star,
+  mastery: Zap,
+  executive: Crown
+};
+
+const ContentLock: React.FC<ContentLockProps> = ({
+  requiredLevel,
+  userLevel,
+  contentType,
+  title,
+  description,
+  children,
+  unlockDate,
+  completionRequired = false
+}) => {
+  const [timeUntilUnlock, setTimeUntilUnlock] = useState<string>('');
+  
+  const hasAccess = LEVEL_HIERARCHY[userLevel] >= LEVEL_HIERARCHY[requiredLevel];
+  const isUnlocked = !unlockDate || new Date() >= new Date(unlockDate);
+  
+  useEffect(() => {
+    if (unlockDate && !isUnlocked) {
+      const updateCountdown = () => {
+        const now = new Date().getTime();
+        const target = new Date(unlockDate).getTime();
+        const difference = target - now;
         
-        <div className="space-y-2">
-          <div className="flex items-center justify-center text-sm" style={{ color: '#9CA3AF' }}>
-            <Calendar className="w-4 h-4 mr-2" />
-            Releases {releaseDate.toLocaleDateString()}
+        if (difference > 0) {
+          const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+          
+          setTimeUntilUnlock(`${days}d ${hours}h ${minutes}m`);
+        } else {
+          setTimeUntilUnlock('Available now!');
+        }
+      };
+      
+      updateCountdown();
+      const interval = setInterval(updateCountdown, 60000);
+      return () => clearInterval(interval);
+    }
+  }, [unlockDate, isUnlocked]);
+
+  if (hasAccess && isUnlocked) {
+    return <>{children}</>;
+  }
+
+  const IconComponent = LEVEL_ICONS[requiredLevel];
+  const levelColor = LEVEL_COLORS[requiredLevel];
+
+  return (
+    <Card className="bg-gray-900 border-gray-700 relative overflow-hidden">
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-800/50 to-black/50 z-10" />
+      
+      {/* Blurred content preview */}
+      <div className="absolute inset-0 filter blur-sm opacity-30">
+        {children}
+      </div>
+      
+      {/* Lock content */}
+      <div className="relative z-20 p-6 flex items-center justify-center min-h-[300px]">
+        <div className="text-center space-y-6 max-w-md">
+          <div className="flex items-center justify-center gap-3">
+            {!hasAccess ? (
+              <Lock className="w-12 h-12 text-gray-400" />
+            ) : (
+              <Calendar className="w-12 h-12 text-yellow-400" />
+            )}
+            <IconComponent className={`w-12 h-12 ${levelColor}`} />
           </div>
           
-          <div className="flex items-center justify-center text-sm font-medium" style={{ color: '#E5E7EB' }}>
-            <Clock className="w-4 h-4 mr-2" />
-            {timeUntilRelease}
+          <div>
+            <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
+            <p className="text-gray-400 mb-4">{description}</p>
+            
+            {!hasAccess ? (
+              <Badge className={`${levelColor} bg-transparent border-current mb-4`}>
+                {requiredLevel.charAt(0).toUpperCase() + requiredLevel.slice(1)} Level Required
+              </Badge>
+            ) : !isUnlocked ? (
+              <div className="space-y-2">
+                <Badge className="text-yellow-400 bg-transparent border-current">
+                  Unlocks in: {timeUntilUnlock}
+                </Badge>
+                <p className="text-sm text-gray-500">
+                  Available on {new Date(unlockDate!).toLocaleDateString()}
+                </p>
+              </div>
+            ) : null}
           </div>
+          
+          {!hasAccess && (
+            <div className="space-y-4">
+              <p className="text-gray-300 text-sm">
+                Upgrade to access this {contentType} and unlock your full potential
+              </p>
+              
+              <div className="space-y-2">
+                <Button className="w-full bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-700 hover:to-yellow-600 text-black font-semibold">
+                  Upgrade to {requiredLevel.charAt(0).toUpperCase() + requiredLevel.slice(1)}
+                </Button>
+                
+                {requiredLevel !== 'foundation' && (
+                  <Button variant="outline" className="w-full border-gray-600 text-gray-300 hover:bg-gray-800">
+                    View All Plans
+                  </Button>
+                )}
+              </div>
+              
+              <div className="bg-gray-800/50 p-3 rounded-lg">
+                <h4 className="text-white font-semibold mb-2">What you'll get:</h4>
+                <ul className="text-sm text-gray-300 space-y-1">
+                  {requiredLevel === 'foundation' && (
+                    <>
+                      <li>• 4 Consciousness Lessons per month</li>
+                      <li>• Progress tracking & insights</li>
+                      <li>• Community access</li>
+                    </>
+                  )}
+                  {requiredLevel === 'mastery' && (
+                    <>
+                      <li>• Everything in Foundation</li>
+                      <li>• Advanced assessments</li>
+                      <li>• Biometric integration</li>
+                      <li>• AI-powered personalization</li>
+                    </>
+                  )}
+                  {requiredLevel === 'executive' && (
+                    <>
+                      <li>• Everything in Mastery</li>
+                      <li>• 1-on-1 coaching sessions</li>
+                      <li>• Priority support</li>
+                      <li>• Exclusive masterclasses</li>
+                    </>
+                  )}
+                </ul>
+              </div>
+            </div>
+          )}
+          
+          {hasAccess && !isUnlocked && (
+            <div className="space-y-4">
+              <Award className="w-16 h-16 text-yellow-400 mx-auto" />
+              <p className="text-gray-300">
+                You have access! This content will unlock automatically on the scheduled date.
+              </p>
+              <Progress value={75} className="h-2" />
+              <p className="text-sm text-gray-500">
+                Stay consistent with your current lessons to maximize readiness
+              </p>
+            </div>
+          )}
         </div>
-        
-        <div className="text-xs" style={{ color: '#6B7280' }}>
-          Content releases weekly to prevent overwhelm and ensure sustainable growth
-        </div>
-      </CardContent>
+      </div>
     </Card>
   );
 };

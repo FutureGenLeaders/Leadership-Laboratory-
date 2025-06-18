@@ -47,10 +47,16 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>This app uses the camera to capture images.</string>
+	<string>Leadership Laboratory uses the camera for progress tracking and biometric integration features.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This app uses the microphone for audio recording.</string>
+	<string>Leadership Laboratory uses the microphone for audio exercises and voice-guided practices.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app uses location services when in use.</string>
+	<string>Leadership Laboratory uses location services to provide context-aware content and optimize your learning experience.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Leadership Laboratory uses motion sensors for stress detection and nervous system regulation features.</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Leadership Laboratory integrates with health data to provide personalized biometric insights for consciousness development.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Leadership Laboratory connects to wearable devices for advanced biometric monitoring and real-time feedback.</string>
 </dict>
 </plist>

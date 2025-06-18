@@ -76,8 +76,16 @@ const CONSCIOUSNESS_LEVELS = {
   5: { name: 'Mastery & Service', color: 'text-blue-400', description: 'Leading from pure presence and wisdom' }
 };
 
+interface AssessmentResults {
+  overallLevel: number;
+  categoryScores: Record<string, number>;
+  strengths: string[];
+  growthAreas: string[];
+  recommendations: string[];
+}
+
 interface ConsciousnessAssessmentProps {
-  onComplete: (results: any) => void;
+  onComplete: (results: AssessmentResults) => void;
   isStandalone?: boolean;
 }
 
@@ -88,7 +96,7 @@ const ConsciousnessAssessment: React.FC<ConsciousnessAssessmentProps> = ({
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [isCompleted, setIsCompleted] = useState(false);
-  const [results, setResults] = useState<any>(null);
+  const [results, setResults] = useState<AssessmentResults | null>(null);
 
   const handleAnswer = (questionId: string, value: number) => {
     const newAnswers = { ...answers, [questionId]: value };
@@ -102,11 +110,11 @@ const ConsciousnessAssessment: React.FC<ConsciousnessAssessmentProps> = ({
   };
 
   const calculateResults = (finalAnswers: Record<string, number>) => {
-    const categories = {
-      conflict: [] as number[],
-      'nervous-system': [] as number[],
-      decision: [] as number[],
-      consciousness: [] as number[]
+    const categories: Record<string, number[]> = {
+      conflict: [],
+      'nervous-system': [],
+      decision: [],
+      consciousness: []
     };
 
     ASSESSMENT_QUESTIONS.forEach(q => {
@@ -123,7 +131,7 @@ const ConsciousnessAssessment: React.FC<ConsciousnessAssessmentProps> = ({
 
     const overallLevel = Math.round(Object.values(averages).reduce((sum, val) => sum + val, 0) / Object.values(averages).length);
 
-    const assessmentResults = {
+    const assessmentResults: AssessmentResults = {
       overallLevel,
       categoryScores: averages,
       strengths: getStrengths(averages),
@@ -136,20 +144,20 @@ const ConsciousnessAssessment: React.FC<ConsciousnessAssessmentProps> = ({
     onComplete(assessmentResults);
   };
 
-  const getStrengths = (scores: Record<string, number>) => {
+  const getStrengths = (scores: Record<string, number>): string[] => {
     return Object.entries(scores)
       .filter(([_, score]) => score >= 4)
       .map(([category, _]) => category.replace('-', ' '));
   };
 
-  const getGrowthAreas = (scores: Record<string, number>) => {
+  const getGrowthAreas = (scores: Record<string, number>): string[] => {
     return Object.entries(scores)
       .filter(([_, score]) => score <= 2)
       .map(([category, _]) => category.replace('-', ' '));
   };
 
-  const getRecommendations = (level: number, scores: Record<string, number>) => {
-    const recs = [];
+  const getRecommendations = (level: number, scores: Record<string, number>): string[] => {
+    const recs: string[] = [];
     
     if (scores.conflict <= 2) {
       recs.push('Focus on conflict transformation modules');
