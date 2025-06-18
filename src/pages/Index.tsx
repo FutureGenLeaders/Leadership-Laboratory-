@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -9,11 +10,12 @@ import TrialBanner from '@/components/TrialBanner';
 import PersonalizedInsights from "@/components/PersonalizedInsights";
 import Leaderboard from "@/components/Leaderboard";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client"; // <-- FIXED: Added import
+import { supabase } from "@/integrations/supabase/client";
 import MonthlyMotivation from "@/components/MonthlyMotivation";
+import SubscriptionButton from "@/components/SubscriptionButton";
+import { Crown, Star, Zap } from 'lucide-react';
 
-// Mock for MorningSessionProps
-const DEFAULT_LEVEL = 1; // Change this to a number (e.g., 1) to match the expected prop type
+const DEFAULT_LEVEL = 1;
 
 const Index = () => {
   const { user, loading } = useAuth();
@@ -71,9 +73,213 @@ const Index = () => {
 
   if (!user) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-3xl font-bold mb-4">Welcome to the Sacred Circle</h1>
-        <Auth onSuccess={() => navigate('/level-selection')} />
+      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
+        {/* Hero Section */}
+        <div className="container mx-auto px-4 py-16">
+          <div className="text-center mb-16">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+              The Leadership Laboratory
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto">
+              Master consciousness-based leadership through nervous system regulation, 
+              conflict transformation, and presence mastery
+            </p>
+            <div className="max-w-md mx-auto">
+              <Auth onSuccess={() => navigate('/level-selection')} />
+            </div>
+          </div>
+
+          {/* Value Proposition */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-white mb-8">Transform Your Leadership from the Inside Out</h2>
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">Nervous System Mastery</h3>
+                <p className="text-gray-300">Regulate your internal state to lead with unwavering presence under any pressure</p>
+              </div>
+              <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">Conflict Transformation</h3>
+                <p className="text-gray-300">Turn every conflict into an opportunity for deeper understanding and team growth</p>
+              </div>
+              <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">Decision Mastery</h3>
+                <p className="text-gray-300">Make decisions from presence rather than reactivity for consistently better outcomes</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Membership Tiers */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-white text-center mb-12">Choose Your Transformation Path</h2>
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              
+              {/* Basic Tier */}
+              <Card className="bg-gray-900 border-gray-600 relative">
+                <CardHeader className="text-center pb-6">
+                  <div className="flex justify-center mb-4">
+                    <Star className="w-8 h-8 text-gray-400" />
+                  </div>
+                  <CardTitle className="text-2xl text-white">Basic Foundation</CardTitle>
+                  <CardDescription className="text-gray-400">Essential consciousness-based leadership</CardDescription>
+                  <div className="mt-4">
+                    <span className="text-3xl font-bold text-white">$77</span>
+                    <span className="text-gray-400">/month</span>
+                  </div>
+                  <p className="text-sm text-green-400">14-day free trial</p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <ul className="space-y-3 text-gray-300">
+                    <li>✓ 2 focused lessons per month (24/year)</li>
+                    <li>✓ Monthly theme rotation: Conflict, Decision-Making, Burnout, Nervous System</li>
+                    <li>✓ 1 group coaching session monthly</li>
+                    <li>✓ Daily practices: Morning, afternoon, evening</li>
+                    <li>✓ Progress tracking & badges</li>
+                    <li>✓ Community forum access</li>
+                    <li>✓ Mobile app & audio practices</li>
+                  </ul>
+                  <SubscriptionButton tier="silver" className="w-full mt-6">
+                    Start Free Trial
+                  </SubscriptionButton>
+                </CardContent>
+              </Card>
+
+              {/* Premium Tier */}
+              <Card className="bg-gray-900 border-yellow-500 relative transform scale-105">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-yellow-500 text-black px-4 py-1 rounded-full text-sm font-bold">MOST POPULAR</span>
+                </div>
+                <CardHeader className="text-center pb-6">
+                  <div className="flex justify-center mb-4">
+                    <Crown className="w-8 h-8 text-yellow-400" />
+                  </div>
+                  <CardTitle className="text-2xl text-white">Premium Mastery</CardTitle>
+                  <CardDescription className="text-gray-400">Comprehensive leadership transformation</CardDescription>
+                  <div className="mt-4">
+                    <span className="text-3xl font-bold text-white">$444</span>
+                    <span className="text-gray-400">/month</span>
+                  </div>
+                  <p className="text-sm text-green-400">14-day free trial</p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <ul className="space-y-3 text-gray-300">
+                    <li>✓ 4 comprehensive lessons monthly (48/year)</li>
+                    <li>✓ Fixed structure: Conflict, Decision-Making, Burnout, Nervous System</li>
+                    <li>✓ Premium small-group coaching + quarterly 1-on-1</li>
+                    <li>✓ Enhanced daily practices (25/15/20 min)</li>
+                    <li>✓ Biometric integration & AI insights</li>
+                    <li>✓ Monthly consciousness assessments</li>
+                    <li>✓ Private premium forum & peer matching</li>
+                    <li>✓ Conscious Leadership Certification path</li>
+                  </ul>
+                  <SubscriptionButton tier="gold" className="w-full mt-6">
+                    Start Free Trial
+                  </SubscriptionButton>
+                </CardContent>
+              </Card>
+
+              {/* Executive Circle */}
+              <Card className="bg-gray-900 border-red-600 relative">
+                <CardHeader className="text-center pb-6">
+                  <div className="flex justify-center mb-4">
+                    <Zap className="w-8 h-8 text-red-400" />
+                  </div>
+                  <CardTitle className="text-2xl text-white">Executive Circle</CardTitle>
+                  <CardDescription className="text-gray-400">Elite consciousness leadership</CardDescription>
+                  <div className="mt-4">
+                    <span className="text-3xl font-bold text-white">$777</span>
+                    <span className="text-gray-400">/month</span>
+                  </div>
+                  <p className="text-sm text-green-400">14-day free trial</p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <ul className="space-y-3 text-gray-300">
+                    <li>✓ Everything in Premium PLUS:</li>
+                    <li>✓ Advanced organizational shamanism modules</li>
+                    <li>✓ 2 VIP coaching sessions + quarterly intensives</li>
+                    <li>✓ Monthly executive mastermind (max 8 members)</li>
+                    <li>✓ Quarterly direct mentor access</li>
+                    <li>✓ VR conflict scenarios & AI practice partners</li>
+                    <li>✓ Personal legacy development planning</li>
+                    <li>✓ Global executive network access</li>
+                  </ul>
+                  <SubscriptionButton tier="red" className="w-full mt-6">
+                    Start Free Trial
+                  </SubscriptionButton>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* VIP Services */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-white text-center mb-12">Premium 1-on-1 Services</h2>
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              
+              {/* VIP Intensive Day */}
+              <Card className="bg-gradient-to-br from-yellow-900/20 to-yellow-800/20 border-yellow-600/50">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">VIP Intensive Day</CardTitle>
+                  <CardDescription className="text-yellow-200">Complete transformation in one day</CardDescription>
+                  <div className="mt-4">
+                    <span className="text-4xl font-bold text-white">$27,999</span>
+                    <span className="text-yellow-200"> for 6 hours</span>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-yellow-100 mb-6">
+                    <li>✓ 6 hours personalized transformation work</li>
+                    <li>✓ Pre-session comprehensive assessment</li>
+                    <li>✓ Customized healing approach</li>
+                    <li>✓ Multiple modalities integration</li>
+                    <li>✓ Breakthrough facilitation</li>
+                    <li>✓ Integration planning & 30-day support</li>
+                    <li>✓ Personalized meditation recordings</li>
+                    <li>✓ Nourishing meal included</li>
+                  </ul>
+                  <Button className="w-full bg-yellow-600 hover:bg-yellow-700 text-black font-bold">
+                    Book VIP Day
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Private Hourly Sessions */}
+              <Card className="bg-gradient-to-br from-red-900/20 to-red-800/20 border-red-600/50">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-red-400">Private Hourly Sessions</CardTitle>
+                  <CardDescription className="text-red-200">Focused one-on-one work</CardDescription>
+                  <div className="mt-4">
+                    <span className="text-4xl font-bold text-white">$4,444</span>
+                    <span className="text-red-200"> per hour</span>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-red-100 mb-6">
+                    <li>✓ 60 minutes focused work</li>
+                    <li>✓ Pre-session state assessment</li>
+                    <li>✓ Customized session approach</li>
+                    <li>✓ Practical tools & practices</li>
+                    <li>✓ Integration support</li>
+                    <li>✓ Session recording (when appropriate)</li>
+                    <li>✓ Follow-up notes & recommendations</li>
+                  </ul>
+                  <Button className="w-full bg-red-600 hover:bg-red-700 text-white font-bold">
+                    Book Session
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Trust Building */}
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-white mb-8">Join Thousands of Transformed Leaders</h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+              "This isn't just leadership training - it's a complete transformation of how you show up in the world. 
+              The nervous system work alone has revolutionized my decision-making under pressure."
+            </p>
+            <p className="text-yellow-400 font-semibold">- Sarah Chen, CEO, TechForward Solutions</p>
+          </div>
+        </div>
       </div>
     );
   }
@@ -91,11 +297,9 @@ const Index = () => {
           totalSessions={stats.totalSessions}
         />
 
-        {/* Notification toasts handled with useToast */}
-
         <section className="text-center mb-8">
           <h1 className="text-3xl font-bold text-white">Welcome, {user.user_metadata?.full_name || user.email}!</h1>
-          <p className="text-gray-300">Begin your journey to nervous system leadership.</p>
+          <p className="text-gray-300">Begin your journey to nervous system leadership and presence mastery.</p>
         </section>
 
         {/* MVP: Leaderboard */}
@@ -105,21 +309,20 @@ const Index = () => {
         <TrialBanner />
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold text-white mb-4">Your Daily Protocol Dashboard</h2>
-          {/* Pass required props to MorningSession */}
+          <h2 className="text-2xl font-semibold text-white mb-4">Your Daily Presence Protocol Dashboard</h2>
           <MorningSession level={DEFAULT_LEVEL} onComplete={() => {}} />
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-semibold text-white mb-4">Unlock Your Potential</h2>
+          <h2 className="text-2xl font-semibold text-white mb-4">Unlock Your Presence Potential</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="bg-gray-900 border-gray-700">
               <CardHeader>
                 <CardTitle className="text-xl font-bold text-white">Masterclass Library</CardTitle>
-                <CardDescription className="text-gray-400">Dive into curated content.</CardDescription>
+                <CardDescription className="text-gray-400">Dive into curated consciousness content.</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-300">Access a wealth of knowledge to deepen your understanding.</p>
+                <p className="text-gray-300">Access ancient wisdom and modern science for presence mastery.</p>
                 <Button variant="secondary" onClick={() => navigate('/masterclass-library')}>Explore Now</Button>
               </CardContent>
             </Card>
@@ -127,10 +330,10 @@ const Index = () => {
             <Card className="bg-gray-900 border-gray-700">
               <CardHeader>
                 <CardTitle className="text-xl font-bold text-white">Sacred Circle</CardTitle>
-                <CardDescription className="text-gray-400">Connect with like-minded leaders.</CardDescription>
+                <CardDescription className="text-gray-400">Connect with conscious leaders.</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-300">Engage in discussions and share experiences.</p>
+                <p className="text-gray-300">Engage in deep discussions about presence-based leadership.</p>
                 <Button variant="secondary" onClick={() => navigate('/sacred-circle')}>Join the Circle</Button>
               </CardContent>
             </Card>
@@ -138,49 +341,11 @@ const Index = () => {
             <Card className="bg-gray-900 border-gray-700">
               <CardHeader>
                 <CardTitle className="text-xl font-bold text-white">Strategic Sessions</CardTitle>
-                <CardDescription className="text-gray-400">Transform your business.</CardDescription>
+                <CardDescription className="text-gray-400">Transform your leadership presence.</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-300">Book strategic sessions to elevate your business acumen.</p>
+                <p className="text-gray-300">Book strategic sessions to elevate your consciousness-based leadership.</p>
                 <Button variant="secondary" onClick={() => navigate('/strategic-sessions')}>Book Now</Button>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-semibold text-white mb-4">Subscription Options</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="bg-gray-900 border-gray-700">
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-white">Basic Access</CardTitle>
-                <CardDescription className="text-gray-400">Free</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">Access to core content and community features.</p>
-                <Button variant="outline" disabled>Current Plan</Button>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gray-900 border-gray-700">
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-white">Premium Membership</CardTitle>
-                <CardDescription className="text-gray-400">$49/month</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">Unlock exclusive content, sessions, and personalized support.</p>
-                <Button onClick={() => navigate('/booking')}>Upgrade Now</Button>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gray-900 border-gray-700">
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-white">Executive Circle</CardTitle>
-                <CardDescription className="text-gray-400">$499/month</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300">The ultimate package with 1:1 coaching and VIP access.</p>
-                <Button onClick={() => navigate('/booking')}>Explore Benefits</Button>
               </CardContent>
             </Card>
           </div>
