@@ -94,24 +94,10 @@ const SubscriptionButton: React.FC<SubscriptionButtonProps> = ({
     return `Choose ${config.name}`;
   };
 
-  const getButtonVariant = () => {
-    if (isCurrentPlan) return 'outline';
-    if (config.color === 'yellow') return 'default';
-    return 'default';
-  };
-
-  const getButtonColor = () => {
-    if (isCurrentPlan) return 'border-gray-600 text-gray-400';
-    if (config.color === 'blue') return 'bg-blue-600 hover:bg-blue-700 text-white';
-    if (config.color === 'purple') return 'bg-purple-600 hover:bg-purple-700 text-white';
-    if (config.color === 'yellow') return 'bg-yellow-600 hover:bg-yellow-700 text-black';
-    return '';
-  };
-
   return (
-    <Card className={`relative ${config.popular ? 'ring-2 ring-purple-500' : ''} ${className}`}>
+    <Card className={`relative bg-gray-900 border-gray-700 ${config.popular ? 'ring-2 ring-yellow-400' : ''} ${className}`}>
       {config.popular && (
-        <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-600 text-white px-4 py-1">
+        <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-4 py-1 font-semibold">
           Most Popular
         </Badge>
       )}
@@ -120,7 +106,7 @@ const SubscriptionButton: React.FC<SubscriptionButtonProps> = ({
         {/* Header */}
         <div className="text-center space-y-2">
           <div className="flex items-center justify-center gap-2">
-            <IconComponent className={`w-8 h-8 text-${config.color}-400`} />
+            <IconComponent className="w-8 h-8 text-yellow-400" />
             <h3 className="text-2xl font-bold text-white">{config.name}</h3>
           </div>
           
@@ -153,8 +139,12 @@ const SubscriptionButton: React.FC<SubscriptionButtonProps> = ({
         <Button
           onClick={handleSubscribe}
           disabled={isCurrentPlan || isLoading}
-          className={`w-full font-semibold ${getButtonColor()}`}
-          variant={getButtonVariant()}
+          className={`w-full font-semibold ${
+            isCurrentPlan 
+              ? 'bg-gray-700 text-gray-400 border-gray-600' 
+              : 'bg-yellow-400 hover:bg-yellow-500 text-black'
+          }`}
+          variant={isCurrentPlan ? 'outline' : 'default'}
         >
           {isLoading ? (
             'Processing...'

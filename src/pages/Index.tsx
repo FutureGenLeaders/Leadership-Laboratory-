@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -12,7 +13,6 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import MonthlyMotivation from "@/components/MonthlyMotivation";
 import SubscriptionButton from "@/components/SubscriptionButton";
-import { Crown, Star, Zap } from 'lucide-react';
 
 const DEFAULT_LEVEL = 1;
 
@@ -130,16 +130,6 @@ const Index = () => {
               onSubscribe={(plan) => console.log('Subscribe to:', plan)}
               className="transform hover:scale-105 transition-all duration-300"
             />
-          </div>
-
-          {/* Trust Building */}
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-white mb-8">Join Thousands of Transformed Leaders</h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              "This isn't just leadership training - it's a complete transformation of how you show up in the world. 
-              The nervous system work alone has revolutionized my decision-making under pressure."
-            </p>
-            <p className="text-yellow-400 font-semibold">- Sarah Chen, CEO, TechForward Solutions</p>
           </div>
         </div>
       </div>
