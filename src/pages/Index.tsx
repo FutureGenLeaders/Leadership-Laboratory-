@@ -107,106 +107,29 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Membership Tiers */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-white text-center mb-12">Choose Your Transformation Path</h2>
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              
-              {/* Basic Tier */}
-              <Card className="bg-gray-900 border-gray-600 relative">
-                <CardHeader className="text-center pb-6">
-                  <div className="flex justify-center mb-4">
-                    <Star className="w-8 h-8 text-gray-400" />
-                  </div>
-                  <CardTitle className="text-2xl text-white">Basic Foundation</CardTitle>
-                  <CardDescription className="text-gray-400">Essential consciousness-based leadership</CardDescription>
-                  <div className="mt-4">
-                    <span className="text-3xl font-bold text-white">$77</span>
-                    <span className="text-gray-400">/month</span>
-                  </div>
-                  <p className="text-sm text-green-400">14-day free trial</p>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <ul className="space-y-3 text-gray-300">
-                    <li>✓ 2 focused lessons per month (24/year)</li>
-                    <li>✓ Monthly theme rotation: Conflict, Decision-Making, Burnout, Nervous System</li>
-                    <li>✓ 1 group coaching session monthly</li>
-                    <li>✓ Daily practices: Morning, afternoon, evening</li>
-                    <li>✓ Progress tracking & badges</li>
-                    <li>✓ Community forum access</li>
-                    <li>✓ Mobile app & audio practices</li>
-                  </ul>
-                  <SubscriptionButton tier="silver" className="w-full mt-6">
-                    Start Free Trial
-                  </SubscriptionButton>
-                </CardContent>
-              </Card>
-
-              {/* Premium Tier */}
-              <Card className="bg-gray-900 border-yellow-500 relative transform scale-105">
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-yellow-500 text-black px-4 py-1 rounded-full text-sm font-bold">MOST POPULAR</span>
-                </div>
-                <CardHeader className="text-center pb-6">
-                  <div className="flex justify-center mb-4">
-                    <Crown className="w-8 h-8 text-yellow-400" />
-                  </div>
-                  <CardTitle className="text-2xl text-white">Premium Mastery</CardTitle>
-                  <CardDescription className="text-gray-400">Comprehensive leadership transformation</CardDescription>
-                  <div className="mt-4">
-                    <span className="text-3xl font-bold text-white">$444</span>
-                    <span className="text-gray-400">/month</span>
-                  </div>
-                  <p className="text-sm text-green-400">14-day free trial</p>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <ul className="space-y-3 text-gray-300">
-                    <li>✓ 4 comprehensive lessons monthly (48/year)</li>
-                    <li>✓ Fixed structure: Conflict, Decision-Making, Burnout, Nervous System</li>
-                    <li>✓ Premium small-group coaching + quarterly 1-on-1</li>
-                    <li>✓ Enhanced daily practices (25/15/20 min)</li>
-                    <li>✓ Biometric integration & AI insights</li>
-                    <li>✓ Monthly consciousness assessments</li>
-                    <li>✓ Private premium forum & peer matching</li>
-                    <li>✓ Conscious Leadership Certification path</li>
-                  </ul>
-                  <SubscriptionButton tier="gold" className="w-full mt-6">
-                    Start Free Trial
-                  </SubscriptionButton>
-                </CardContent>
-              </Card>
-
-              {/* Executive Circle */}
-              <Card className="bg-gray-900 border-red-600 relative">
-                <CardHeader className="text-center pb-6">
-                  <div className="flex justify-center mb-4">
-                    <Zap className="w-8 h-8 text-red-400" />
-                  </div>
-                  <CardTitle className="text-2xl text-white">Executive Circle</CardTitle>
-                  <CardDescription className="text-gray-400">Elite consciousness leadership</CardDescription>
-                  <div className="mt-4">
-                    <span className="text-3xl font-bold text-white">$777</span>
-                    <span className="text-gray-400">/month</span>
-                  </div>
-                  <p className="text-sm text-green-400">14-day free trial</p>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <ul className="space-y-3 text-gray-300">
-                    <li>✓ Everything in Premium PLUS:</li>
-                    <li>✓ Advanced organizational shamanism modules</li>
-                    <li>✓ 2 VIP coaching sessions + quarterly intensives</li>
-                    <li>✓ Monthly executive mastermind (max 8 members)</li>
-                    <li>✓ Quarterly direct mentor access</li>
-                    <li>✓ VR conflict scenarios & AI practice partners</li>
-                    <li>✓ Personal legacy development planning</li>
-                    <li>✓ Global executive network access</li>
-                  </ul>
-                  <SubscriptionButton tier="red" className="w-full mt-6">
-                    Start Free Trial
-                  </SubscriptionButton>
-                </CardContent>
-              </Card>
-            </div>
+          {/* Subscription Tiers */}
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <SubscriptionButton
+              plan="foundation"
+              price={39}
+              billing="monthly"
+              onSubscribe={(plan) => console.log('Subscribe to:', plan)}
+              className="transform hover:scale-105 transition-all duration-300"
+            />
+            <SubscriptionButton
+              plan="mastery"
+              price={89}
+              billing="monthly"
+              onSubscribe={(plan) => console.log('Subscribe to:', plan)}
+              className="transform hover:scale-105 transition-all duration-300"
+            />
+            <SubscriptionButton
+              plan="executive"
+              price={189}
+              billing="monthly"
+              onSubscribe={(plan) => console.log('Subscribe to:', plan)}
+              className="transform hover:scale-105 transition-all duration-300"
+            />
           </div>
 
           {/* Trust Building */}

@@ -7,14 +7,17 @@ import { Progress } from "@/components/ui/progress";
 import { Lock, Crown, Calendar, Award, Zap, Star } from 'lucide-react';
 
 interface ContentLockProps {
-  requiredLevel: 'foundation' | 'mastery' | 'executive';
-  userLevel: 'free' | 'foundation' | 'mastery' | 'executive';
-  contentType: 'lesson' | 'assessment' | 'masterclass' | 'session';
+  requiredLevel?: 'foundation' | 'mastery' | 'executive';
+  userLevel?: 'free' | 'foundation' | 'mastery' | 'executive';
+  contentType?: 'lesson' | 'assessment' | 'masterclass' | 'session';
   title: string;
   description: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   unlockDate?: string;
   completionRequired?: boolean;
+  weekNumber?: number;
+  releaseDate?: Date;
+  timeUntilRelease?: string;
 }
 
 const LEVEL_HIERARCHY = {
@@ -37,25 +40,29 @@ const LEVEL_ICONS = {
 };
 
 const ContentLock: React.FC<ContentLockProps> = ({
-  requiredLevel,
-  userLevel,
-  contentType,
+  requiredLevel = 'foundation',
+  userLevel = 'free',
+  contentType = 'lesson',
   title,
   description,
   children,
   unlockDate,
-  completionRequired = false
+  completionRequired = false,
+  weekNumber,
+  releaseDate,
+  timeUntilRelease
 }) => {
   const [timeUntilUnlock, setTimeUntilUnlock] = useState<string>('');
   
   const hasAccess = LEVEL_HIERARCHY[userLevel] >= LEVEL_HIERARCHY[requiredLevel];
-  const isUnlocked = !unlockDate || new Date() >= new Date(unlockDate);
+  const effectiveUnlockDate = unlockDate || (releaseDate ? releaseDate.toISOString() : undefined);
+  const isUnlocked = !effectiveUnlockDate || new Date() >= new Date(effectiveUnlockDate);
   
   useEffect(() => {
-    if (unlockDate && !isUnlocked) {
+    if (effectiveUnlockDate && !isUnlocked) {
       const updateCountdown = () => {
         const now = new Date().getTime();
-        const target = new Date(unlockDate).getTime();
+        const target = new Date(effectiveUnlockDate).getTime();
         const difference = target - now;
         
         if (difference > 0) {
@@ -73,7 +80,7 @@ const ContentLock: React.FC<ContentLockProps> = ({
       const interval = setInterval(updateCountdown, 60000);
       return () => clearInterval(interval);
     }
-  }, [unlockDate, isUnlocked]);
+  }, [effectiveUnlockDate, isUnlocked]);
 
   if (hasAccess && isUnlocked) {
     return <>{children}</>;
@@ -81,6 +88,7 @@ const ContentLock: React.FC<ContentLockProps> = ({
 
   const IconComponent = LEVEL_ICONS[requiredLevel];
   const levelColor = LEVEL_COLORS[requiredLevel];
+  const displayTimeUntilRelease = timeUntilRelease || timeUntilUnlock;
 
   return (
     <Card className="bg-gray-900 border-gray-700 relative overflow-hidden">
@@ -88,9 +96,11 @@ const ContentLock: React.FC<ContentLockProps> = ({
       <div className="absolute inset-0 bg-gradient-to-br from-gray-800/50 to-black/50 z-10" />
       
       {/* Blurred content preview */}
-      <div className="absolute inset-0 filter blur-sm opacity-30">
-        {children}
-      </div>
+      {children && (
+        <div className="absolute inset-0 filter blur-sm opacity-30">
+          {children}
+        </div>
+      )}
       
       {/* Lock content */}
       <div className="relative z-20 p-6 flex items-center justify-center min-h-[300px]">
@@ -114,12 +124,21 @@ const ContentLock: React.FC<ContentLockProps> = ({
               </Badge>
             ) : !isUnlocked ? (
               <div className="space-y-2">
-                <Badge className="text-yellow-400 bg-transparent border-current">
-                  Unlocks in: {timeUntilUnlock}
-                </Badge>
-                <p className="text-sm text-gray-500">
-                  Available on {new Date(unlockDate!).toLocaleDateString()}
-                </p>
+                {weekNumber && (
+                  <Badge className="text-yellow-400 bg-transparent border-current">
+                    Week {weekNumber}
+                  </Badge>
+                )}
+                {displayTimeUntilRelease && (
+                  <Badge className="text-yellow-400 bg-transparent border-current">
+                    Unlocks in: {displayTimeUntilRelease}
+                  </Badge>
+                )}
+                {effectiveUnlockDate && (
+                  <p className="text-sm text-gray-500">
+                    Available on {new Date(effectiveUnlockDate).toLocaleDateString()}
+                  </p>
+                )}
               </div>
             ) : null}
           </div>

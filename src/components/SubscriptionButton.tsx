@@ -24,7 +24,8 @@ const PLAN_CONFIG = {
       'Progress Tracking',
       'Community Access',
       'Basic Assessments'
-    ]
+    ],
+    popular: false
   },
   mastery: {
     name: 'Mastery',
@@ -49,7 +50,8 @@ const PLAN_CONFIG = {
       'Priority Support',
       'Exclusive Content',
       'Strategic Planning'
-    ]
+    ],
+    popular: false
   }
 };
 
