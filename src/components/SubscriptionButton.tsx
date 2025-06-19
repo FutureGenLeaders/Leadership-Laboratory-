@@ -20,10 +20,11 @@ const PLAN_CONFIG = {
     icon: Star,
     color: 'blue',
     features: [
-      '4 Consciousness Lessons/month',
+      '2 Consciousness Lessons/month',
+      '1 Group Coaching Call/month',
+      'Daily Somatic Practices',
       'Progress Tracking',
-      'Community Access',
-      'Basic Assessments'
+      'Community Access'
     ],
     popular: false
   },
@@ -32,11 +33,12 @@ const PLAN_CONFIG = {
     icon: Zap,
     color: 'purple',
     features: [
-      'Everything in Foundation',
+      '4 Consciousness Lessons/month',
+      '1 Group Coaching Call/month',
+      'Enhanced Daily Practices',
       'Advanced Assessments',
       'Biometric Integration',
-      'AI Personalization',
-      'Masterclass Library'
+      'AI Personalization'
     ],
     popular: true
   },
@@ -45,11 +47,12 @@ const PLAN_CONFIG = {
     icon: Crown,
     color: 'yellow',
     features: [
-      'Everything in Mastery',
+      '4 Consciousness Lessons/month',
+      '1 Group Coaching Call/month',
+      'Enhanced Daily Practices',
       '1-on-1 Coaching Sessions',
       'Priority Support',
-      'Exclusive Content',
-      'Strategic Planning'
+      'Exclusive Content'
     ],
     popular: false
   }

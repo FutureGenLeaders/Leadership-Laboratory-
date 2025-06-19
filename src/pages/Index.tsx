@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import MonthlyMotivation from "@/components/MonthlyMotivation";
 import SubscriptionButton from "@/components/SubscriptionButton";
+import { CheckCircle, AlertTriangle, Target, Users, Brain, Zap } from 'lucide-react';
 
 const DEFAULT_LEVEL = 1;
 
@@ -79,57 +80,157 @@ const Index = () => {
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
               The Leadership Laboratory
             </h1>
+            <p className="text-2xl md:text-3xl text-yellow-400 mb-4 font-semibold">
+              Transform from Performance-Driven to Presence-Based Leadership
+            </p>
             <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto">
-              Master consciousness-based leadership through nervous system regulation, 
-              conflict transformation, and presence mastery
+              Master your nervous system, eliminate decision fatigue, and lead with unshakeable presence through ancient wisdom and modern neuroscience. <span className="text-yellow-400 font-semibold">Stop Reacting. Start Leading.</span>
             </p>
             <div className="max-w-md mx-auto">
               <Auth onSuccess={() => navigate('/level-selection')} />
             </div>
           </div>
 
-          {/* Value Proposition */}
+          {/* Problem Identification */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white mb-8">Transform Your Leadership from the Inside Out</h2>
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">Nervous System Mastery</h3>
-                <p className="text-gray-300">Regulate your internal state to lead with unwavering presence under any pressure</p>
+            <h2 className="text-3xl font-bold text-white mb-8">Are You Leading from Reaction or Response?</h2>
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="bg-red-900/20 p-6 rounded-lg border border-red-700">
+                <AlertTriangle className="w-12 h-12 text-red-400 mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-red-400 mb-4">Leading from Reaction</h3>
+                <ul className="text-gray-300 space-y-2 text-left">
+                  <li>• Dreading difficult conversations and avoiding conflict</li>
+                  <li>• Making decisions from fatigue instead of clarity</li>
+                  <li>• Feeling burned out and running on empty</li>
+                  <li>• Leading others while your nervous system is dysregulated</li>
+                </ul>
               </div>
-              <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">Conflict Transformation</h3>
-                <p className="text-gray-300">Turn every conflict into an opportunity for deeper understanding and team growth</p>
+              <div className="bg-green-900/20 p-6 rounded-lg border border-green-700">
+                <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-green-400 mb-4">Leading from Response</h3>
+                <ul className="text-gray-300 space-y-2 text-left">
+                  <li>• Master conflict transformation instead of avoiding conversations</li>
+                  <li>• Eliminate decision-making fatigue through conscious frameworks</li>
+                  <li>• Regulate your nervous system for sustainable presence</li>
+                  <li>• Replace burnout with boundless energy through somatic practices</li>
+                </ul>
               </div>
-              <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700">
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">Decision Mastery</h3>
-                <p className="text-gray-300">Make decisions from presence rather than reactivity for consistently better outcomes</p>
+            </div>
+          </div>
+
+          {/* Solution Clarity */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-white mb-8">Conscious Leadership Changes Everything</h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-4xl mx-auto">
+              When you master your internal state, external leadership becomes effortless. Our program develops the nervous system regulation, emotional intelligence, and ancient wisdom that creates unshakeable leadership presence.
+            </p>
+            
+            {/* Evidence-Based Leadership Transformation */}
+            <div className="bg-gray-900/50 p-8 rounded-lg border border-gray-700 max-w-5xl mx-auto mb-16">
+              <h3 className="text-2xl font-bold text-yellow-400 mb-6">Evidence-Based Leadership Transformation</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-6 h-6 text-green-400" />
+                    <span className="text-gray-300">Monthly lessons combining ancient wisdom with neuroscience</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-6 h-6 text-green-400" />
+                    <span className="text-gray-300">Daily somatic practices for nervous system regulation</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-6 h-6 text-green-400" />
+                    <span className="text-gray-300">Group coaching calls with like-minded leaders</span>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-6 h-6 text-green-400" />
+                    <span className="text-gray-300">Conflict resolution mastery training</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-6 h-6 text-green-400" />
+                    <span className="text-gray-300">Decision-making frameworks that eliminate fatigue</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-6 h-6 text-green-400" />
+                    <span className="text-gray-300">Burnout prevention through presence-based leadership</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* How It Works */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-bold text-white mb-8">Your Leadership Transformation Journey</h3>
+              <div className="grid md:grid-cols-5 gap-6 max-w-6xl mx-auto">
+                <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700 text-center">
+                  <div className="bg-yellow-400 text-black rounded-full w-10 h-10 flex items-center justify-center mx-auto mb-4 font-bold">1</div>
+                  <h4 className="text-white font-semibold mb-2">Take Assessment</h4>
+                  <p className="text-sm text-gray-300">Identify your leadership growth edges</p>
+                </div>
+                <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700 text-center">
+                  <div className="bg-yellow-400 text-black rounded-full w-10 h-10 flex items-center justify-center mx-auto mb-4 font-bold">2</div>
+                  <h4 className="text-white font-semibold mb-2">Choose Level</h4>
+                  <p className="text-sm text-gray-300">Select membership based on transformation commitment</p>
+                </div>
+                <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700 text-center">
+                  <div className="bg-yellow-400 text-black rounded-full w-10 h-10 flex items-center justify-center mx-auto mb-4 font-bold">3</div>
+                  <h4 className="text-white font-semibold mb-2">Access Lessons</h4>
+                  <p className="text-sm text-gray-300">Build conscious leadership capacity monthly</p>
+                </div>
+                <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700 text-center">
+                  <div className="bg-yellow-400 text-black rounded-full w-10 h-10 flex items-center justify-center mx-auto mb-4 font-bold">4</div>
+                  <h4 className="text-white font-semibold mb-2">Daily Practice</h4>
+                  <p className="text-sm text-gray-300">Master nervous system regulation</p>
+                </div>
+                <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-700 text-center">
+                  <div className="bg-yellow-400 text-black rounded-full w-10 h-10 flex items-center justify-center mx-auto mb-4 font-bold">5</div>
+                  <h4 className="text-white font-semibold mb-2">Group Support</h4>
+                  <p className="text-sm text-gray-300">Integrate learning with peer coaching</p>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Subscription Tiers */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <SubscriptionButton
-              plan="foundation"
-              price={39}
-              billing="monthly"
-              onSubscribe={(plan) => console.log('Subscribe to:', plan)}
-              className="transform hover:scale-105 transition-all duration-300"
-            />
-            <SubscriptionButton
-              plan="mastery"
-              price={89}
-              billing="monthly"
-              onSubscribe={(plan) => console.log('Subscribe to:', plan)}
-              className="transform hover:scale-105 transition-all duration-300"
-            />
-            <SubscriptionButton
-              plan="executive"
-              price={189}
-              billing="monthly"
-              onSubscribe={(plan) => console.log('Subscribe to:', plan)}
-              className="transform hover:scale-105 transition-all duration-300"
-            />
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-white mb-8">Choose Your Leadership Transformation Level</h2>
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <SubscriptionButton
+                plan="foundation"
+                price={77}
+                billing="monthly"
+                onSubscribe={(plan) => console.log('Subscribe to:', plan)}
+                className="transform hover:scale-105 transition-all duration-300"
+              />
+              <SubscriptionButton
+                plan="mastery"
+                price={444}
+                billing="monthly"
+                onSubscribe={(plan) => console.log('Subscribe to:', plan)}
+                className="transform hover:scale-105 transition-all duration-300"
+              />
+              <SubscriptionButton
+                plan="executive"
+                price={777}
+                billing="monthly"
+                onSubscribe={(plan) => console.log('Subscribe to:', plan)}
+                className="transform hover:scale-105 transition-all duration-300"
+              />
+            </div>
+            
+            {/* Call to Action */}
+            <div className="mt-12">
+              <Button 
+                size="lg" 
+                className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold text-xl px-8 py-4"
+                onClick={() => navigate('/assessment')}
+              >
+                Start Your Leadership Transformation
+              </Button>
+              <p className="text-gray-400 mt-4">Take the assessment & choose your path to conscious leadership</p>
+            </div>
           </div>
         </div>
       </div>
