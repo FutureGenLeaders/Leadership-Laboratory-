@@ -1,95 +1,95 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
+/* Leadership Laboratory Brand Colors - Override ALL existing colors */
+:root {
+  --primary-gold: #E0B848;
+  --secondary-red: #AD1E2D;
+  --dark-gold: #B08B18;
+  --pure-black: #000000;
+  --dark-gray-1: #111111;
+  --dark-gray-2: #222222;
+  --dark-gray-3: #333333;
+  --text-light: #E0B848;
+  --text-white: #FFFFFF;
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+  /* Override shadcn variables with brand colors */
+  --background: 0 0% 0%; /* Pure black */
+  --foreground: 48 75% 70%; /* Golden text */
+  --card: 0 0% 13%; /* Dark gray */
+  --card-foreground: 48 75% 70%; /* Golden text */
+  --popover: 0 0% 13%;
+  --popover-foreground: 48 75% 70%;
+  --primary: 347 70% 41%; /* Red */
+  --primary-foreground: 0 0% 100%; /* White */
+  --secondary: 48 75% 70%; /* Gold */
+  --secondary-foreground: 0 0% 0%; /* Black */
+  --muted: 0 0% 20%;
+  --muted-foreground: 48 75% 70%;
+  --accent: 48 65% 35%; /* Dark gold */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 48 75% 70%;
+  --input: 0 0% 20%;
+  --ring: 48 75% 70%;
+  --radius: 0.5rem;
+}
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+/* Force override ALL existing colors */
+* {
+  color: var(--text-light) !important;
+}
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+body {
+  background: var(--pure-black) !important;
+  color: var(--text-light) !important;
+}
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+/* Force all section backgrounds */
+section, div, main, header, nav, footer {
+  background-color: var(--pure-black) !important;
+}
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+/* Force button colors */
+.btn-primary, button[class*="bg-blue"], button[class*="bg-green"] {
+  background: var(--secondary-red) !important;
+  border-color: var(--secondary-red) !important;
+  color: var(--text-white) !important;
+}
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+.btn-secondary {
+  background: var(--primary-gold) !important;
+  border-color: var(--primary-gold) !important;
+  color: var(--pure-black) !important;
+}
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+/* Force card backgrounds */
+.card, [class*="bg-gray"], [class*="bg-white"] {
+  background: var(--dark-gray-2) !important;
+  border-color: var(--primary-gold) !important;
+}
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+/* Force all headings to gold */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-gold) !important;
+}
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+/* Force all links to gold */
+a {
+  color: var(--primary-gold) !important;
+}
 
-    --radius: 0.5rem;
+a:hover {
+  color: var(--dark-gold) !important;
+}
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+/* Remove any blue/green overrides */
+[class*="blue"], [class*="green"], .text-blue, .bg-blue, .text-green, .bg-green {
+  color: var(--text-light) !important;
+  background-color: var(--pure-black) !important;
 }
 
 @layer base {
@@ -99,5 +99,7 @@
 
   body {
     @apply bg-background text-foreground;
+    background: var(--pure-black) !important;
+    color: var(--text-light) !important;
   }
 }

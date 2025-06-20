@@ -18,7 +18,7 @@ const PLAN_CONFIG = {
   foundation: {
     name: 'Foundation',
     icon: Star,
-    color: 'blue',
+    color: 'gold',
     features: [
       '2 Consciousness Lessons/month',
       '1 Group Coaching Call/month',
@@ -31,7 +31,7 @@ const PLAN_CONFIG = {
   mastery: {
     name: 'Mastery',
     icon: Zap,
-    color: 'purple',
+    color: 'gold',
     features: [
       '4 Consciousness Lessons/month',
       '1 Group Coaching Call/month',
@@ -45,7 +45,7 @@ const PLAN_CONFIG = {
   executive: {
     name: 'Executive Circle',
     icon: Crown,
-    color: 'yellow',
+    color: 'gold',
     features: [
       '4 Consciousness Lessons/month',
       '1 Group Coaching Call/month',
@@ -98,7 +98,7 @@ const SubscriptionButton: React.FC<SubscriptionButtonProps> = ({
   };
 
   return (
-    <Card className={`relative bg-gray-900 border-gray-700 ${config.popular ? 'ring-2 ring-yellow-400' : ''} ${className}`}>
+    <Card className={`relative bg-gray-900 border-yellow-400 ${config.popular ? 'ring-2 ring-yellow-400' : ''} ${className}`}>
       {config.popular && (
         <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-4 py-1 font-semibold">
           Most Popular
@@ -110,11 +110,11 @@ const SubscriptionButton: React.FC<SubscriptionButtonProps> = ({
         <div className="text-center space-y-2">
           <div className="flex items-center justify-center gap-2">
             <IconComponent className="w-8 h-8 text-yellow-400" />
-            <h3 className="text-2xl font-bold text-white">{config.name}</h3>
+            <h3 className="text-2xl font-bold text-yellow-400">{config.name}</h3>
           </div>
           
           <div className="space-y-1">
-            <div className="text-3xl font-bold text-white">
+            <div className="text-3xl font-bold text-yellow-400">
               ${price}
               <span className="text-lg font-normal text-gray-400">
                 /{billing === 'monthly' ? 'mo' : 'yr'}
@@ -132,7 +132,7 @@ const SubscriptionButton: React.FC<SubscriptionButtonProps> = ({
         <div className="space-y-3">
           {config.features.map((feature, index) => (
             <div key={index} className="flex items-center gap-3">
-              <Check className="w-5 h-5 text-green-400 flex-shrink-0" />
+              <Check className="w-5 h-5 text-yellow-400 flex-shrink-0" />
               <span className="text-gray-300 text-sm">{feature}</span>
             </div>
           ))}
@@ -145,7 +145,7 @@ const SubscriptionButton: React.FC<SubscriptionButtonProps> = ({
           className={`w-full font-semibold ${
             isCurrentPlan 
               ? 'bg-gray-700 text-gray-400 border-gray-600' 
-              : 'bg-yellow-400 hover:bg-yellow-500 text-black'
+              : 'bg-red-600 hover:bg-red-700 text-white border-red-600'
           }`}
           variant={isCurrentPlan ? 'outline' : 'default'}
         >
@@ -161,7 +161,7 @@ const SubscriptionButton: React.FC<SubscriptionButtonProps> = ({
 
         {/* Additional Info */}
         {isUpgrade && (
-          <p className="text-xs text-green-400 text-center">
+          <p className="text-xs text-yellow-400 text-center">
             Unlock advanced features immediately
           </p>
         )}

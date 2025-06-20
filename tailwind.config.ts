@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -19,6 +20,10 @@ export default {
 		},
 		extend: {
 			colors: {
+				// Leadership Laboratory Brand Colors
+				golden: '#E0B848',
+				'dark-gold': '#B08B18',
+				'brand-red': '#AD1E2D',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
